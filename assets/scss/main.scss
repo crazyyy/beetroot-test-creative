@@ -1,4 +1,4 @@
-@import 'grid/bootstrap-grid';
+@import "import/reset";
 @import "import/variables";
 @import "import/buttons";
 @import "import/forms";
@@ -7,7 +7,7 @@
 @import "import/mixin";
 @import "import/wordpress";
 
-
+@import 'grid/bootstrap-grid';
 
 body {
   font-family: $font-family-base;

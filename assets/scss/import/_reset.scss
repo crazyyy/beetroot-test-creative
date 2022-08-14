@@ -117,6 +117,7 @@ video {
 
   border: 0;
 }
+
 article,
 aside,
 details,
@@ -131,18 +132,30 @@ nav,
 section {
   display: block;
 }
+
+// Add the correct display in all browsers
 summary {
   display: list-item;
+  cursor: pointer;
 }
+
 html,
 body {
   height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
 }
+
 html,
 body,
 button {
   font-smoothing: antialiased;
 }
+
 html {
   font-family: sans-serif;
   scroll-behavior: smooth;
@@ -150,9 +163,10 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
 }
+
 body {
   -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba($black, 0);
+  -webkit-tap-highlight-color: rgba(#fff, 0);
 
   position: relative;
 
@@ -161,18 +175,22 @@ body {
 
   overscroll-behavior: none;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 dd,
 ol,
 ul {
   padding: 0;
 }
+
 p {
   hyphens: auto;
 }
+
 blockquote,
 q {
   margin: 0;
@@ -181,9 +199,9 @@ q {
   &:before,
   &:after {
     content: '';
-    content: none;
   }
 }
+
 a {
   background-color: transparent;
   &:focus {
@@ -194,22 +212,67 @@ a {
   &:hover {
     outline: 0;
   }
+  &[href^="tel:"],
+  a[href^="mailto:"],
+  {
+    white-space: nowrap;
+    text-decoration: none;
+
+    color: inherit;
+  }
 }
+
+// And undo these styles for placeholder links/named anchors (without href).
+// It would be more straightforward to just use a[href] in previous block, but that
+// causes specificity issues in many other styles that are too complex to fix.
+// See https://github.com/twbs/bootstrap/issues/19402
+
+a:not([href]):not([class]) {
+  &,
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
 b,
 strong {
   font-weight: bolder;
 }
+
 pre {
   white-space: pre;
   font-family: monospace, monospace;
-  font-size: 1em;
+  font-size: 100%;
   word-wrap: break-word;
+
+  // Account for some code outputs that place code tags in pre tags
+  code {
+    font-size: 100%;
+    color: inherit;
+    word-break: normal;
+  }
 }
+
 code,
 kbd,
 samp {
   font-family: monospace, monospace;
-  font-size: 1em;
+  font-size: 100%;
+}
+
+code {
+  word-wrap: break-word;
+
+  // Streamline the style when inside anchors to avoid broken underline and more
+  a > & {
+    color: inherit;
+  }
+}
+
+// Correct element displays
+output {
+  display: inline-block;
 }
 
 /* Reset default appearance */
@@ -218,8 +281,6 @@ select,
 input,
 progress {
   appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
 }
 
 button,
@@ -229,7 +290,8 @@ select,
 textarea {
   font-family: inherit;
   font-size: 100%;
-  line-height: 1.15;
+  line-height: inherit;
+  border-radius: 0;
 
   margin: 0;
 
@@ -237,6 +299,27 @@ textarea {
   vertical-align: baseline;
 }
 
+select {
+  // Remove the inheritance of word-wrap in Safari.
+  // See https://github.com/twbs/bootstrap/issues/24990
+  word-wrap: normal;
+
+  // Undo the opacity change from Chrome
+  &:disabled {
+    opacity: 1;
+  }
+}
+
+// Explicitly remove focus outline in Chromium when it shouldn't be
+// visible (e.g. as result of mouse click or touch tap). It already
+// should be doing this automatically, but seems to currently be
+// confused and applies its very visible two-tone outline anyway.
+
+button:focus:not(:focus-visible) {
+  outline: 0;
+}
+
+// Textareas should really only resize vertically so they don't break their (horizontal) containers.
 textarea {
   overflow: auto;
   white-space: revert;
@@ -267,6 +350,7 @@ button,
 input {
   overflow: visible;
 }
+// Remove the inheritance of text transform in Firefox
 button,
 select {
   text-transform: none;
@@ -287,12 +371,16 @@ input {
   &[type='radio'] {
     padding: 0;
   }
+  // 1. Correct the outline style in Safari.
+  // 2. This overrides the extra rounded corners on search inputs in iOS so that our
+  //    `.form-control` class can properly style them. Note that this cannot simply
+  //    be added to `.form-control` as it's not specific enough. For details, see
+  //    https://github.com/twbs/bootstrap/issues/11586.
   &[type='search'] {
     box-sizing: content-box;
     -webkit-appearance: textfield;
     outline-offset: -2px;
-    &::-webkit-search-cancel-button,
-    &::-webkit-search-decoration {
+    &::-webkit-search-cancel-button {
       -webkit-appearance: none;
     }
   }
@@ -303,33 +391,44 @@ input {
     }
   }
 }
-::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  font: inherit;
-}
 
 button[disabled],
 html input[disabled] {
   cursor: default;
 }
-button::-moz-focus-inner,
-[type='button']::-moz-focus-inner,
-[type='reset']::-moz-focus-inner,
-[type='submit']::-moz-focus-inner {
-  border-style: none;
+
+// Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
+::-moz-focus-inner {
   padding: 0;
+  border-style: none;
 }
-button:-moz-focusring,
-[type='button']:-moz-focusring,
-[type='reset']:-moz-focusring,
-[type='submit']:-moz-focusring {
+
+:-moz-focusring {
   outline: 1px dotted ButtonText;
 }
+
+// Set the cursor for non-`<button>` buttons
+// Details at https://github.com/twbs/bootstrap/pull/30562
+[role="button"] {
+  cursor: pointer;
+}
+
 table {
+  caption-side: bottom;
   border-spacing: 0;
   border-collapse: collapse;
+  th {
+    text-align: -webkit-match-parent;
+  }
+  thead,
+  tbody,
+  tfoot,
+  tr,
   td,
   th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
     padding: 0;
   }
 }
@@ -353,6 +452,7 @@ video {
 
   *zoom: 1;
 }
+
 audio,
 canvas,
 iframe,
@@ -361,21 +461,29 @@ svg,
 video {
   vertical-align: middle;
 }
+
 audio:not([controls]) {
   display: none;
 
   height: 0;
 }
+
+// Remove border from iframe
+iframe {
+  border: 0;
+}
+
 :where([hidden]),
 template {
   display: none;
 }
 
 abbr[title] {
-  border-bottom: none;
-  text-decoration: underline;
   text-decoration: underline dotted;
+  cursor: help;
+  text-decoration-skip-ink: none;
 }
+
 abbr[title],
 acronym[title],
 dfn {
@@ -422,22 +530,33 @@ img {
   -ms-interpolation-mode: bicubic;
   border: 0;
 }
+
 svg {
   fill: currentColor;
 }
+
 svg:not(:root) {
   overflow: hidden;
 }
+
 figure,
 form {
   margin: 0;
 }
+
+// 1. Browsers set a default `min-width: min-content;` on fieldsets,
+//    unlike e.g. `<div>`s, which have `min-width: 0;` by default.
+//    So we reset that to ensure fieldsets behave more like a standard block element.
+//    See https://github.com/twbs/bootstrap/issues/12359
+//    and https://html.spec.whatwg.org/multipage/#the-fieldset-and-legend-elements
+// 2. Reset the default outline behavior of fieldsets so they don't affect page layout.
 fieldset {
   margin: 0;
   padding: 0;
-
+  min-width: 0;
   border: 0;
 }
+
 legend {
   padding: 0;
 
@@ -450,7 +569,25 @@ legend {
   display: table;
   max-width: 100%;
 
+
+  float: left;
+  width: 100%;
+
+
+  line-height: inherit;
+
+  + * {
+    clear: left;
+  }
+
 }
+
+// Allow labels to use `margin` for spacing.
+label {
+  display: inline-block; // 1
+}
+
+// Add the correct vertical alignment in Chrome, Firefox, and Opera.
 progress {
   vertical-align: baseline;
 }
@@ -473,21 +610,26 @@ progress {
 
 .clearfix {
   *zoom: 1;
-  &:before {
-    display: table;
 
-    content: '';
+  &:before,
+  &:after{
+    content: " ";
+    display: table;
   }
-  &:after {
-    display: table;
-    clear: both;
 
-    content: '';
+  &:after{
+    display: block;
+    clear: both;
+    height: 1px;
+    margin-top: -1px;
+    visibility: hidden;
   }
 }
+
 .clear {
   clear: both;
 }
+
 embed,
 iframe,
 img,
@@ -496,21 +638,64 @@ video,
 .wp-caption {
   max-width: 100%;
 }
+
 ::selection {
   color: #000000;
-  background: #fbd404;
+  background-color: #fbd404;
 }
+
 video,
 audio {
   max-width: 100%;
   height: auto;
 }
-a[href^='tel'] {
-  white-space: nowrap;
-  text-decoration: none;
 
-  color: inherit;
+
+
+// Remove the dropdown arrow only from text type inputs built with datalists in Chrome.
+// See https://stackoverflow.com/a/54997118
+[list]:not([type="date"]):not([type="datetime-local"]):not([type="month"]):not([type="week"]):not([type="time"])::-webkit-calendar-picker-indicator {
+  display: none !important;
 }
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+// Remove the inner padding in Chrome and Safari on macOS.
+::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+// Remove padding around color pickers in webkit browsers
+::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+// Fix height of inputs with a type of datetime-local, date, month, week, or time
+// See https://github.com/twbs/bootstrap/issues/18842
+::-webkit-datetime-edit-fields-wrapper,
+::-webkit-datetime-edit-text,
+::-webkit-datetime-edit-minute,
+::-webkit-datetime-edit-hour-field,
+::-webkit-datetime-edit-day-field,
+::-webkit-datetime-edit-month-field,
+::-webkit-datetime-edit-year-field {
+  padding: 0;
+}
+
+::-webkit-inner-spin-button {
+  height: auto;
+}
+
+// 1. Inherit font family and line height for file input buttons
+// 2. Correct the inability to style clickable types in iOS and Safari.
+::file-selector-button {
+  font: inherit; // 1
+  -webkit-appearance: button; // 2
+}
+
 @media (max-width: 30em) {
   a[href^='tel'] {
     text-decoration: underline;
