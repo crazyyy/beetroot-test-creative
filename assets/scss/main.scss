@@ -129,7 +129,7 @@ footer {
 
 @include meta.load-css("media");
 
-// @import "fonts/font_roboto";
+@include meta.load-css("fonts/font_poppins");
 
 @include meta.load-css("import/base64");
 @include meta.load-css("import/print");

@@ -4,7 +4,7 @@
 // Font Sizes
 $base-font-size: 16px;
 $em-base: $base-font-size;
-$font-family-base: 'Roboto Condensed', sans-serif;
+$font-family-base: 'Poppins', Arial, sans-serif;
 $heading-font-family: $font-family-base;
 
 // font weight
@@ -48,7 +48,7 @@ $base-border-color: $gray-light;
 $base-border: 1px solid $base-border-color;
 
 // Background Colors
-$base-background-color: #fff;
+$base-background-color: #fcf2f0;
 $secondary-background-color: tint($base-border-color, 75%);
 
 // Box Shadows
