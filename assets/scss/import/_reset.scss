@@ -2,16 +2,22 @@
     Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
     - The "symbol *" part is to solve Firefox SVG sprite bug
  */
-*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol
+      *)) {
   all: unset;
   display: revert;
 }
 
-/* Preferred box-sizing value */
+/**
+ * 1. Add border box sizing in all browsers (opinionated).
+ * 2. Backgrounds do not repeat by default (opinionated).
+ */
+
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+  box-sizing: border-box; /* 1 */
+  background-repeat: no-repeat; /* 2 */
 }
 
 * {
@@ -25,6 +31,37 @@
     font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
+}
+
+/**
+ * 1. Add text decoration inheritance in all browsers (opinionated).
+ * 2. Add vertical alignment inheritance in all browsers (opinionated).
+ */
+::before,
+::after {
+  text-decoration: inherit; /* 1 */
+  vertical-align: inherit; /* 2 */
+}
+
+/**
+ * 1. Use the default cursor in all browsers (opinionated).
+ * 2. Change the line height in all browsers (opinionated).
+ * 3. Breaks words to prevent overflow in all browsers (opinionated).
+ * 4. Use a 4-space tab width in all browsers (opinionated).
+ * 5. Remove the grey highlight on links in iOS (opinionated).
+ * 6. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+:root {
+  cursor: default; /* 1 */
+  line-height: 1.5; /* 2 */
+  overflow-wrap: break-word; /* 3 */
+  -moz-tab-size: 4; /* 4 */
+  tab-size: 4; /* 4 */
+  -webkit-tap-highlight-color: transparent; /* 5 */
+  -webkit-text-size-adjust: 100%; /* 6 */
+  text-size-adjust: 100%; /* 6 */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 html,
@@ -133,12 +170,6 @@ section {
   display: block;
 }
 
-// Add the correct display in all browsers
-summary {
-  display: list-item;
-  cursor: pointer;
-}
-
 html,
 body {
   height: 100%;
@@ -162,10 +193,14 @@ html {
   text-size-adjust: 100%;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
 }
 
 body {
   -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(#fff, 0);
 
   position: relative;
@@ -185,6 +220,11 @@ dd,
 ol,
 ul {
   padding: 0;
+  dd,
+  ol,
+  ul {
+    margin: 0;
+  }
 }
 
 p {
@@ -198,7 +238,7 @@ q {
   quotes: none;
   &:before,
   &:after {
-    content: '';
+    content: "";
   }
 }
 
@@ -213,8 +253,7 @@ a {
     outline: 0;
   }
   &[href^="tel:"],
-  a[href^="mailto:"],
-  {
+  a[href^="mailto:"] {
     white-space: nowrap;
     text-decoration: none;
 
@@ -322,7 +361,7 @@ button:focus:not(:focus-visible) {
 // Textareas should really only resize vertically so they don't break their (horizontal) containers.
 textarea {
   overflow: auto;
-  white-space: revert;
+  white-space: unset;
   resize: vertical;
   vertical-align: top;
 }
@@ -339,36 +378,42 @@ meter {
 }
 
 /* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
-input, textarea {
+input,
+textarea {
   -webkit-user-select: auto;
 }
 
 optgroup {
   font-weight: bold;
 }
+
 button,
 input {
   overflow: visible;
 }
+
 // Remove the inheritance of text transform in Firefox
 button,
 select {
   text-transform: none;
 }
+
 input {
   overflow: visible;
-  &[type='button'],
-  &[type='reset'],
-  &[type='submit'] {
+  &[type="button"],
+  &[type="reset"],
+  &[type="submit"] {
     cursor: pointer;
 
     -webkit-appearance: button;
+    -ms-appearance: button;
+    -moz-appearance: button;
   }
   &[disabled] {
     cursor: default;
   }
-  &[type='checkbox'],
-  &[type='radio'] {
+  &[type="checkbox"],
+  &[type="radio"] {
     padding: 0;
   }
   // 1. Correct the outline style in Safari.
@@ -376,15 +421,19 @@ input {
   //    `.form-control` class can properly style them. Note that this cannot simply
   //    be added to `.form-control` as it's not specific enough. For details, see
   //    https://github.com/twbs/bootstrap/issues/11586.
-  &[type='search'] {
+  &[type="search"] {
     box-sizing: content-box;
     -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    -ms-appearance: textfield;
     outline-offset: -2px;
     &::-webkit-search-cancel-button {
       -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
     }
   }
-  &[type='number'] {
+  &[type="number"] {
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
       height: auto;
@@ -400,11 +449,15 @@ html input[disabled] {
 // Remove inner border and padding from Firefox, but don't restore the outline like Normalize.
 ::-moz-focus-inner {
   padding: 0;
-  border-style: none;
+  border: 0;
 }
 
 :-moz-focusring {
   outline: 1px dotted ButtonText;
+}
+
+:-moz-ui-invalid {
+  box-shadow: none;
 }
 
 // Set the cursor for non-`<button>` buttons
@@ -417,9 +470,11 @@ table {
   caption-side: bottom;
   border-spacing: 0;
   border-collapse: collapse;
+
   th {
     text-align: -webkit-match-parent;
   }
+
   thead,
   tbody,
   tfoot,
@@ -438,13 +493,16 @@ hr {
   height: 0;
   overflow: visible;
 }
+
 dfn {
   font-style: italic;
 }
+
 mark {
   color: #000000;
   background-color: #ffff00;
 }
+
 audio,
 canvas,
 video {
@@ -473,12 +531,26 @@ iframe {
   border: 0;
 }
 
-:where([hidden]),
+// Restrict sizing to the page width in all browsers (opinionated).
+:where(iframe, img, input, video, select, textarea) {
+  height: auto;
+  max-width: 100%;
+}
+
+// Add the correct display in IE 10+.
+
 template {
   display: none;
 }
 
+// Add the correct display in IE 10.
+.hidden,
+[hidden] {
+  display: none !important;
+}
+
 abbr[title] {
+  text-decoration: underline;
   text-decoration: underline dotted;
   cursor: help;
   text-decoration-skip-ink: none;
@@ -489,9 +561,11 @@ acronym[title],
 dfn {
   cursor: help;
 }
+
 small {
   font-size: 80%;
 }
+
 sub,
 sup {
   font-size: 75%;
@@ -515,9 +589,11 @@ nav {
   menu,
   ul,
   ol {
-    list-style: none;
+    list-style-type: none;
+    padding: 0;
   }
 }
+
 img {
   font-style: italic;
 
@@ -531,13 +607,19 @@ img {
   border: 0;
 }
 
+/**
+ * Change the fill color to match the text color in all browsers (opinionated).
+ */
 svg {
-  fill: currentColor;
+  &:not([fill]) {
+    fill: currentColor;
+  }
+  &:not(:root) {
+    overflow: hidden;
+  }
 }
 
-svg:not(:root) {
-  overflow: hidden;
-}
+
 
 figure,
 form {
@@ -569,17 +651,14 @@ legend {
   display: table;
   max-width: 100%;
 
-
   float: left;
   width: 100%;
-
 
   line-height: inherit;
 
   + * {
     clear: left;
   }
-
 }
 
 // Allow labels to use `margin` for spacing.
@@ -589,6 +668,7 @@ label {
 
 // Add the correct vertical alignment in Chrome, Firefox, and Opera.
 progress {
+  display: inline-block;
   vertical-align: baseline;
 }
 
@@ -612,12 +692,12 @@ progress {
   *zoom: 1;
 
   &:before,
-  &:after{
+  &:after {
     content: " ";
     display: table;
   }
 
-  &:after{
+  &:after {
     display: block;
     clear: both;
     height: 1px;
@@ -650,22 +730,26 @@ audio {
   height: auto;
 }
 
-
-
 // Remove the dropdown arrow only from text type inputs built with datalists in Chrome.
 // See https://stackoverflow.com/a/54997118
 [list]:not([type="date"]):not([type="datetime-local"]):not([type="month"]):not([type="week"]):not([type="time"])::-webkit-calendar-picker-indicator {
   display: none !important;
 }
 
+// 1. Correct the inability to style clickable types in iOS and Safari.
+// 2. Change font properties to `inherit` in Safari.
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
+  -ms-appearance: button;
+  -moz-appearance: button;
   font: inherit;
 }
 
 // Remove the inner padding in Chrome and Safari on macOS.
 ::-webkit-search-decoration {
   -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
 }
 
 // Remove padding around color pickers in webkit browsers
@@ -689,15 +773,89 @@ audio {
   height: auto;
 }
 
+/*
+ * Remove text-shadow in selection highlight:
+ * https://twitter.com/miketaylr/status/12228805301
+ */
+::-moz-selection {
+  text-shadow: none;
+}
+
 // 1. Inherit font family and line height for file input buttons
 // 2. Correct the inability to style clickable types in iOS and Safari.
 ::file-selector-button {
   font: inherit; // 1
-  -webkit-appearance: button; // 2
+  -webkit-appearance: button;
+  -ms-appearance: button;
+  -moz-appearance: button;
+}
+
+/* Interactive
+ * ========================================================================== */
+/*
+ * Add the correct styles in Safari.
+ */
+dialog {
+  background-color: inherit;
+  border: solid;
+  color: inherit;
+  display: block;
+  height: fit-content;
+  left: 0;
+  margin: auto;
+  padding: 1em;
+  position: absolute;
+  right: 0;
+  width: fit-content;
+}
+
+dialog:not([open]) {
+  display: none;
+}
+
+summary {
+  display: list-item;
+}
+
+/*
+ * Add the correct display in Safari.
+ */
+:where(details > summary:first-of-type) {
+  display: list-item;
+}
+
+/* Accessibility
+ * ========================================================================== */
+/**
+ * Change the cursor on busy elements in all browsers (opinionated).
+ */
+:where([aria-busy="true" i]) {
+  cursor: progress;
+}
+
+/*
+ * Change the cursor on disabled, not-editable, or otherwise
+ * inoperable elements in all browsers (opinionated).
+ */
+:where([aria-disabled="true" i], [disabled]) {
+  cursor: not-allowed;
+}
+
+/*
+ * Change the display on visually hidden accessible elements
+ * in all browsers (opinionated).
+ */
+:where([aria-hidden="false" i][hidden]) {
+  display: initial;
+}
+
+:where([aria-hidden="false" i][hidden]:not(:focus)) {
+  clip: rect(0, 0, 0, 0);
+  position: absolute;
 }
 
 @media (max-width: 30em) {
-  a[href^='tel'] {
+  a[href^="tel:"] {
     text-decoration: underline;
     pointer-events: auto;
   }
