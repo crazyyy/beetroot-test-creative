@@ -90,16 +90,11 @@ picture {
 .container {
   position: relative;
   max-width: variables.$width;
-  width: variables.$width;
 }
 
 header {
-  background-color: variables.$gray-light;
   .header--logo {
-    display: block;
-    img {
-      max-width: 100%;
-    }
+
   }
 }
 nav {
