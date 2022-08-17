@@ -15,6 +15,8 @@
 
 @use "import/wordpress";
 
+@include mixin.loadify(init);
+
 html,
 body {
   height: 100%;
@@ -27,14 +29,14 @@ body {
 }
 
 body {
+  background-color: variables.$base-background-color;
+  color: variables.$base-font-color;
   font-family: variables.$font-family-base;
   font-size: variables.$base-font-size;
   font-weight: variables.$fnorm;
   line-height: variables.$base-line-height;
   min-width: 320px;
   transition: variables.$base-transition;
-  color: variables.$base-font-color;
-  background-color: variables.$base-background-color;
   -webkit-font-smoothing: antialiased;
 }
 h1,
@@ -91,18 +93,21 @@ picture {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 5;
+  z-index: 11;
   padding-top: 60px;
   .header--logo {
     span,
     a {
+      font-size: 26.417px;
+      line-height: 1.211;
+      -ms-transform: matrix( 1.14591700133869,1.5684730159718e-16,0,1.13561470215463,0,0);
+      transform: matrix( 1.14591700133869,1.5684730159718e-16,0,1.13561470215463,0,0);
       font-weight: bold;
-      font-size: 30px;
       color: variables.$black;
       position: relative;
       z-index: 6;
       &:before {
-        display: block;
+        display: inline-block;
         content: '';
         width: 34px;
         height: 34px;
@@ -122,7 +127,7 @@ picture {
 }
 
 .header--menu {
-  @extend .clearfix;
+  @include helpers.clearfix;
   text-align: center;
   li {
     display: inline-block;
@@ -151,12 +156,14 @@ picture {
     font-size: 16px;
     color: variables.$blue;
     border: 1px solid variables.$gray-medium;
+    background-color: transparent;
     border-radius: 10px;
     line-height: 0.9;
   }
 }
 
 .section {
+  overflow: hidden;
   background-color: variables.$base-background-color;
 }
 
@@ -180,6 +187,71 @@ picture {
     font-size: 18px;
     padding-top: 0;
     padding-bottom: 0;
+  }
+  .home-bg-element--1,
+  .home-bg-element--2,
+  .home-bg-element--3,
+  .home-bg-element--4,
+  .home-bg-element--5 {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+  }
+  .home-bg-element--1 {
+    //width: 195px;
+    //height: 195px;
+    //width: 10.16vw;
+    width: 18.06vh;
+    height: 18.06vh;
+    top: 27.69vh;
+    left: 64.79vw;
+    background-image: url(../img/bg/home-bg-element--1.png);
+    //background-image: url(../img/bg/home-bg-element--1.svg);
+  }
+  .home-bg-element--2 {
+    //width: 839px; // 763 real
+    //height: 365px;
+    //width: 43.7vw;
+    width: 77.69vh;
+    height: 33.8vh;
+    top: 37.04vh;
+    left: -7.04vh;
+    background-image: url(../img/bg/home-bg-element--2.png);
+    //background-image: url(../img/bg/home-bg-element--2.svg);
+  }
+  .home-bg-element--3 {
+    //width: 254px;
+    //height: 254px;
+    //width: 13.23vw;
+    width: 23.52vh;
+    height: 23.52vh;
+    top: 55.56vh;
+    left: 19.01vw;
+    background-image: url(../img/bg/home-bg-element--3.png);
+    //background-image: url(../img/bg/home-bg-element--3.svg);
+  }
+  .home-bg-element--4 {
+    //width: 325px;
+    //height: 535px; // real 375
+    //width: 16.93vw;
+    width: 30.09vh;
+    height: 49.54vh;
+    bottom: -14.81vh;
+    left: 66.35vw;
+    background-image: url(../img/bg/home-bg-element--4.png);
+    //background-image: url(../img/bg/home-bg-element--4.svg);
+  }
+  .home-bg-element--5 {
+    //width: 117px;
+    //height: 116px;
+    //width: 6.09vw;
+    width: 10.83vh;
+    height: 10.74vh;
+    bottom: 9.26vh;
+    left: 79.17vw;
+    background-image: url(../img/bg/home-bg-element--5.png);
+    //background-image: url(../img/bg/home-bg-element--5.svg);
   }
 }
 
@@ -259,6 +331,55 @@ picture {
       background-image: url(../img/content/about--provide-item-3.png);
     }
   }
+  .about-bg-element--1,
+  .about-bg-element--2,
+  .about-bg-element--3,
+  .about-bg-element--4 {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+  }
+  .about-bg-element--1 {
+    //width: 195px;
+    //height: 195px; // real 140
+    //width: 10.16vw;
+    width: 18.06vh;
+    height: 18.06vh;
+    left: 72.66vw;
+    top: -5.09vh;
+    background-image: url(../img/bg/about-bg-element--1.png);
+  }
+  .about-bg-element--2 {
+    //width: 633px;
+    //height: 359px; // real 251
+    //width: 32.97vw;
+    width: 58.61vh;
+    height: 33.24vh;
+    left: 69.01vw;
+    bottom: -10vh;
+    background-image: url(../img/bg/about-bg-element--2.png);
+  }
+  .about-bg-element--3 {
+    //width: 115px;
+    //height: 252px; // real 182
+    //width: 5.99vw;
+    width: 10.65vh;
+    height: 23.33vh;
+    left: 27.08vw;
+    bottom: -6.48vh;
+    background-image: url(../img/bg/about-bg-element--3.png);
+  }
+  .about-bg-element--4 {
+    //width: 240px;
+    //height: 241px; // real 110
+    //width: 12.5vw;
+    width: 22.22vh;
+    height: 22.31vh;
+    left: 19.79vw;
+    bottom: -12.13vh;
+    background-image: url(../img/bg/about-bg-element--4.png);
+  }
 }
 
 #jobs {
@@ -281,12 +402,15 @@ picture {
     background-repeat: no-repeat;
     background-position: center 100px;
     &:nth-child(1) {
+      @include mixin.loadify(0.2s);
       background-image: url(../img/content/jobs--carousel-item-1.png);
     }
     &:nth-child(2) {
+      @include mixin.loadify(0.4s);
       background-image: url(../img/content/jobs--carousel-item-2.png);
     }
     &:nth-child(3) {
+      @include mixin.loadify(0.6s);
       background-image: url(../img/content/jobs--carousel-item-3.png);
     }
   }
@@ -331,10 +455,10 @@ picture {
 }
 
 article {
-  @extend .clearfix;
+  @include helpers.clearfix;
 }
 .looper {
-  @extend .clearfix;
+  @include helpers.clearfix;
 }
 
 .main--footer {
@@ -358,7 +482,7 @@ article {
     &:before {
       width: 50px;
       height: 50px;
-      display: block;
+      display: inline-block;
       content: '';
       background-color: #fff;
       background-repeat: no-repeat;
@@ -385,6 +509,118 @@ article {
   .footer--copyright {
     color: variables.$gray;
     font-size: 13px;
+  }
+  .footer--pager {
+    text-align: right;
+  }
+  .footer--page-num {
+    color: variables.$orange;
+    border-bottom: 1px solid variables.$blue;
+    width: 58px;
+    position: relative;
+    letter-spacing: 0px;
+    &:before {
+      position: absolute;
+      top: -50px;
+      left: 50%;
+      margin-left: -9px;
+      display: inline-block;
+      content: '';
+      width: 18px;
+      height: 24px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(../img/bg/pager-mouse.png);
+    }
+    span {
+      font-size: 48px;
+      line-height: 28px;
+    }
+  }
+  .footer--page-title {
+    color: variables.$gray-light;
+    width: 58px;
+    text-align: center;
+    padding-top: 12px;
+    font-size: 15px;
+    line-height: 28px;
+  }
+}
+
+.modal {
+  //position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: variables.$base-background-color;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: flex-start;
+  display: none !important;
+}
+
+.modal--contact {
+  .modal--contact-title {
+    font-size: 36px;
+    font-weight: bold;
+    color: variables.$blue;
+    margin-bottom: 60px;
+  }
+  p {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 1.875;
+    color: variables.$black;
+    margin-bottom: 24px;
+    a {
+      text-decoration: none;
+      color: variables.$black;
+    }
+  }
+  .modal--contact-email {
+    margin-bottom: 60px;
+    color: variables.$orange;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: underline;
+    display: inline-block;
+    line-height: 1.167;
+  }
+  .modal--contact-social {
+    display: block;
+  }
+  .modal--contact-social-item {
+    display: inline-block;
+    margin-right: 14px;
+    a {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-content: stretch;
+      align-items: center;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0px 27px 24px 0px rgba(0, 0, 0, 0.11);
+      width: 50px;
+      height: 50px;
+      &:hover {
+        background-color: rgb(54, 41, 154);
+        box-shadow: 0px 24px 27px 0px rgba(0, 0, 0, 0.11);
+        i {
+          color: rgb(255, 255, 255);
+        }
+      }
+    }
+    i {
+      color: rgb(54, 41, 154);
+    }
   }
 }
 

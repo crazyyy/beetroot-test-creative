@@ -72,11 +72,12 @@ $(document).ready(function() {
     touchSensitivity: 5,
     keyboardScrolling: true,
     sectionSelector: '.section',
-    animateAnchor: false,
+    animateAnchor: true,
 
     //events
     onLeave: function(index, nextIndex, direction){},
     afterLoad: function(anchorLink, index){
+      console.log("Section index " + index + " ended loading");
       if(anchorLink == 'home'){
         console.log("Section home ended loading");
       } else if(anchorLink == 'about'){
