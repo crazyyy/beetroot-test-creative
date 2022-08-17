@@ -32,45 +32,233 @@
 
 </head>
 <body>
-  <header class="container" role="banner">
+  <header class="main--header" role="banner">
+    <div class="container">
       <div class="grid">
-
-        <div class="header--logo col-1 col-xs-1 col-sm-1 col-md-1 col-lg-1 col-xlg-1">
+        <div class="header--logo col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xlg-4">
           <a href="/">Agechi</a>
         </div><!-- /header--logo -->
 
-        <nav class="header--nav col-9 col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xlg-9" role="navigation">
+        <nav class="header--nav col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xlg-4" role="navigation">
           <ul class="header--menu">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Jobs</a></li>
-            <li><a href="#">Teams</a></li>
+            <li data-menuanchor="home"><a href="#home">Home</a></li>
+            <li data-menuanchor="about"><a href="#about">About</a></li>
+            <li data-menuanchor="jobs"><a href="#jobs">Jobs</a></li>
+            <li data-menuanchor="teams"><a href="#teams">Teams</a></li>
           </ul>
         </nav><!-- /header--nav -->
 
-        <div class="header--contact col-2 col-xs-2 col-sm-2 col-md-2 col-lg-2 col-xlg-2">
-          <a href="#">Get in touch</a>
+        <div class="header--contact col-4 col-xs-4 col-sm-4 col-md-4 col-lg-4 col-xlg-4">
+          <a class="header--contact-button" href="#">Get in touch</a>
         </div><!-- /header--contact -->
-
       </div><!-- /.grid -->
+    </div><!-- /.container -->
   </header><!-- /header .container-->
 
   <div id="pagepiling">
-    <div class="section">Some section</div>
-    <div class="section">Some section</div>
-    <div class="section">Some section</div>
-    <div class="section">Some section</div>
-  </div>
 
-  <footer class="container" role="contentinfo">
-    <div class="grid">
-      <p class="copyright col-12">
-        © 2022
-      </p><!-- /copyright -->
-    </div><!-- /.grid -->
+    <section id="home" class="section">
+      <div class="container">
+        <div class="grid">
+          <h1 class="home--title col-12">Bring Every <span>Idea To life.</span></h1>
+          <p class="home--description col-12">Vestibulum imperdiet nibh vel magna lacinia ultrices.</p>
+          <p class="home--description col-12">Sed id interdum urnatristique</p>
+        </div>
+        <!-- /.grid -->
+      </div>
+      <!-- /.container -->
+    </section><!-- /#home -->
+
+    <section id="about" class="section">
+      <div class="container">
+        <div class="grid">
+          <h4 class="about--title col-2">About Us</h4>
+          <div class="about--content col-4">
+            <h3 class="about--content-title">We build incredible products. Up to high level success</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis.</p>
+            <p>labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis incididunt.</p>
+            <div class="about--content-partners">
+              <span>Trusted thounds of diverse Patner</span>
+              <ul class="partners--list">
+                <li class="partners--item">
+                  <a href="#" title="">
+                    <img src="img/content/partners--item-1.png" alt="">
+                  </a>
+                </li>
+                <li class="partners--item">
+                  <a href="#" title="">
+                    <img src="img/content/partners--item-2.png" alt="">
+                  </a>
+                </li>
+                <li class="partners--item">
+                  <a href="#" title="">
+                    <img src="img/content/partners--item-3.png" alt="">
+                  </a>
+                </li>
+                <li class="partners--item">
+                  <a href="#" title="">
+                    <img src="img/content/partners--item-4.png" alt="">
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <!-- /.about--content-partners -->
+          </div>
+          <!-- /.about--content col-4 -->
+          <div class="about--provide col-3 offset-1">
+            <h3 class="about--provide-title">We provide smart and effective solutions</h3>
+            <ul class="about--provide-list">
+              <li class="about--provide-item"><a href="#">Animation 3D design</a></li>
+              <li class="about--provide-item"><a href="#">Game Mobile design</a></li>
+              <li class="about--provide-item"><a href="#">App Mobile design</a></li>
+            </ul>
+          </div>
+          <!-- /.about--provide col-3 offset-1 -->
+        </div>
+        <!-- /.grid -->
+      </div>
+      <!-- /.container -->
+    </section><!-- /#about -->
+
+    <section id="jobs" class="section">
+      <div class="container">
+        <div class="grid">
+          <h2 class="jobs--title col-12">The Best Jobs</h2>
+          <div class="jobs--carousel grid">
+            <div class="jobs--carousel-item col-4">
+              <span class="jobs--carousel-item-category">3D design</span>
+              <h5 class="jobs--carousel-item-title">Circle 3D text</h5>
+              <button type="button" class="jobs--carousel-item-more">+</button>
+            </div>
+            <!-- /.jobs--carousel-item -->
+            <div class="jobs--carousel-item jobs--carousel-item__active col-4">
+              <span class="jobs--carousel-item-category">3D design</span>
+              <h5 class="jobs--carousel-item-title">Nulla sed turpis</h5>
+              <button type="button" class="jobs--carousel-item-more">+</button>
+            </div>
+            <!-- /.jobs--carousel-item -->
+            <div class="jobs--carousel-item col-4">
+              <span class="jobs--carousel-item-category">3D design</span>
+              <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+              <button type="button" class="jobs--carousel-item-more">+</button>
+            </div>
+            <!-- /.jobs--carousel-item -->
+          </div>
+          <!-- /.jobs--carousel grid -->
+        </div>
+        <!-- /.grid -->
+      </div>
+      <!-- /.container -->
+    </section><!-- /#jobs -->
+
+    <section id="teams" class="section">
+      <div class="container">
+        <div class="grid">
+          <h2 class="teams--title col-12">Excellent teams</h2>
+          <div class="teams--carousel grid">
+            <div class="teams--carousel-item col-4">
+              <span class="teams--carousel-item-post">3D design</span>
+              <h5 class="teams--carousel-item-name">Jont Henrry</h5>
+              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+              <ul class="teams--carousel-item-social">
+                <li>
+                  <a href="" class="teams--carousel-social-fb">Facebook</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-youtube">Youtube</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-twitter">Twitter</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-instagram">Instagram</a>
+                </li>
+              </ul>
+              <!-- /.teams--carousel-item-social -->
+            </div>
+            <!-- /.teams--carousel-item -->
+            <div class="teams--carousel-item col-4">
+              <span class="teams--carousel-item-post">3D design</span>
+              <h5 class="teams--carousel-item-name">Nulla sed turpis</h5>
+              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+              <ul class="teams--carousel-item-social">
+                <li>
+                  <a href="" class="teams--carousel-social-fb">Facebook</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-youtube">Youtube</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-twitter">Twitter</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-instagram">Instagram</a>
+                </li>
+              </ul>
+              <!-- /.teams--carousel-item-social -->
+            </div>
+            <!-- /.teams--carousel-item -->
+            <div class="teams--carousel-item col-4">
+              <span class="teams--carousel-item-post">3D design</span>
+              <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+              <ul class="teams--carousel-item-social">
+                <li>
+                  <a href="" class="teams--carousel-social-fb">Facebook</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-youtube">Youtube</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-twitter">Twitter</a>
+                </li>
+                <li>
+                  <a href="" class="teams--carousel-social-instagram">Instagram</a>
+                </li>
+              </ul>
+              <!-- /.teams--carousel-item-social -->
+            </div>
+            <!-- /.teams--carousel-item -->
+          </div>
+          <!-- /.teams--carousel grid -->
+        </div>
+        <!-- /.grid -->
+      </div>
+      <!-- /.container -->
+    </section><!-- /#teams -->
+
+  </div><!-- /#pagepiling -->
+
+  <footer class="main--footer" role="contentinfo">
+    <div class="container">
+      <div class="grid">
+        <div class="footer--copy col-11">
+          <div class="footer-email">
+            <span>Email:</span>
+            <a href="mailto:info@moontheme.net">info@moontheme.net</a>
+          </div>
+          <p class="footer--copyright">
+            © Copyright 2020. Made by moontheme
+          </p><!-- /.footer--copyright -->
+        </div>
+        <!-- /.footer--copy -->
+        <div class="footer--pager col-1">
+          <div class="footer--page-num">
+            <span>02</span>
+          </div>
+          <!-- /.footer--page-num -->
+          <div class="footer--page-title">
+            <span>About</span>
+          </div>
+          <!-- /.footer--page-title -->
+        </div>
+        <!-- /.footer--pager -->
+      </div><!-- /.grid -->
+    </div>
+    <!-- /.container -->
   </footer><!-- /footer .container -->
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.min.js" integrity="sha512-FcXc9c211aHVJEHxoj2fNFeT8+wUESf/4mUDIR7c31ccLF3Y6m+n+Wsoq4dp2sCnEEDVmjhuXX6TfYNJO6AG6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="js/lib/modernizr.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>

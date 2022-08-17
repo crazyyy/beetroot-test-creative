@@ -48,23 +48,25 @@ if ( typeof jQuery === 'undefined' ) {
 // Place any jQuery/helper plugins in here.
 
 $(document).ready(function() {
+  // https://github.com/alvarotrigo/pagePiling.js
   $('#pagepiling').pagepiling({
-    menu: null,
+    menu: '.header--menu',
     direction: 'vertical',
     verticalCentered: true,
     sectionsColor: [],
-    anchors: [],
+    anchors: ['home', 'about', 'jobs', 'teams'],
     scrollingSpeed: 700,
     easing: 'swing',
     loopBottom: false,
     loopTop: false,
     css3: true,
-    navigation: {
-      'textColor': '#000',
-      'bulletsColor': '#000',
-      'position': 'right',
-      'tooltips': ['section1', 'section2', 'section3', 'section4']
-    },
+    navigation: false,
+    // navigation: {
+    //   'textColor': '#000',
+    //   'bulletsColor': '#000',
+    //   'position': 'right',
+    //   'tooltips': ['section1', 'section2', 'section3', 'section4']
+    // },
     normalScrollElements: null,
     normalScrollElementTouchThreshold: 5,
     touchSensitivity: 5,
@@ -74,7 +76,17 @@ $(document).ready(function() {
 
     //events
     onLeave: function(index, nextIndex, direction){},
-    afterLoad: function(anchorLink, index){},
+    afterLoad: function(anchorLink, index){
+      if(anchorLink == 'home'){
+        console.log("Section home ended loading");
+      } else if(anchorLink == 'about'){
+        console.log("Section about ended loading");
+      } else if(anchorLink == 'jobs'){
+        console.log("Section jobs ended loading");
+      } else if(anchorLink == 'teams'){
+        console.log("Section teams ended loading");
+      }
+    },
     afterRender: function(){},
   });
 });

@@ -79,36 +79,257 @@ picture {
   max-width: 100%;
   margin: 0;
 }
-.wrapper {
-  position: relative;
-  width: 100%;
-  min-height: 100%;
-  margin: 0 auto;
 
-  @extend .clearfix;
-}
 .container {
   position: relative;
   max-width: variables.$width;
 }
 
-header {
+.main--header {
+  height: 115px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  padding-top: 60px;
   .header--logo {
-
-  }
-}
-nav {
-  ul {
-    @extend .clearfix;
-    li {
-      display: inline-block;
+    span,
+    a {
+      font-weight: bold;
+      font-size: 30px;
+      color: variables.$black;
+      position: relative;
+      z-index: 6;
+      &:before {
+        display: block;
+        content: '';
+        width: 34px;
+        height: 34px;
+        background-color: variables.$orange;
+        border-radius: 50%;
+        z-index: -1;
+        position: absolute;
+        left: 0;
+        bottom: 17px;
+      }
     }
   }
 }
 
-section {
-  padding: 0;
+.header--nav {
+
 }
+
+.header--menu {
+  @extend .clearfix;
+  text-align: center;
+  li {
+    display: inline-block;
+    margin: 0 25px;
+    &.active {
+      a {
+        color: variables.$orange;
+      }
+    }
+  }
+  a {
+    font-size: 15px;
+    text-decoration: none;
+    color: variables.$black;
+    font-weight: 600;
+  }
+}
+
+.header--contact {
+  text-align: right;
+  .header--contact-button {
+    display: inline-block;
+    padding: 20px 50px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 16px;
+    color: variables.$blue;
+    border: 1px solid variables.$gray-medium;
+    border-radius: 10px;
+    line-height: 0.9;
+  }
+}
+
+.section {
+  background-color: variables.$base-background-color;
+}
+
+#home {
+  .home--title {
+    font-weight: bold;
+    font-size: 140px;
+    text-align: center;
+    color: variables.$blue;
+    line-height: 1;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    span {
+      display: block;
+    }
+  }
+  .home--description {
+    text-align: center;
+    margin-bottom: 14px;
+    font-size: 18px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+#about {
+  .about--title {
+    font-size: 30px;
+    color: variables.$blue;
+    font-weight: 200;
+  }
+  .about--content {
+    .about--content-title {
+      font-weight: bold;
+      font-size: 48px;
+      line-height: 60px;
+      margin-bottom: 40px;
+    }
+    p {
+      margin-bottom: 35px;
+      font-size: 15px;
+      color: variables.$gray;
+    }
+  }
+  .about--content-partners {
+    span {
+      text-transform: uppercase;
+    }
+    .partners--list {
+
+    }
+    .partners--item {
+
+    }
+  }
+  .about--provide {
+
+  }
+  .about--provide-title {
+    font-size: 30px;
+    color: variables.$blue;
+    font-weight: 200;
+    margin-bottom: 65px;
+  }
+  .about--provide-list {
+    font-size: 15px;
+    color: variables.$gray;
+
+  }
+  .about--provide-item {
+    margin-bottom: 50px;
+    padding-left: 65px;
+    position: relative;
+    height: 42px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: flex-start;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 36px;
+      height: 42px;
+      display: block;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+    &:nth-child(1) {
+      background-image: url(../img/content/about--provide-item-1.png);
+    }
+    &:nth-child(2) {
+      background-image: url(../img/content/about--provide-item-2.png);
+    }
+    &:nth-child(3) {
+      background-image: url(../img/content/about--provide-item-3.png);
+    }
+  }
+}
+
+#jobs {
+  .jobs--title {
+    color: variables.$blue;
+    font-weight: bold;
+    font-size: 36px;
+  }
+  .jobs--carousel {
+    width: 100%;
+  }
+  .jobs--carousel-item {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-content: stretch;
+    align-items: center;
+    height: 558px;
+    background-repeat: no-repeat;
+    background-position: center 100px;
+    &:nth-child(1) {
+      background-image: url(../img/content/jobs--carousel-item-1.png);
+    }
+    &:nth-child(2) {
+      background-image: url(../img/content/jobs--carousel-item-2.png);
+    }
+    &:nth-child(3) {
+      background-image: url(../img/content/jobs--carousel-item-3.png);
+    }
+  }
+  .jobs--carousel-item__active {
+    height: 452px;
+    background-position: center top;
+    .jobs--carousel-item-more {
+      display: inline-block;
+    }
+  }
+  .jobs--carousel-item-category {
+    color: variables.$orange;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .jobs--carousel-item-title {
+    margin-bottom: 40px;
+    font-size: 30px;
+    color: variables.$blue;
+    text-align: center;
+  }
+  .jobs--carousel-item-more {
+    display: none;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    border-radius: 40%;
+    background-color: #fff;
+    text-align: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(../img/bg/jobs--carousel-item-more.png);
+    font-size: 0;
+  }
+}
+
+#teams {
+
+}
+
 article {
   @extend .clearfix;
 }
@@ -116,10 +337,55 @@ article {
   @extend .clearfix;
 }
 
-footer {
+.main--footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
   height: variables.$footer;
-  margin: auto 0;
-  background-color: variables.$gray-light;
+  .footer-email {
+    margin-bottom: 25px;
+    padding-left: 65px;
+    height: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: flex-start;
+    &:before {
+      width: 50px;
+      height: 50px;
+      display: block;
+      content: '';
+      background-color: #fff;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-image: url(../img/bg/footer-email.png);
+      border-radius: 40%;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    span {
+      display: block;
+      text-transform: uppercase;
+      color: variables.$gray;
+      margin-bottom: 10px;
+    }
+    a {
+      font-size: 16px;
+      font-weight: bold;
+      color: variables.$orange-dark;
+      text-decoration: underline;
+    }
+  }
+  .footer--copyright {
+    color: variables.$gray;
+    font-size: 13px;
+  }
 }
 
 @include meta.load-css("media");
