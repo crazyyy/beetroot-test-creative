@@ -1,4 +1,37 @@
-## TODO
+# TODO
+
+## Test Task for WP Developer
+
+### Themes:
+ - Custom theme
+
+### Features:
+- Custom Guttenberg blocks
+- Custom Post Types
+- Multilingual
+
+### Specifications:
+- Create a landing page for a creative agency 
+- You have to develop one page with 4 independent screens 
+- Each screen should be developed as a custom Gutenberg block 
+- create custom post type for jobs and team (all additional information should be added as custom fiel ds)
+- Each job can be opened as a popup (06_popup_project_details.psd)
+- Get in touch button should open the popup with contact information (05_popup_get_in_touch.psd)
+- Near the “Get in touch” button should be added, language selector. The website should be presented in English, Sweden, and Ukrainian language versions
+
+### Requirements:
+- The project should be posted in the Git repository. 
+- The layout should be responsive 
+- Use Gulp/Webpack for building assets 
+- Track time you spent on the task 
+- The project should be shared via a link with WP Back-office credentials
+
+### Bonus tasks:
+- Add interactive animations for geometric elements in the background 
+- Use es6 syntax in js files 
+- Create custom post types and taxonomies without plugins 
+- Add support for the Hebrew language with RTL support (https://rtlcss.com/)
+
 ### Projects for investigate
 
 https://github.com/Mobius1/Pageable

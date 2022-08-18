@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="633" height="359" viewBox="0 0 633 359">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.04" y1="1.525" x2="0.408" y2="1.525" gradientUnits="objectBoundingBox">
+      <stop offset="0.005" stop-color="#00b377" stop-opacity="0.902"/>
+      <stop offset="0.308" stop-color="#00b779" stop-opacity="0.918"/>
+      <stop offset="0.782" stop-color="#00c47e" stop-opacity="0.973"/>
+      <stop offset="1" stop-color="#00cc82"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.04" y1="1.525" x2="0.408" y2="1.525" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#39915f"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="0.064" y1="1.489" x2="0.37" y2="1.489" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#24a572" stop-opacity="0.902"/>
+      <stop offset="0.254" stop-color="#1eaa74" stop-opacity="0.914"/>
+      <stop offset="0.65" stop-color="#10ba7a" stop-opacity="0.953"/>
+      <stop offset="1" stop-color="#00cc82"/>
+    </linearGradient>
+  </defs>
+  <g id="about-bg-element--2" transform="translate(-919.134 -219.293)">
+    <g id="Group_4" data-name="Group 4">
+      <g id="Group_3" data-name="Group 3">
+        <path id="Path_1" data-name="Path 1" d="M922.25,233.953l38.736-14.66-3.116,48.641-38.737,14.661Z" fill="#16f29e"/>
+        <path id="Path_2" data-name="Path 2" d="M960.986,219.293l591.148,295.7-3.116,48.641L957.87,267.934Z" fill="url(#linear-gradient)"/>
+        <path id="Path_3" data-name="Path 3" d="M960.986,219.293l591.148,295.7-3.116,48.641L957.87,267.934Z" opacity="0.45" fill="url(#linear-gradient-2)" style="mix-blend-mode: overlay;isolation: isolate"/>
+        <path id="Path_4" data-name="Path 4" d="M957.87,267.934l591.148,295.7-38.736,14.66-591.148-295.7Z" fill="url(#linear-gradient-3)"/>
+      </g>
+    </g>
+  </g>
+</svg>

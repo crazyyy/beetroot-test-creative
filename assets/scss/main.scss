@@ -202,56 +202,86 @@ picture {
     //width: 195px;
     //height: 195px;
     //width: 10.16vw;
-    width: 18.06vh;
-    height: 18.06vh;
-    top: 27.69vh;
-    left: 64.79vw;
-    background-image: url(../img/bg/home-bg-element--1.png);
-    //background-image: url(../img/bg/home-bg-element--1.svg);
+    //width: 18.06vh;
+    //height: 18.06vh;
+    //top: 27.69vh;
+    //left: 64.79vw;
+    //width: 458px;
+    //height: 458px;
+    width: 42.41vh;
+    height: 42.41vh;
+    left: 59.06vw;
+    top: 15.83vh;
+    //background-image: url(../img/bg/home-bg-element--1.png);
+    background-image: url(../img/bg/home-bg-element--1.svg);
   }
   .home-bg-element--2 {
     //width: 839px; // 763 real
     //height: 365px;
     //width: 43.7vw;
-    width: 77.69vh;
-    height: 33.8vh;
-    top: 37.04vh;
-    left: -7.04vh;
-    background-image: url(../img/bg/home-bg-element--2.png);
-    //background-image: url(../img/bg/home-bg-element--2.svg);
+    //width: 77.69vh;
+    //height: 33.8vh;
+    //top: 37.04vh;
+    //left: -7.04vh;
+    //width: 855px;
+    //height: 400px;
+    width: 44.53vw;
+    height: 37.04vh;
+    left: -4.27vw;
+    top: 35.56vh;
+    //background-image: url(../img/bg/home-bg-element--2.png);
+    background-image: url(../img/bg/home-bg-element--2.svg);
   }
   .home-bg-element--3 {
     //width: 254px;
     //height: 254px;
     //width: 13.23vw;
-    width: 23.52vh;
-    height: 23.52vh;
-    top: 55.56vh;
-    left: 19.01vw;
-    background-image: url(../img/bg/home-bg-element--3.png);
-    //background-image: url(../img/bg/home-bg-element--3.svg);
+    //width: 23.52vh;
+    //height: 23.52vh;
+    //top: 55.56vh;
+    //left: 19.01vw;
+    //width: 480px;
+    //height: 480px;
+    width: 44.44vh;
+    height: 44.44vh;
+    left: 13.13vw;
+    top: 46.11vh;
+    //background-image: url(../img/bg/home-bg-element--3.png);
+    background-image: url(../img/bg/home-bg-element--3.svg);
   }
   .home-bg-element--4 {
     //width: 325px;
     //height: 535px; // real 375
     //width: 16.93vw;
-    width: 30.09vh;
+    //width: 30.09vh;
+    //height: 49.54vh;
+    //bottom: -14.81vh;
+    //left: 66.35vw;
+    //width: 325px;
+    //height: 535px;
+    width: 16.93vw;
     height: 49.54vh;
-    bottom: -14.81vh;
-    left: 66.35vw;
-    background-image: url(../img/bg/home-bg-element--4.png);
-    //background-image: url(../img/bg/home-bg-element--4.svg);
+    left: 64.95vw;
+    top: 64.44vh;
+    //background-image: url(../img/bg/home-bg-element--4.png);
+    background-image: url(../img/bg/home-bg-element--4.svg);
   }
   .home-bg-element--5 {
     //width: 117px;
     //height: 116px;
     //width: 6.09vw;
-    width: 10.83vh;
-    height: 10.74vh;
-    bottom: 9.26vh;
-    left: 79.17vw;
-    background-image: url(../img/bg/home-bg-element--5.png);
-    //background-image: url(../img/bg/home-bg-element--5.svg);
+    //width: 10.83vh;
+    //height: 10.74vh;
+    //bottom: 9.26vh;
+    //left: 79.17vw;
+    //width: 119px;
+    //height: 118px;
+    width: 11.02vh;
+    height: 10.93vh;
+    left: 78.85vw;
+    top: 80.28vh;
+    //background-image: url(../img/bg/home-bg-element--5.png);
+    background-image: url(../img/bg/home-bg-element--5.svg);
   }
 }
 
@@ -277,12 +307,43 @@ picture {
   .about--content-partners {
     span {
       text-transform: uppercase;
+      display: inline-block;
+      width: 150px;
+      font-size: 14px;
+      color: rgb(161, 161, 161);
+      font-weight: bold;
+      line-height: 1.286;
+
     }
     .partners--list {
-
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      align-content: stretch;
+      align-items: center;
     }
     .partners--item {
-
+      margin-right: 40px;
+      height: 31px;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: center;
+      align-content: stretch;
+      align-items: center;
+      a {
+        &:hover {
+          i {
+            color: variables.$orange;
+          }
+        }
+      }
+      i {
+        font-size: 30px;
+        line-height: 1.2;
+        color: variables.$black;
+      }
     }
   }
   .about--provide {
@@ -344,41 +405,69 @@ picture {
     //width: 195px;
     //height: 195px; // real 140
     //width: 10.16vw;
-    width: 18.06vh;
-    height: 18.06vh;
-    left: 72.66vw;
-    top: -5.09vh;
-    background-image: url(../img/bg/about-bg-element--1.png);
+    //width: 18.06vh;
+    //height: 18.06vh;
+    //left: 72.66vw;
+    //top: -5.09vh;
+    //width: 458px;
+    //height: 458px;
+    width: 42.41vh;
+    height: 42.41vh;
+    left: 65.21vw;
+    top: -15.93vh;
+    //background-image: url(../img/bg/about-bg-element--1.png);
+    background-image: url(../img/bg/about-bg-element--1.svg);
   }
   .about-bg-element--2 {
     //width: 633px;
     //height: 359px; // real 251
     //width: 32.97vw;
-    width: 58.61vh;
+    //width: 58.61vh;
+    //height: 33.24vh;
+    //left: 69.01vw;
+    //bottom: -10vh;
+    //width: 633px;
+    //height: 359px;
+    width: 32.97vw;
     height: 33.24vh;
-    left: 69.01vw;
-    bottom: -10vh;
-    background-image: url(../img/bg/about-bg-element--2.png);
+    left: 68.96vw;
+    top: 77.13vh;
+    //background-image: url(../img/bg/about-bg-element--2.png);
+    background-image: url(../img/bg/about-bg-element--2.svg);
   }
   .about-bg-element--3 {
     //width: 115px;
     //height: 252px; // real 182
     //width: 5.99vw;
-    width: 10.65vh;
-    height: 23.33vh;
-    left: 27.08vw;
-    bottom: -6.48vh;
-    background-image: url(../img/bg/about-bg-element--3.png);
+    //width: 10.65vh;
+    //height: 23.33vh;
+    //left: 27.08vw;
+    //bottom: -6.48vh;
+    //width: 236px;
+    //height: 374px;
+    width: 12.29vw;
+    height: 21.85vh;
+    left: 24.32vw;
+    top: 76.94vh;
+    //background-image: url(../img/bg/about-bg-element--3.png);
+    background-image: url(../img/bg/about-bg-element--3.svg);
   }
   .about-bg-element--4 {
     //width: 240px;
     //height: 241px; // real 110
     //width: 12.5vw;
-    width: 22.22vh;
-    height: 22.31vh;
-    left: 19.79vw;
-    bottom: -12.13vh;
-    background-image: url(../img/bg/about-bg-element--4.png);
+    //width: 22.22vh;
+    //height: 22.31vh;
+    //left: 19.79vw;
+    //bottom: -12.13vh;
+    //width: 454px;
+    //height: 454px;
+    width: 42.04vh;
+    height: 42.04vh;
+    left: 15.31vw;
+    top: 82.22vh;
+    //background-image: url(../img/bg/about-bg-element--4.png);
+    background-image: url(../img/bg/about-bg-element--4.svg);
   }
 }
 
