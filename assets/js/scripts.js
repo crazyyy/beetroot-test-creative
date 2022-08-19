@@ -49,7 +49,11 @@ if ( typeof jQuery === 'undefined' ) {
 
 $(document).ready(function() {
   // https://github.com/alvarotrigo/pagePiling.js
-  $('#pagepiling').pagepiling({
+  const $onePageContainer = $('#pagepiling');
+  const $pagerNum = $('.footer--page-num span');
+  const $pagerTitle = $('.footer--page-title span');
+
+  $onePageContainer.pagepiling({
     menu: '.header--menu',
     direction: 'vertical',
     verticalCentered: true,
@@ -78,6 +82,8 @@ $(document).ready(function() {
     onLeave: function(index, nextIndex, direction){},
     afterLoad: function(anchorLink, index){
       console.log("Section index " + index + " ended loading");
+      $pagerNum.html('0' + index)
+      $pagerTitle.html(anchorLink)
       if(anchorLink == 'home'){
         console.log("Section home ended loading");
       } else if(anchorLink == 'about'){
@@ -90,4 +96,15 @@ $(document).ready(function() {
     },
     afterRender: function(){},
   });
+
+  // modal window
+  const $contactButton = $('.header--contact-button');
+  const $contactModalContainer = $('.modal--contact');
+
+  $contactButton.on('click', function (e) {
+    $contactButton.toggleClass('header--contact-button__active')
+    $contactModalContainer.toggleClass('modal--contact__active')
+  })
+
+
 });
