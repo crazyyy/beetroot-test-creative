@@ -150,14 +150,15 @@ picture {
   text-align: right;
   .header--contact-button {
     display: inline-block;
-    padding: 20px 50px;
+    width: 200px;
+    height: 55px;
     text-align: center;
     font-weight: 600;
     font-size: 16px;
     color: variables.$blue;
     border: 1px solid variables.$gray-medium;
     background-color: transparent;
-    border-radius: 10px;
+    border-radius: 22px;
     line-height: 0.9;
   }
 }
@@ -651,7 +652,7 @@ article {
   justify-content: center;
   align-content: stretch;
   align-items: flex-start;
-  display: none !important;
+  //display: none !important;
 }
 
 .modal--contact {
@@ -710,6 +711,87 @@ article {
     i {
       color: rgb(54, 41, 154);
     }
+  }
+  .modal--contact-form {
+    input,
+    textarea {
+      border: 0;
+      border-bottom: 1px solid #E1E1E1;
+      font-size: 15px;
+      margin-bottom: 30px;
+      background-color: transparent;
+      box-shadow: none;
+      @include mixin.placeholder {
+        color: #898989;
+      };
+      &[type="submit"] {
+        background-color: variables.$orange;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        border-radius: 22px;
+        width: 180px;
+        height: 55px;
+      }
+    }
+    textarea {
+      height: 100px;
+    }
+  }
+  .modal-bg-element--1,
+  .modal-bg-element--2,
+  .modal-bg-element--3,
+  .modal-bg-element--4,
+  .modal-bg-element--5 {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    position: absolute;
+  }
+  .modal-bg-element--1 {
+    //width: 458px;
+    //height: 458px;
+    width: 42.41vh;
+    height: 42.41vh;
+    left: 19.9vw;
+    top: -16.48vh;
+    background-image: url(../img/bg/modal-bg-element--1.svg);
+  }
+  .modal-bg-element--2 {
+    //width: 633px;
+    //height: 359px;
+    width: 32.97vw;
+    height: 33.24vh;
+    left: 83.91vw;
+    top: 37.59vh;
+    background-image: url(../img/bg/modal-bg-element--2.svg);
+  }
+  .modal-bg-element--3 {
+    //width: 408px;
+    //height: 647px;
+    width: 21.2vw;
+    height: 59.91vh;
+    left: 70.99vw;
+    top: 18.06vh;
+    background-image: url(../img/bg/modal-bg-element--3.svg);
+  }
+  .modal-bg-element--4 {
+    //width: 119px;
+    //height: 118px;
+    width: 11.02vh;
+    height: 11.02vh;
+    left: 16.93vw;
+    top: 80.65vh;
+    background-image: url(../img/bg/modal-bg-element--4.svg);
+  }
+  .modal-bg-element--5 {
+    //width: 480px;
+    //height: 480px;
+    width: 44.44vh;
+    height: 44.44vh;
+    left: 3.23vw;
+    top: 74.81vh;
+    background-image: url(../img/bg/modal-bg-element--5.svg);
   }
 }
 
