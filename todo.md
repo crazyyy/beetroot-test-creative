@@ -43,6 +43,31 @@ https://github.com/alvarotrigo/pagePiling.js
 https://github.com/guidobouman/panelsnap
 https://alvarotrigo.com/pagePiling/examples/callbacks.html#page3
 
+### Animation generators
+https://angrytools.com/css/animation/
+https://jeremyckahn.github.io/stylie/
+https://animista.net/
+https://keyframes.app/animate/
+https://www.theappguruz.com/tag-tools/web/CSSAnimations/
+https://webcode.tools/generators/css/keyframe-animation
+
+### Animations for text 
+https://animista.net/play/text/focus-in/focus-in-contract
+
+### Buttons hover 
+https://codepen.io/avvign/pen/NVJzQW
+https://codepen.io/priosoft/pen/dMryaY
+https://codepen.io/hsdua2304/pen/GYoxoq
+
+### Form Styling 
+https://codepen.io/lbebber/pen/nRebGz
+
+### Circled background 
+https://codepen.io/vaibhavarora/pen/xmpxjp
+
+### Vanila JS Carousel
+https://codepen.io/bruno00o/pen/QWmKJjO
+
 ### language
 https://www.html-code-generator.com/html/drop-down/languages-name
 https://usersnap.com/blog/wp-content/uploads/2016/08/LanguageIcon-selection-884x1024.jpg
