@@ -106,8 +106,165 @@ $(document).ready(function() {
     $contactModalContainer.toggleClass('modal--contact__active')
   })
 
-
   Splitting();
+
+  // Jobs slider carousel
+  const $jobsCarouselContainer = document.querySelector('.jobs--carousel');
+  const $jobsCarouselNav = document.querySelector('.jobs--carousel-nav');
+  const $jobsCarouselNavNext = document.querySelector('.jobs--carousel-nav-next');
+  const $jobsCarouselNavPrev = document.querySelector('.jobs--carousel-nav-prev');
+  const jobsSlider = tns({
+    container: $jobsCarouselContainer,
+    controlsContainer: $jobsCarouselNav,
+    prevButton: $jobsCarouselNavPrev,
+    nextButton: $jobsCarouselNavNext,
+    items: 3,
+    // slideBy: 'page',
+    autoplay: false,
+    center: true,
+    controls: true,
+    nav: false,
+    controlsText: ["", ""],
+    // responsive: {
+    //   640: {
+    //     edgePadding: 20,
+    //     gutter: 20,
+    //     items: 2
+    //   },
+    //   700: {
+    //     gutter: 30
+    //   },
+    //   900: {
+    //     items: 3
+    //   }
+    // }
+  });
+
+  // slider.getInfo();
+
+  const jobsSliderInfo = jobsSlider.getInfo(),
+    // indexPrev = jobsSliderInfo.indexCached,
+    jobsIndexCurrent = jobsSliderInfo.index;
+  console.log(jobsIndexCurrent)
+  // update style based on index
+  // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+  jobsSliderInfo.slideItems[jobsIndexCurrent].classList.add('jobs--carousel-item__active');
+
+  $jobsCarouselNavNext.onclick = function () {
+    // get slider info
+    // const info = slider.getInfo(),
+    //   indexPrev = info.indexCached,
+    //   indexCurrent = info.index;
+    // const indexCurrent = info.index;
+    // console.log(indexCurrent)
+    // update style based on index
+    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
+    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
+  };
+
+  $jobsCarouselNavPrev.onclick = function () {
+    // get slider info
+    // const info = slider.getInfo(),
+    //   indexPrev = info.indexCached,
+    //   indexCurrent = info.index;
+    // const indexCurrent = info.index;
+    // console.log(indexCurrent)
+    // update style based on index
+    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
+    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
+  };
+
+  jobsSlider.events.on('indexChanged', function (info, eventName) {
+    // console.log(info)
+    // console.log(info.indexCached)
+    // console.log(info.index)
+    const indexCurrent = info.index;
+    document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
+    // info.slideItems[info.indexCached].classList.remove('jobs--carousel-item__active');
+    info.slideItems[info.index].classList.add('jobs--carousel-item__active');
+  });
+
+
+  // Teams slider carousel
+  const $teamsCarouselContainer = document.querySelector('.teams--carousel');
+  const $teamsCarouselNav = document.querySelector('.teams--carousel-nav');
+  const $teamsCarouselNavNext = document.querySelector('.teams--carousel-nav-next');
+  const $teamsCarouselNavPrev = document.querySelector('.teams--carousel-nav-prev');
+  const teamsSlider = tns({
+    container: $teamsCarouselContainer,
+    controlsContainer: $teamsCarouselNav,
+    prevButton: $teamsCarouselNavPrev,
+    nextButton: $teamsCarouselNavNext,
+    items: 3,
+    // slideBy: 'page',
+    autoplay: false,
+    center: true,
+    controls: true,
+    nav: false,
+    controlsText: ["", ""],
+    // responsive: {
+    //   640: {
+    //     edgePadding: 20,
+    //     gutter: 20,
+    //     items: 2
+    //   },
+    //   700: {
+    //     gutter: 30
+    //   },
+    //   900: {
+    //     items: 3
+    //   }
+    // }
+  });
+
+  // slider.getInfo();
+
+  const teamsSliderInfo = teamsSlider.getInfo(),
+    // indexPrev = jobsSliderInfo.indexCached,
+    indexTeamsCurrent = teamsSliderInfo.index;
+  console.log(teamsSliderInfo)
+  console.log(indexTeamsCurrent)
+  // update style based on index
+  // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+  teamsSliderInfo.slideItems[indexTeamsCurrent].classList.add('teams--carousel-item__active');
+
+  $teamsCarouselNavNext.onclick = function () {
+    // get slider info
+    // const info = slider.getInfo(),
+    //   indexPrev = info.indexCached,
+    //   indexCurrent = info.index;
+    // const indexCurrent = info.index;
+    // console.log(indexCurrent)
+    // update style based on index
+    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
+    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
+  };
+
+  $teamsCarouselNavPrev.onclick = function () {
+    // get slider info
+    // const info = slider.getInfo(),
+    //   indexPrev = info.indexCached,
+    //   indexCurrent = info.index;
+    // const indexCurrent = info.index;
+    // console.log(indexCurrent)
+    // update style based on index
+    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
+    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
+  };
+
+  teamsSlider.events.on('indexChanged', function (info, eventName) {
+    // console.log(info)
+    // console.log(info.indexCached)
+    // console.log(info.index)
+    const indexCurrent = info.index;
+    document.querySelector('.teams--carousel-item__active').classList.remove('teams--carousel-item__active');
+    // info.slideItems[info.indexCached].classList.remove('jobs--carousel-item__active');
+    info.slideItems[info.index].classList.add('teams--carousel-item__active');
+  });
 
 
 });

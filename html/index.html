@@ -21,6 +21,7 @@
 <!--  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />-->
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/brands.min.css" integrity="sha512-sKhd1NGM4i4pJj+3P+NVHisu2z5rKAwNG1IpWMdKsFWYlUHFSrsAO3geQ5QNKttkMPZNTo76tfg8jVx2ICP7qw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.min.css" integrity="sha512-W9OWS8dgpQBw5Hb+tbMto1BMsHvYOXT/AFBGvASCPUJleaEdpOAN5lzgj9RrTbo3YrlR+m9xdOBccp8F+SFyQg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.min.css" integrity="sha512-06CZo7raVnbbD3BlY8/hGUoUCuhk8sTdVGV3m3nuh9i2R+UmkLbLRTE/My8TuJ3ALbDulhBObJQWtOUt0mXzNQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/main.css" media="all">
   <link rel="stylesheet" href="//unpkg.com/splitting@1.0.6/dist/splitting.css" media="all">
 
@@ -144,27 +145,81 @@
         <div class="grid">
           <h2 class="jobs--title col-12">The Best Jobs</h2>
           <div class="jobs--carousel-nav col-12">
-            <button class="jobs--carousel-nav-left" type="button" title="Previous slide"></button>
-            <button class="jobs--carousel-nav-right" type="button" title="Next slide"></button>
+            <button class="jobs--carousel-nav-prev" type="button" title="Previous slide"></button>
+            <button class="jobs--carousel-nav-next" type="button" title="Next slide"></button>
           </div>
           <!-- /.jobs--carousel-nav col-12 -->
-          <div class="jobs--carousel grid">
-            <div class="jobs--carousel-item col-4">
-              <span class="jobs--carousel-item-category">3D design</span>
-              <h5 class="jobs--carousel-item-title">Circle 3D text</h5>
-              <button type="button" class="jobs--carousel-item-more">+</button>
+          <div class="jobs--carousel col-12">
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-1.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Circle 3D text</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
             </div>
             <!-- /.jobs--carousel-item -->
-            <div class="jobs--carousel-item jobs--carousel-item__active col-4">
-              <span class="jobs--carousel-item-category">3D design</span>
-              <h5 class="jobs--carousel-item-title">Nulla sed turpis</h5>
-              <button type="button" class="jobs--carousel-item-more">+</button>
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-2.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Nulla sed turpis</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
             </div>
             <!-- /.jobs--carousel-item -->
-            <div class="jobs--carousel-item col-4">
-              <span class="jobs--carousel-item-category">3D design</span>
-              <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
-              <button type="button" class="jobs--carousel-item-more">+</button>
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-3.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
+            </div>
+            <!-- /.jobs--carousel-item -->
+
+
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-1.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
+            </div>
+            <!-- /.jobs--carousel-item -->
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-2.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
+            </div>
+            <!-- /.jobs--carousel-item -->
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-3.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
+            </div>
+            <!-- /.jobs--carousel-item -->
+            <div class="jobs--carousel-item">
+              <div class="jobs--carousel-item-inner">
+                <img src="img/content/jobs--carousel-item-1.png" alt="" class="jobs--carousel-item-img">
+                <span class="jobs--carousel-item-category">3D design</span>
+                <h5 class="jobs--carousel-item-title">Sed dolor eget</h5>
+                <button type="button" class="jobs--carousel-item-more">+</button>
+              </div>
+              <!-- /.jobs--carousel-item-inner -->
             </div>
             <!-- /.jobs--carousel-item -->
           </div>
@@ -187,105 +242,249 @@
       <div class="container">
         <div class="grid">
           <h2 class="teams--title col-12">Excellent teams</h2>
-          <div class="teams--carousel grid">
-            <div class="teams--carousel-item col-4">
-              <div class="teams--carousel-item-photo">
-                <img src="" alt="">
-              </div>
-              <!-- /.teams--carousel-item-photo -->
-              <span class="teams--carousel-item-post">3D design</span>
-              <h5 class="teams--carousel-item-name">Jont Henrry</h5>
-              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
-              <ul class="teams--carousel-item-social">
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
-                    <i class="fa-fw fab"></i></a>
-                </li>
-              </ul>
-              <!-- /.teams--carousel-item-social -->
-            </div>
-            <!-- /.teams--carousel-item -->
-            <div class="teams--carousel-item col-4">
-              <div class="teams--carousel-item-photo">
-                <img src="" alt="">
-              </div>
-              <!-- /.teams--carousel-item-photo -->
-              <span class="teams--carousel-item-post">3D design</span>
-              <h5 class="teams--carousel-item-name">Nulla sed turpis</h5>
-              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
-              <ul class="teams--carousel-item-social">
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
-                    <i class="fa-fw fab"></i></a>
-                </li>
-              </ul>
-              <!-- /.teams--carousel-item-social -->
-            </div>
-            <!-- /.teams--carousel-item -->
-            <div class="teams--carousel-item col-4">
-              <div class="teams--carousel-item-photo">
-                <img src="" alt="">
-              </div>
-              <!-- /.teams--carousel-item-photo -->
-              <span class="teams--carousel-item-post">3D design</span>
-              <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
-              <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
-              <ul class="teams--carousel-item-social">
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
-                    <i class="fa-fw fab"></i>
-                  </a>
-                </li>
-                <li>
-                  <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
-                    <i class="fa-fw fab"></i></a>
-                </li>
-              </ul>
-              <!-- /.teams--carousel-item-social -->
-            </div>
-            <!-- /.teams--carousel-item -->
+          <div class="teams--carousel-nav col-12">
+            <button class="teams--carousel-nav-prev" type="button" title="Previous slide"></button>
+            <button class="teams--carousel-nav-next" type="button" title="Next slide"></button>
           </div>
-          <!-- /.teams--carousel grid -->
+          <!-- /.teams--carousel-nav col-12 -->
+          <div class="teams--carousel col-12">
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Jont Henrry</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Nulla sed turpis</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+            <div class="teams--carousel-item">
+              <div class="teams--carousel-item-inner">
+                <img src="img/content/teams--carousel-item-photo.png" alt="" class="teams--carousel-item-photo">
+                <span class="teams--carousel-item-post">3D design</span>
+                <h5 class="teams--carousel-item-name">Sed dolor eget</h5>
+                <p class="teams--carousel-item-descr">Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida risus commodo</p>
+                <ul class="teams--carousel-item-social">
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-fb" title="Facebook">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-youtube" title="Youtube">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-twitter" title="Twitter">
+                      <i class="fa-fw fab"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank" class="teams--carousel-social-instagram" title="Instagram">
+                      <i class="fa-fw fab"></i></a>
+                  </li>
+                </ul>
+                <!-- /.teams--carousel-item-social -->
+              </div>
+              <!-- /.teams--carousel-item-inner -->
+            </div>
+            <!-- /.teams--carousel-item -->
+
+
+          </div>
+          <!-- /.teams--carousel -->
         </div>
         <!-- /.grid -->
       </div>
@@ -380,6 +579,7 @@
 
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.min.js" integrity="sha512-FcXc9c211aHVJEHxoj2fNFeT8+wUESf/4mUDIR7c31ccLF3Y6m+n+Wsoq4dp2sCnEEDVmjhuXX6TfYNJO6AG6A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.min.js" integrity="sha512-sfTO4Pp4bdGjTlI1WZZ7zqcbBIo4NY51k1Gr99l1ezQIRboEqAbCNegL3vP65zQwP6aJjqqdDm1GPULlqp94Qw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script type="text/javascript" src="js/lib/modernizr.js"></script>
   <script type="text/javascript" src="//unpkg.com/splitting/dist/splitting.min.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>

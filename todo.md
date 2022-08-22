@@ -66,6 +66,7 @@ https://codepen.io/lbebber/pen/nRebGz
 https://codepen.io/vaibhavarora/pen/xmpxjp
 
 ### Vanila JS Carousel
+https://glidejs.com/docs/
 https://codepen.io/bruno00o/pen/QWmKJjO
 
 ### language

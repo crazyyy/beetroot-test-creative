@@ -96,7 +96,7 @@ picture {
   z-index: 11;
   padding-top: 60px;
   .header--logo {
-    padding-left: 15px;
+    padding: 0 0 0 15px;
     span,
     a {
       font-size: 26.417px;
@@ -123,7 +123,7 @@ picture {
 }
 
 .header--nav {
-
+  padding: 0;
 }
 
 .header--menu {
@@ -201,7 +201,7 @@ picture {
 
 .header--contact {
   text-align: right;
-  padding-right: 0;
+  padding: 0 15px 0 0;
   .header--contact-button {
     display: inline-block;
     width: 200px;
@@ -825,6 +825,11 @@ picture {
     animation-timing-function: ease-out;
   }
 }
+
+.tns-outer {
+  width: 100%;
+}
+
 #jobs {
   .jobs--animated-svg {
     animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
@@ -846,15 +851,24 @@ picture {
     color: variables.$blue;
     font-weight: bold;
     font-size: 36px;
+    padding: 0 15px;
+    margin-bottom: 20px;
+    line-height: 0.6;
   }
   .jobs--carousel {
-    width: 100%;
+    //width: 100%;
+    padding: 0;
   }
   .jobs--carousel-nav {
     padding: 0;
     text-align: right;
-    .jobs--carousel-nav-left,
-    .jobs--carousel-nav-right {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    .jobs--carousel-nav-prev,
+    .jobs--carousel-nav-next {
       width: 21px;
       height: 10px;
       padding: 0;
@@ -868,59 +882,57 @@ picture {
         background-color: variables.$orange;
       }
     }
-    .jobs--carousel-nav-left {
+    .jobs--carousel-nav-prev {
       margin-right: 10px;
     }
-    .jobs--carousel-nav-right {
+    .jobs--carousel-nav-next {
       transform: scaleX(-1);
       margin-left: 10px;
     }
   }
   .jobs--carousel-item {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-content: stretch;
-    align-items: center;
-    height: 558px;
-    background-repeat: no-repeat;
-    background-position: center 100px;
-    &:nth-child(1) {
-      @include mixin.loadify(0.2s);
-      background-image: url(../img/content/jobs--carousel-item-1.png);
-    }
-    &:nth-child(2) {
-      @include mixin.loadify(0.4s);
-      background-image: url(../img/content/jobs--carousel-item-2.png);
-    }
-    &:nth-child(3) {
-      @include mixin.loadify(0.6s);
-      background-image: url(../img/content/jobs--carousel-item-3.png);
+    padding-top: 100px;
+    transition: 0.3s padding ease-out;
+    .jobs--carousel-item-inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-content: stretch;
+      align-items: center;
+      width: 73.59%;
+      margin: 0 auto;
     }
   }
   .jobs--carousel-item__active {
-    height: 452px;
-    background-position: center top;
+    padding-top: 0;
+    background-color: red;
+    //background-position: center top;
     .jobs--carousel-item-more {
-      display: inline-block;
+      visibility: visible;
+      opacity: 1;
     }
+  }
+  .jobs--carousel-item-img {
+    margin-bottom: 37px;
   }
   .jobs--carousel-item-category {
     color: variables.$orange;
     font-size: 14px;
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: 15px;
     text-align: center;
+    display: block;
+    width: 100%;
   }
   .jobs--carousel-item-title {
-    margin-bottom: 40px;
     font-size: 30px;
     color: variables.$blue;
     text-align: center;
+    width: 100%;
+    margin-bottom: 27px;
   }
   .jobs--carousel-item-more {
-    display: none;
     width: 50px;
     height: 50px;
     border: 0;
@@ -928,30 +940,37 @@ picture {
     background-color: #fff;
     text-align: center;
     padding: 15px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url(../img/bg/jobs--carousel-item-more.png);
+    display: inline-block;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s linear;
     font-size: 0;
+    position: relative;
+    &:before,
+    &:after {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      background-color: variables.$black;
+    }
+    &:before{
+      width: 2px;
+      height: 16px;
+      margin-left: -1px;
+      margin-top: -8px;
+    }
+    &:after {
+      width: 16px;
+      height: 2px;
+      margin-left: -8px;
+      margin-top: -1px;
+    }
   }
 }
 
 #teams {
-  .teams--animated-svg {
-    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both infinite;
-    animation-iteration-count: infinite;
-    fill: none;
-    stroke: variables.$blue;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-dasharray: 0 4;
-    stroke-dashoffset: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    //height: 264px;
-    //height: 24.44vh;
-    margin-top: -12.22vh;
-  }
   .teams--title {
     font-size: 36px;
     color: variables.$blue;
@@ -961,28 +980,69 @@ picture {
     padding-bottom: 0;
   }
   .teams--carousel {
-
+    padding: 0;
+    white-space: normal;
+  }
+  .teams--carousel-nav {
+    padding: 0;
+    text-align: right;
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    .teams--carousel-nav-prev,
+    .teams--carousel-nav-next {
+      width: 21px;
+      height: 10px;
+      padding: 0;
+      background-color: #ccc;
+      background-position: center;
+      border-radius: 0;
+      mask-image: url(../img/bg/carousel-nav-arrow.svg);
+      mask-repeat: no-repeat;
+      mask-position: center;
+      &:hover {
+        background-color: variables.$orange;
+      }
+    }
+    .teams--carousel-nav-prev {
+      margin-right: 10px;
+    }
+    .teams--carousel-nav-next {
+      transform: scaleX(-1);
+      margin-left: 10px;
+    }
   }
   .teams--carousel-item {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-content: stretch;
-    align-items: center;
+    padding-top: 95px;
+    transition: 0.3s padding ease-out;
+    .teams--carousel-item-inner {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-end;
+      align-content: stretch;
+      align-items: center;
+      width: 73.59%;
+      margin: 0 auto;
+    }
+  }
+  .teams--carousel-item__active {
+    padding-top: 0;
+    background-color: red;
   }
   .teams--carousel-item-photo {
     border-radius: 50%;
     overflow: hidden;
-    background-color: rgb(229, 194, 187);
+    //background-color: rgb(229, 194, 187);
     //width: 418px;
     //height: 418px;
-    width: 38.7vh;
-    height: 38.7vh;
-    margin-bottom: 3.15vh;
-    img {
-      max-width: 100%;
-    }
+    //width: 38.7vh;
+    //height: 38.7vh;
+    //margin-bottom: 3.15vh;
+    max-width: 100%;
+    //width: 50%;
   }
   .teams--carousel-item-post {
     font-size: 14px;
@@ -1009,13 +1069,15 @@ picture {
     margin-bottom: 30px;
   }
   .teams--carousel-item-social {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    align-content: stretch;
-    align-items: center;
+    //display: flex;
+    //flex-direction: row;
+    //flex-wrap: nowrap;
+    //justify-content: center;
+    //align-content: stretch;
+    //align-items: center;
+
     li {
+      display: inline-block;
       margin: 0 10px;
     }
     a {
@@ -1027,6 +1089,22 @@ picture {
         color: variables.$orange;
       }
     }
+  }
+  .teams--animated-svg {
+    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both infinite;
+    animation-iteration-count: infinite;
+    fill: none;
+    stroke: variables.$blue;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 0 4;
+    stroke-dashoffset: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    //height: 264px;
+    //height: 24.44vh;
+    margin-top: -12.22vh;
   }
 }
 
