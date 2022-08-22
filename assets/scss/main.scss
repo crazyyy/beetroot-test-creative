@@ -87,6 +87,10 @@ picture {
   max-width: variables.$width;
 }
 
+.grid-full-height {
+  height: 100vh;
+}
+
 .main--header {
   height: 115px;
   position: absolute;
@@ -99,9 +103,8 @@ picture {
     padding: 0 0 0 15px;
     span,
     a {
-      font-size: 26.417px;
-      line-height: 1.211;
-      transform: matrix( 1.14591700133869,1.5684730159718e-16,0,1.13561470215463,0,0);
+      font-size: 26px;
+      line-height: 1.2;
       font-weight: bold;
       color: variables.$black;
       position: relative;
@@ -117,6 +120,7 @@ picture {
         position: absolute;
         left: 0;
         bottom: 17px;
+        animation: modal-project-bg 20s infinite;
       }
     }
   }
@@ -831,22 +835,6 @@ picture {
 }
 
 #jobs {
-  .jobs--animated-svg {
-    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
-    animation-iteration-count: infinite;
-    fill: none;
-    stroke: variables.$orange;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-dasharray: 0 3;
-    stroke-dashoffset: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    //height: 264px;
-    //height: 24.44vh;
-    margin-top: -12.22vh;
-  }
   .jobs--title {
     color: variables.$blue;
     font-weight: bold;
@@ -858,6 +846,7 @@ picture {
   .jobs--carousel {
     //width: 100%;
     padding: 0;
+    white-space: normal;
   }
   .jobs--carousel-nav {
     padding: 0;
@@ -893,11 +882,15 @@ picture {
   .jobs--carousel-item {
     padding-top: 100px;
     transition: 0.3s padding ease-out;
+    //letter-spacing: unset;
+    //white-space: initial;
+    //word-spacing: initial;
+    //overflow-wrap: anywhere;
     .jobs--carousel-item-inner {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-content: stretch;
       align-items: center;
       width: 73.59%;
@@ -915,6 +908,9 @@ picture {
   }
   .jobs--carousel-item-img {
     margin-bottom: 37px;
+    //width: 100%;
+    max-width: 100%;
+    overflow: hidden;
   }
   .jobs--carousel-item-category {
     color: variables.$orange;
@@ -967,6 +963,22 @@ picture {
       margin-left: -8px;
       margin-top: -1px;
     }
+  }
+  .jobs--animated-svg {
+    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+    animation-iteration-count: infinite;
+    fill: none;
+    stroke: variables.$orange;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-dasharray: 0 3;
+    stroke-dashoffset: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    //height: 264px;
+    //height: 24.44vh;
+    margin-top: -12.22vh;
   }
 }
 
@@ -1021,7 +1033,7 @@ picture {
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-content: stretch;
       align-items: center;
       width: 73.59%;
@@ -1031,10 +1043,27 @@ picture {
   .teams--carousel-item__active {
     padding-top: 0;
     background-color: red;
+    //.teams--carousel-item-inner {
+    //  padding-top: 0;
+    //}
+    .teams--carousel-item-photo {
+      //margin-top: -95px;
+    }
+    .teams--carousel-item-descr {
+      display: block;
+    }
+    .teams--carousel-item-social {
+      display: flex;
+    }
   }
+  //.teams--carousel-item-inner {
+  //  padding-top: 95px;
+  //  transition: 0.3s padding ease-out;
+  //}
   .teams--carousel-item-photo {
     border-radius: 50%;
     overflow: hidden;
+    margin-bottom: 32px;
     //background-color: rgb(229, 194, 187);
     //width: 418px;
     //height: 418px;
@@ -1049,7 +1078,7 @@ picture {
     color: variables.$orange;
     font-weight: bold;
     text-transform: uppercase;
-    line-height: 1.286;
+    line-height: 0.9;
     text-align: center;
     margin-bottom: 12px;
   }
@@ -1057,27 +1086,27 @@ picture {
     font-size: 30px;
     color: variables.$blue;
     font-weight: bold;
-    line-height: 0.933;
+    line-height: 0.8;
     text-align: center;
     margin-bottom: 29px;
   }
   .teams--carousel-item-descr {
     font-size: 15px;
     color: variables.$gray;
-    line-height: 1.667;
+    line-height: 1.5;
     text-align: center;
     margin-bottom: 30px;
+    display: none;
   }
   .teams--carousel-item-social {
-    //display: flex;
-    //flex-direction: row;
-    //flex-wrap: nowrap;
-    //justify-content: center;
-    //align-content: stretch;
-    //align-items: center;
-
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    display: none;
     li {
-      display: inline-block;
+      //display: inline-block;
       margin: 0 10px;
     }
     a {
@@ -1232,9 +1261,10 @@ article {
   .footer--page-num {
     color: variables.$orange;
     border-bottom: 1px solid variables.$blue;
-    span {
+    > span {
       font-size: 48px;
-      line-height: 0.583;
+      line-height: 0.6;
+      height: 48px;
     }
   }
   .footer--page-title {
@@ -1438,6 +1468,288 @@ article {
     .modal-bg-element--5 {
       animation: modal-bg-element-5 linear 20s infinite;
     }
+  }
+}
+
+.modal--project {
+  display: flex;
+  z-index: 11;
+  .modal--project-logo {
+    height: 120px;
+    padding-top: 60px;
+    padding-left: 0;
+    padding-bottom: 0;
+    span,
+    a {
+      font-size: 26px;
+      line-height: 1.2;
+      font-weight: bold;
+      color: variables.$black;
+      position: relative;
+      z-index: 6;
+      &:before {
+        display: inline-block;
+        content: '';
+        width: 34px;
+        height: 34px;
+        background-color: variables.$orange;
+        border-radius: 50%;
+        z-index: -1;
+        position: absolute;
+        left: 0;
+        bottom: 17px;
+        animation: modal-project-bg 20s infinite;
+      }
+    }
+  }
+  .modal--project-close {
+    height: 120px;
+    padding-right: 0;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: flex-end;
+  }
+  .modal--project-close-button {
+    //border: 1px solid variables.$gray;
+    border: 1px solid #80808061;
+    border-radius: 22px;
+    width: 53px;
+    height: 53px;
+    background-color: transparent;
+    font-size: 0;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    &:before,
+    &:after {
+      display: block;
+      content: '';
+      background-color: variables.$black;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transition: all 0.5s ease-in-out;
+      transform: rotate(45deg);
+    }
+    &:before {
+      width: 2px;
+      height: 14px;
+      margin-left: -1px;
+      margin-top: -7px;
+    }
+    &:after {
+      width: 14px;
+      height: 2px;
+      margin-left: -7px;
+      margin-top: -1px;
+    }
+    &:hover {
+      box-shadow: 0 0 5px variables.$gray;
+      &:before,
+      &:after {
+        transform: scale(1.5) rotate(45deg);
+      }
+    }
+    &:active {
+      box-shadow: 0 0 10px variables.$gray;
+    }
+  }
+  .modal--project-preview {
+
+  }
+  .modal--project-image {
+
+  }
+  .modal--project-content {
+
+  }
+  .modal--project-cat {
+    font-size: 14px;
+    color: variables.$orange;
+    font-weight: bold;
+    text-transform: uppercase;
+    line-height: 1.286;
+    margin-bottom: 21px;
+  }
+  .modal--project-title {
+    font-size: 48px;
+    color: variables.$blue;
+    font-weight: bold;
+    line-height: 0.8;
+    margin-bottom: 57px;
+  }
+  .modal--project-props {
+    margin-bottom: 12px;
+    dt,
+    dd {
+      padding-left: 34px;
+      line-height: 1.6;
+      font-size: 15px;
+      @include helpers.clearfix;
+    }
+    dt {
+      padding-bottom: 8px;
+      margin: 0 0 8px;
+      font-weight: bold;
+      color: variables.$black;
+      position: relative;
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 3px;
+        left: 0;
+      }
+    }
+    dd {
+      color: variables.$gray;
+      font-weight: normal;
+      margin-bottom: 32px;
+    }
+    span {
+      display: block;
+      width: 50%;
+      float: left;
+    }
+  }
+  .modal--project-props-date {
+    &:before {
+      width: 14px;
+      height: 18px;
+      background-image: url(../img/bg/modal--project-props-date.png);
+    }
+  }
+  .modal--project-props-location {
+    &:before {
+      width: 12px;
+      height: 17px;
+      background-image: url(../img/bg/modal--project-props-location.png);
+    }
+  }
+  .modal--project-props-services {
+    &:before {
+      width: 20px;
+      height: 18px;
+      background-image: url(../img/bg/modal--project-props-services.png);
+    }
+  }
+  p {
+    font-size: 15px;
+    line-height: 1.667;
+    color: variables.$gray;
+  }
+  .modal--project-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-content: stretch;
+    align-items: flex-end;
+    height: 155px;
+  }
+  .modal--project-nav-title {
+    width: 72px;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 1.2;
+    color: variables.$gray;
+    margin-bottom: 20px;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    .modal--project-nav-direct {
+      display: block;
+    }
+    &.modal--project-nav-title__next,
+    &.modal--project-nav-title__prev {
+      visibility: visible;
+      opacity: 1;
+    }
+    &.modal--project-nav-title__next {
+      text-align: right;
+    }
+    &.modal--project-nav-title__prev {
+      text-align: left;
+    }
+  }
+  .modal--project-nav-buttons {
+    width: 72px;
+    line-height: 0.7;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+  .modal--project-btn {
+    width: 21px;
+    height: 10px;
+    padding: 0;
+    background-color: #ccc;
+    background-position: center;
+    border-radius: 0;
+    mask-image: url(../img/bg/carousel-nav-arrow.svg);
+    mask-repeat: no-repeat;
+    mask-position: center;
+    font-size: 0;
+    &:hover {
+      background-color: variables.$orange;
+    }
+  }
+  .modal--project-btn-prev {
+
+  }
+  .modal--project-btn-next {
+    transform: scaleX(-1);
+  }
+  .modal--project-bg-1,
+  .modal--project-bg-2 {
+    border-radius: 50%;
+    position: absolute;
+    background-color: #FFD6E9;
+  }
+  .modal--project-bg-1 {
+    //width: 1292px;
+    //height: 1292px;
+    width: 119.63vh;
+    aspect-ratio: 1;
+    //top: -159px;
+    //left: -207px;
+    top: -14.72vh;
+    left: -10.78vw;
+    opacity: 0.5;
+    z-index: -2;
+    animation: modal-project-bg 20s infinite;
+  }
+  .modal--project-bg-2 {
+    //width: 1101px;
+    //height: 1101px;
+    width: 101.94vh;
+    //height: 1101px;
+    aspect-ratio: 1;
+    //left: -263px;
+    //top: -119px;
+    left: -13.7vw;
+    top: -11.02vh;
+    z-index: -1;
+    animation: modal-project-bg 15s infinite;
+  }
+}
+@keyframes modal-project-bg{
+  0%{
+    transform: scale(0.8);
+  }
+
+  50%{
+    transform: scale(1.2);
+  }
+
+  100%{
+    transform: scale(0.8);
   }
 }
 @keyframes modal-bg-element-5 {

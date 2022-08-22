@@ -97,14 +97,43 @@ $(document).ready(function() {
     afterRender: function(){},
   });
 
-  // modal window
-  const $contactButton = $('.header--contact-button');
-  const $contactModalContainer = $('.modal--contact');
+  // Modal window
+  // Contact button modal window
+  const $contactButton = document.querySelector('.header--contact-button');
+  const $contactModalContainer = document.querySelector('.modal--contact');
 
-  $contactButton.on('click', function (e) {
-    $contactButton.toggleClass('header--contact-button__active')
-    $contactModalContainer.toggleClass('modal--contact__active')
-  })
+  $contactButton.addEventListener("click", function(){
+    $contactButton.classList.toggle('header--contact-button__active');
+    $contactModalContainer.classList.toggle('modal--contact__active');
+  });
+
+  // Projects modal window
+
+
+  // Next / Prev Projects
+  const $modalProjectBtnNext = document.querySelector('.modal--project-btn-next')
+  const $modalProjectBtnPrev = document.querySelector('.modal--project-btn-prev')
+  const $modalProjectTitle = document.querySelector('.modal--project-nav-title')
+  const $modalProjectTitleDirect = document.querySelector('.modal--project-nav-title span')
+
+  $modalProjectBtnNext.addEventListener("mouseover", (event) => {
+    $modalProjectTitleDirect.innerHTML = 'Next'
+    $modalProjectTitle.classList.add('modal--project-nav-title__next');
+  }, false);
+
+  $modalProjectBtnNext.addEventListener("mouseout", (event) => {
+    $modalProjectTitle.classList.remove('modal--project-nav-title__next');
+  }, false);
+
+  $modalProjectBtnPrev.addEventListener("mouseover", (event) => {
+    $modalProjectTitleDirect.innerHTML = 'Previous'
+    $modalProjectTitle.classList.add('modal--project-nav-title__prev');
+  }, false);
+
+  $modalProjectBtnPrev.addEventListener("mouseout", (event) => {
+    $modalProjectTitle.classList.remove('modal--project-nav-title__prev');
+  }, false);
+
 
   Splitting();
 
@@ -118,26 +147,20 @@ $(document).ready(function() {
     controlsContainer: $jobsCarouselNav,
     prevButton: $jobsCarouselNavPrev,
     nextButton: $jobsCarouselNavNext,
-    items: 3,
-    // slideBy: 'page',
     autoplay: false,
     center: true,
     controls: true,
     nav: false,
+    animateDelay: 3000,
     controlsText: ["", ""],
-    // responsive: {
-    //   640: {
-    //     edgePadding: 20,
-    //     gutter: 20,
-    //     items: 2
-    //   },
-    //   700: {
-    //     gutter: 30
-    //   },
-    //   900: {
-    //     items: 3
-    //   }
-    // }
+    responsive: {
+      320: {
+        items: 1
+      },
+      900: {
+        items: 3
+      }
+    }
   });
 
   // slider.getInfo();
@@ -186,8 +209,8 @@ $(document).ready(function() {
     info.slideItems[info.index].classList.add('jobs--carousel-item__active');
   });
 
-
-  // Teams slider carousel
+  // Teams section
+  // Enable Slider carousel for Teams Section
   const $teamsCarouselContainer = document.querySelector('.teams--carousel');
   const $teamsCarouselNav = document.querySelector('.teams--carousel-nav');
   const $teamsCarouselNavNext = document.querySelector('.teams--carousel-nav-next');
@@ -197,64 +220,25 @@ $(document).ready(function() {
     controlsContainer: $teamsCarouselNav,
     prevButton: $teamsCarouselNavPrev,
     nextButton: $teamsCarouselNavNext,
-    items: 3,
-    // slideBy: 'page',
     autoplay: false,
     center: true,
     controls: true,
     nav: false,
     controlsText: ["", ""],
-    // responsive: {
-    //   640: {
-    //     edgePadding: 20,
-    //     gutter: 20,
-    //     items: 2
-    //   },
-    //   700: {
-    //     gutter: 30
-    //   },
-    //   900: {
-    //     items: 3
-    //   }
-    // }
+    responsive: {
+      320: {
+        items: 1
+      },
+      900: {
+        items: 3
+      }
+    }
   });
 
-  // slider.getInfo();
-
   const teamsSliderInfo = teamsSlider.getInfo(),
-    // indexPrev = jobsSliderInfo.indexCached,
     indexTeamsCurrent = teamsSliderInfo.index;
-  console.log(teamsSliderInfo)
-  console.log(indexTeamsCurrent)
-  // update style based on index
-  // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
+  // update class based on active index
   teamsSliderInfo.slideItems[indexTeamsCurrent].classList.add('teams--carousel-item__active');
-
-  $teamsCarouselNavNext.onclick = function () {
-    // get slider info
-    // const info = slider.getInfo(),
-    //   indexPrev = info.indexCached,
-    //   indexCurrent = info.index;
-    // const indexCurrent = info.index;
-    // console.log(indexCurrent)
-    // update style based on index
-    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
-    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
-    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
-  };
-
-  $teamsCarouselNavPrev.onclick = function () {
-    // get slider info
-    // const info = slider.getInfo(),
-    //   indexPrev = info.indexCached,
-    //   indexCurrent = info.index;
-    // const indexCurrent = info.index;
-    // console.log(indexCurrent)
-    // update style based on index
-    // info.slideItems[indexPrev].classList.remove('jobs--carousel-item__active');
-    // document.querySelector('.jobs--carousel-item__active').classList.remove('jobs--carousel-item__active');
-    // info.slideItems[indexCurrent].classList.add('jobs--carousel-item__active');
-  };
 
   teamsSlider.events.on('indexChanged', function (info, eventName) {
     // console.log(info)
@@ -262,9 +246,27 @@ $(document).ready(function() {
     // console.log(info.index)
     const indexCurrent = info.index;
     document.querySelector('.teams--carousel-item__active').classList.remove('teams--carousel-item__active');
-    // info.slideItems[info.indexCached].classList.remove('jobs--carousel-item__active');
     info.slideItems[info.index].classList.add('teams--carousel-item__active');
   });
+
+  // Set min-height for carousel elements by active element
+  SetMinHeightElements('.teams--carousel-item');
+
+  function SetMinHeightElements(selector) {
+    const $elementsArray = [...document.querySelectorAll(selector)];
+    let minHeight = 0;
+    $elementsArray.forEach(($element) => {
+      const height = $element.offsetHeight;
+      // console.log('height: ' + height)
+      if (height > minHeight) {
+        minHeight = height;
+      }
+    })
+    // console.log('minHeight: ' + minHeight)
+    $elementsArray.forEach(($element) => {
+      $element.style.minHeight = minHeight + 'px';
+    })
+  }
 
 
 });
