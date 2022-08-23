@@ -37,9 +37,6 @@
 https://github.com/Mobius1/Pageable
 https://mobius1.github.io/Pageable/
 
-https://alvarotrigo.com/pagePiling
-https://github.com/alvarotrigo/pagePiling.js
-
 https://github.com/guidobouman/panelsnap
 https://alvarotrigo.com/pagePiling/examples/callbacks.html#page3
 
@@ -61,13 +58,6 @@ https://codepen.io/hsdua2304/pen/GYoxoq
 
 ### Form Styling 
 https://codepen.io/lbebber/pen/nRebGz
-
-### Circled background 
-https://codepen.io/vaibhavarora/pen/xmpxjp
-
-### Vanila JS Carousel
-https://glidejs.com/docs/
-https://codepen.io/bruno00o/pen/QWmKJjO
 
 ### language
 https://www.html-code-generator.com/html/drop-down/languages-name

@@ -9,11 +9,27 @@
 @use "import/mixin";
 @use "import/helpers";
 
-//@import 'grid/grid-bootstrap';
-//@use "import/grid";
-@use "grid-reflex/reflex";
+@use "../../node_modules/rfs/scss";
 
+@use "grid-reflex/reflex";
 @use "import/wordpress";
+
+$breakpoints: (
+  mobile: 320px,
+  tablet: 768px,
+  desktop: 992px,
+  wide: 1200px,
+  // Tweakpoints
+  desktopAd: 810px,
+  mobileLandscape: 480px,
+);
+$show-breakpoints: (mobile, mobileLandscape, tablet, desktop, wide);
+@use "import/mq" with (
+  $breakpoints: $breakpoints,
+  $show-breakpoints: $show-breakpoints
+);
+@include mq.add-breakpoint(xs, 576px);
+@include mq.add-breakpoint(xlg, 1600px);
 
 @include mixin.loadify(init);
 
@@ -85,6 +101,8 @@ picture {
 .container {
   position: relative;
   max-width: variables.$width;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .grid-full-height {
@@ -100,16 +118,19 @@ picture {
   z-index: 11;
   padding-top: 60px;
   .header--logo {
-    padding: 0 0 0 15px;
+    padding: 12px 0 0 15px;
     span,
     a {
       //font-size: 26px;
-      @include mixin.font-size(26px);
+      //@include mixin.font-size(26px);
+      //@include mixin.font-size-vw(26px);
+      @include scss.rfs(26px, font-size);
       line-height: 1.2;
       font-weight: bold;
       color: variables.$black;
       position: relative;
       z-index: 6;
+      letter-spacing: 1.2px;
       &:before {
         display: inline-block;
         content: '';
@@ -120,15 +141,21 @@ picture {
         z-index: -1;
         position: absolute;
         left: 0;
-        bottom: 17px;
-        animation: modal-project-bg 20s infinite;
+        bottom: 13px;
+        animation-name: modal-project-bg;
+        animation-duration: 20s;
+        animation-timing-function: linear;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: both;
       }
     }
   }
 }
 
 .header--nav {
-  padding: 0;
+  padding: 18px 0 0;
 }
 
 .header--menu {
@@ -155,10 +182,13 @@ picture {
   }
   a {
     //font-size: 15px;
-    @include mixin.font-size(15px);
+    //@include mixin.font-size(15px);
+    //@include mixin.font-size-vw(15px);
+    @include scss.rfs(15px, font-size);
     text-decoration: none;
     color: variables.$black;
     font-weight: 600;
+    letter-spacing: -0.9px;
     &:active,
     &:focus,
     &:hover {
@@ -187,23 +217,6 @@ picture {
 
   }
 }
-@keyframes header-menu-fall {
-  0% {
-    transform: rotateY(-25deg);
-  }
-  25% {
-    transform: translateY(2%) rotateY(25deg);
-  }
-  50% {
-    transform: rotateY(-25deg);
-  }
-  75% {
-    transform: translateY(4%) rotateY(25deg);
-  }
-  100% {
-    transform: rotateY(-25deg);
-  }
-}
 
 .header--contact {
   text-align: right;
@@ -215,7 +228,9 @@ picture {
     text-align: center;
     font-weight: 600;
     //font-size: 16px;
-    @include mixin.font-size(16px);
+    //@include mixin.font-size(16px);
+    //@include mixin.font-size-vw(16px);
+    @include scss.rfs(16px, font-size);
     color: variables.$blue;
     border: 1px solid variables.$gray-medium;
     background-color: transparent;
@@ -280,25 +295,45 @@ picture {
   .home--title {
     font-weight: bold;
     //font-size: 140px;
-    @include mixin.font-size(140px);
+    //@include mixin.font-size(140px);
+    @include scss.rfs(140px, font-size);
+    //@include mixin.font-size-vw(140px);
     text-align: center;
     color: variables.$blue;
-    line-height: 1;
+    line-height: 0.5;
     padding-top: 0;
     padding-bottom: 0;
-    margin-bottom: 0;
+    //margin-bottom: 0;
+    //@include scss.rfs(40px, margin-bottom);
+    @include scss.rfs(10px, margin-bottom);
     span {
       display: block;
+      position: relative;
+      //top: -18px;
+      @include scss.rfs(100px, padding-top);
+      //@include scss.rfs(20px, padding-bottom);
+      @include scss.rfs(-38px, top);
+      @include mq.mq(mobile, xs) {
+        top: 0;
+        padding-top: 0;
+        display: inline;
+      }
+    }
+    @include mq.mq(mobile, xs) {
+      line-height: 1;
     }
   }
   .home--description {
     text-align: center;
     margin-bottom: 14px;
     //font-size: 18px;
-    @include mixin.font-size(18px);
+    //@include mixin.font-size(18px);
+    //@include mixin.font-size-vw(18px);
+    @include scss.rfs(18px, font-size);
     padding-top: 0;
     padding-bottom: 0;
     position: relative;
+    letter-spacing: -0.2px;
     z-index: 4;
   }
   .home-bg-element--1,
@@ -324,10 +359,8 @@ picture {
     width: 42.41vh;
     aspect-ratio: 1 / 1;
     //height: 42.41vh;
-    //left: 59.06vw;
-    //top: 15.83vh;
-    left: 0;
-    top: 0;
+    left: 59.06vw;
+    top: 15.83vh;
     //background-image: url(../img/bg/home-bg-element--1.png);
     background-image: url(../img/bg/home-bg-element--1.svg);
     z-index: -1;
@@ -342,11 +375,15 @@ picture {
     //left: -7.04vh;
     //width: 855px;
     //height: 400px;
-    width: 44.53vw;
+    //width: 44.53vw;
+    width: mixin.get-vw(855px);
     aspect-ratio: 855 / 400;
     //height: 37.04vh;
-    left: -4.27vw;
-    top: 35.56vh;
+    //left: -4.27vw;
+    //top: 35.56vh;
+    top: 0;
+    left: 0;
+    transform: scale(0.7);
     z-index: 2;
     //background-image: url(../img/bg/home-bg-element--2.png);
     background-image: url(../img/bg/home-bg-element--2.svg);
@@ -361,7 +398,8 @@ picture {
     //left: 19.01vw;
     //width: 480px;
     //height: 480px;
-    width: 44.44vh;
+    //width: 44.44vh;
+    width: mixin.get-vh(480px);
     aspect-ratio: 1 / 1;
     //height: 44.44vh;
     left: 13.13vw;
@@ -384,7 +422,7 @@ picture {
     aspect-ratio: 325 / 535;
     //height: 49.54vh;
     //left: 64.95vw;
-    right: 18.13vw;
+    right: 17.93vw;
     //top: 64.44vh;
     bottom: -13.98vh;
     z-index: -2;
@@ -401,38 +439,50 @@ picture {
     //left: 79.17vw;
     //width: 119px;
     //height: 118px;
-    width: 11.02vh;
-    aspect-ratio: 1 / 1;
     //height: 10.93vh;
     //left: 78.85vw;
-    right: 15vw;
     //top: 80.28vh;
-    bottom: 8.8vh;
+    width: 19.02vh;
+    aspect-ratio: 1/1;
+    right: 12vw;
+    bottom: 3.8vh;
     z-index: -1;
     //background-image: url(../img/bg/home-bg-element--5.png);
     background-image: url(../img/bg/home-bg-element--5.svg);
   }
   &.active {
     .home-bg-element--1 {
-      animation: home-bg-element-1 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s alternate forwards;
+      animation-name: home-bg-element-1;
+      animation-duration: 20s;
+      animation-timing-function: ease;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
     }
     .home-bg-element--2 {
+      animation-name: home-bg-element-2;
+      animation-duration: 2s;
+      animation-timing-function: ease-out;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
     }
     .home-bg-element--3 {
-      //animation-name: home-bg-element-3;
-      //animation-duration: 10s;
-      //animation-timing-function: ease;
-      //animation-delay: 0s;
-      //animation-iteration-count: infinite;
-      //animation-direction: normal;
-      //animation-fill-mode: none;
-      animation: home-bg-element-3 3s ease-out infinite;
+      animation-name: home-bg-element-3;
+      animation-duration: 30s;
+      animation-timing-function: ease;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: none;
     }
     .home-bg-element--4 {
       animation-name: home-bg-element-4;
       animation-duration: 2s;
       animation-timing-function: ease;
-      animation-delay: 1s;
+      animation-delay: 0s;
       animation-iteration-count: 1;
       animation-direction: normal;
       animation-fill-mode: forwards;
@@ -449,113 +499,18 @@ picture {
 
   }
 }
-@keyframes home-bg-element-1 {
-  0% {
-    transform: translateY(0) translateX(0);
-  }
-  100% {
-    transform: translateY(15.83vh) translateX(59.06vw);
-    //transform: translateY(100px) translateX(-300px);
-  }
-}
-@keyframes home-bg-element-3 {
-  //0%{
-  //  transform: translate(0);
-  //}
-  //10%{
-  //  transform: translate(-2px,-2px);
-  //}
-  //20%{
-  //  transform: translate(2px,-2px);
-  //}
-  //30%{
-  //  transform: translate(-2px,2px);
-  //}
-  //40%{
-  //  transform: translate(2px,2px);
-  //}
-  //50%{
-  //  transform: translate(-2px,-2px);
-  //}
-  //60%{
-  //  transform: translate(2px,-2px);
-  //}
-  //70%{
-  //  transform: translate(-2px,2px);
-  //}
-  //80%{
-  //  transform: translate(-2px,-2px);
-  //}
-  //90%{
-  //  transform: translate(2px,-2px);
-  //}
-  //100%{
-  //  transform: translate(0);
-  //}
-  50% {
-    transform: translate(0, 20px);
-  }
-}
-@keyframes home-bg-element-4 {
-  0% {
-    animation-timing-function: ease-in;
-    opacity: 1;
-    transform: translateY(45px);
-  }
 
-  24% {
-    opacity: 1;
-  }
-
-  40% {
-    animation-timing-function: ease-in;
-    transform: translateY(24px);
-  }
-
-  65% {
-    animation-timing-function: ease-in;
-    transform: translateY(12px);
-  }
-
-  82% {
-    animation-timing-function: ease-in;
-    transform: translateY(6px);
-  }
-
-  93% {
-    animation-timing-function: ease-in;
-    transform: translateY(4px);
-  }
-
-  25%,
-  55%,
-  75%,
-  87% {
-    animation-timing-function: ease-out;
-    transform: translateY(0px);
-  }
-
-  100% {
-    animation-timing-function: ease-out;
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-@keyframes home-bg-element-5 {
-  0%{
-    background-position: 100% 100%;
-    width: 0px;
-    height: 0px;
-  }
-  100%{
-    width: 11.02vh;
-    height: 11.02vh;
-  }
-}
 #about {
+  .about--title,
+  .about--content,
+  .about--provide {
+    @include scss.rfs(-35px, top);
+    //top: -35px;
+  }
   .about--title {
     //font-size: 30px;
-    @include mixin.font-size(30px);
+    //@include mixin.font-size(30px);
+    @include scss.rfs(30px, font-size);
     color: variables.$blue;
     font-weight: 200;
   }
@@ -563,28 +518,42 @@ picture {
     .about--content-title {
       font-weight: bold;
       //font-size: 48px;
-      @include mixin.font-size(48px);
-      line-height: 60px;
-      margin-bottom: 40px;
+      //@include mixin.font-size(48px);
+      @include scss.rfs(48px, font-size);
+      line-height: 1.2;
+      letter-spacing: -0.2px;
+      //margin-bottom: 25px;
+      @include scss.rfs(25px, margin-bottom);
     }
     p {
-      margin-bottom: 35px;
+      //margin-bottom: 35px;
+      @include scss.rfs(35px, margin-bottom);
       //font-size: 15px;
-      @include mixin.font-size(15px);
+      //@include mixin.font-size(15px);
+      @include scss.rfs(15px, font-size);
       color: variables.$gray;
     }
   }
   .about--content-partners {
+    //padding-top: 90px;
+    @include scss.rfs(90px, padding-top);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
     span {
       text-transform: uppercase;
       display: inline-block;
       width: 150px;
       //font-size: 14px;
-      @include mixin.font-size(14px);
+      //@include mixin.font-size(14px);
+      @include scss.rfs(14px, font-size);
       color: rgb(161, 161, 161);
       font-weight: bold;
-      line-height: 1.286;
-
+      line-height: 1.3;
+      letter-spacing: -0.2px;
     }
     .partners--list {
       display: flex;
@@ -593,9 +562,12 @@ picture {
       justify-content: flex-start;
       align-content: stretch;
       align-items: center;
+      width: calc(100% - 150px);
+      //padding-left: 50px;
+      @include scss.rfs(50px, padding-left);
     }
     .partners--item {
-      margin-right: 40px;
+      margin-right: 36px;
       height: 31px;
       display: flex;
       flex-direction: column;
@@ -603,6 +575,10 @@ picture {
       justify-content: center;
       align-content: stretch;
       align-items: center;
+      @include scss.rfs(36px, margin-right);
+      &:last-child {
+        margin-right: 0;
+      }
       a {
         &:hover {
           i {
@@ -612,7 +588,8 @@ picture {
       }
       i {
         //font-size: 30px;
-        @include mixin.font-size(30px);
+        //@include mixin.font-size(30px);
+        @include scss.rfs(30px, font-size);
         line-height: 1.2;
         color: variables.$black;
       }
@@ -623,20 +600,26 @@ picture {
   }
   .about--provide-title {
     //font-size: 30px;
-    @include mixin.font-size(30px);
+    //@include mixin.font-size(30px);
+    @include scss.rfs(30px, font-size);
     color: variables.$blue;
     font-weight: 200;
-    margin-bottom: 65px;
+    //margin-bottom: 60px;
+    @include scss.rfs(60px, margin-bottom);
+    letter-spacing: -0.2px;
   }
   .about--provide-list {
     //font-size: 15px;
-    @include mixin.font-size(15px);
+    //@include mixin.font-size(15px);
+    @include scss.rfs(15px, font-size);
     color: variables.$gray;
 
   }
   .about--provide-item {
-    margin-bottom: 50px;
-    padding-left: 65px;
+    //margin-bottom: 50px;
+    @include scss.rfs(50px, margin-bottom);
+    //padding-left: 65px;
+    @include scss.rfs(65px, padding-left);
     position: relative;
     height: 42px;
     display: flex;
@@ -645,6 +628,7 @@ picture {
     justify-content: center;
     align-content: stretch;
     align-items: flex-start;
+    letter-spacing: 0.6px;
     &:before {
       content: '';
       position: absolute;
@@ -758,18 +742,30 @@ picture {
   &.active {
     .about-bg-element--1 {
       animation-name: about-bg-element-1;
-      animation-duration: 8s;
+      animation-duration: 18s;
       animation-timing-function: ease-in-out;
       animation-delay: 0s;
       animation-iteration-count: infinite;
       animation-direction: normal;
       animation-fill-mode: both;
-      //animation-fill-mode: forwards;
     }
     .about-bg-element--2 {
-
+      animation-name: about-bg-element-2;
+      animation-duration: 1s;
+      animation-timing-function: ease-in-out;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
     }
     .about-bg-element--3 {
+      animation-name: about-bg-element-3;
+      animation-duration: 3s;
+      animation-timing-function: ease;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-direction: normal;
+      animation-fill-mode: forwards;
     }
     .about-bg-element--4 {
       animation-name: about-bg-element-4;
@@ -779,67 +775,7 @@ picture {
       animation-iteration-count: infinite;
       animation-direction: normal;
       animation-fill-mode: both;
-      //animation-fill-mode: forwards;
     }
-  }
-}
-@keyframes about-bg-element-1 {
-  0%, 100% {
-    transform: translateY(-8%);
-  }
-  50%{
-    transform: translateY(8%);
-  }
-}
-@keyframes about-bg-element-2 {
-
-}
-@keyframes about-bg-element-2 {
-
-}
-@keyframes about-bg-element-4 {
-  0% {
-    transform: translate(0) scale(0.5);
-    animation-timing-function: ease-out;
-  }
-  25% {
-    transform: translate(200px) scale(1);
-    animation-timing-function: ease-in;
-  }
-  75% {
-    transform: translate(-200px) scale(1);
-    animation-timing-function: ease-out;
-  }
-  100% {
-    transform: translate(0) scale(0.5);
-    animation-timing-function: ease-in;
-  }
-}
-//@keyframes animate-svg-stroke-1 {
-//  to {
-//    stroke-dashoffset: 100;
-//  }
-//}
-@keyframes animate-svg-stroke {
-  0% {
-    transform: translate(0) scale(1) rotate(3deg);
-    animation-timing-function: ease-out;
-  }
-  25% {
-    transform: translate(-10vw) scale(1.3) rotate(-3deg);
-    animation-timing-function: ease-in;
-  }
-  50% {
-    transform: translate(-30vw) scale(1.5) rotate(5deg);
-    animation-timing-function: ease-out;
-  }
-  75% {
-    transform: translate(-10vw) scale(1.2) rotate(-5deg);
-    animation-timing-function: ease-in;
-  }
-  100% {
-    transform: translate(0) scale(1.1) rotate(1deg);
-    animation-timing-function: ease-out;
   }
 }
 
@@ -852,9 +788,15 @@ picture {
     color: variables.$blue;
     font-weight: bold;
     //font-size: 36px;
-    @include mixin.font-size(36px);
-    padding: 0 15px;
-    margin-bottom: 20px;
+    //@include mixin.font-size(36px);
+    @include scss.rfs(36px, font-size);
+    //padding: 45px 15px 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 0;
+    @include scss.rfs(45px, padding-top);
+    //margin-bottom: 10px;
+    @include scss.rfs(10px, margin-bottom);
     line-height: 0.6;
   }
   .jobs--carousel {
@@ -863,10 +805,11 @@ picture {
     white-space: normal;
   }
   .jobs--carousel-nav {
-    padding: 0;
+    padding: 0 15px;
     text-align: right;
     position: absolute;
-    top: 14px;
+    top: 42px;
+    @include scss.rfs(42px, top);
     left: 0;
     right: 0;
     width: 100%;
@@ -886,15 +829,17 @@ picture {
       }
     }
     .jobs--carousel-nav-prev {
-      margin-right: 10px;
+      margin-right: 12px;
     }
     .jobs--carousel-nav-next {
       transform: scaleX(-1);
-      margin-left: 10px;
+      margin-left: 12px;
     }
   }
   .jobs--carousel-item {
-    padding-top: 100px;
+    //padding-top: 100px;
+    @include scss.rfs(100px, padding-top);
+    // TODO: make transitions greate again
     transition: 0.3s padding ease-out;
     //letter-spacing: unset;
     //white-space: initial;
@@ -921,7 +866,8 @@ picture {
     }
   }
   .jobs--carousel-item-img {
-    margin-bottom: 37px;
+    //margin-bottom: 35px;
+    @include scss.rfs(35px, margin-bottom);
     //width: 100%;
     max-width: 100%;
     overflow: hidden;
@@ -929,20 +875,26 @@ picture {
   .jobs--carousel-item-category {
     color: variables.$orange;
     //font-size: 14px;
-    @include mixin.font-size(14px);
+    //@include mixin.font-size(14px);
+    @include scss.rfs(14px, font-size);
     font-weight: 600;
-    margin-bottom: 15px;
+    //margin-bottom: 20px;
+    @include scss.rfs(20px, margin-bottom);
     text-align: center;
     display: block;
     width: 100%;
   }
   .jobs--carousel-item-title {
     //font-size: 30px;
-    @include mixin.font-size(30px);
+    //@include mixin.font-size(30px);
+    @include scss.rfs(30px, font-size);
     color: variables.$blue;
     text-align: center;
     width: 100%;
-    margin-bottom: 27px;
+    //margin-bottom: 30px;
+    @include scss.rfs(30px, margin-bottom);
+    font-weight: bold;
+    line-height: 0.9;
   }
   .jobs--carousel-item-more {
     width: 50px;
@@ -992,8 +944,13 @@ picture {
     }
   }
   .jobs--animated-svg {
-    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both;
+    animation-name: animate-svg-stroke;
+    animation-duration: 16s;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-delay: 0s;
     animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: both;
     fill: none;
     stroke: variables.$orange;
     stroke-width: 2;
@@ -1012,22 +969,26 @@ picture {
 #teams {
   .teams--title {
     //font-size: 36px;
-    @include mixin.font-size(36px);
+    //@include mixin.font-size(36px);
+    @include scss.rfs(36px, font-size);
     color: variables.$blue;
     font-weight: bold;
-    margin-bottom: 18px;
-    padding-top: 0;
+    margin-bottom: 0;
+    //padding-top: 70px;
+    @include scss.rfs(70px, padding-top);
     padding-bottom: 0;
+    line-height: 1.4;
   }
   .teams--carousel {
     padding: 0;
     white-space: normal;
   }
   .teams--carousel-nav {
-    padding: 0;
+    padding: 0 15px;
     text-align: right;
     position: absolute;
-    top: 14px;
+    top: 85px;
+    @include scss.rfs(85px, top);
     left: 0;
     right: 0;
     width: 100%;
@@ -1047,15 +1008,16 @@ picture {
       }
     }
     .teams--carousel-nav-prev {
-      margin-right: 10px;
+      margin-right: 12px;
     }
     .teams--carousel-nav-next {
       transform: scaleX(-1);
-      margin-left: 10px;
+      margin-left: 12px;
     }
   }
   .teams--carousel-item {
     padding-top: 95px;
+    @include scss.rfs(95px, padding-top);
     transition: 0.3s padding ease-out;
     .teams--carousel-item-inner {
       display: flex;
@@ -1070,7 +1032,7 @@ picture {
   }
   .teams--carousel-item__active {
     padding-top: 0;
-    background-color: red;
+    //background-color: red;
     //.teams--carousel-item-inner {
     //  padding-top: 0;
     //}
@@ -1091,7 +1053,8 @@ picture {
   .teams--carousel-item-photo {
     border-radius: 50%;
     overflow: hidden;
-    margin-bottom: 32px;
+    //margin-bottom: 35px;
+    @include scss.rfs(35px, margin-bottom);
     //background-color: rgb(229, 194, 187);
     //width: 418px;
     //height: 418px;
@@ -1103,30 +1066,37 @@ picture {
   }
   .teams--carousel-item-post {
     //font-size: 14px;
-    @include mixin.font-size(14px);
+    //@include mixin.font-size(14px);
+    @include scss.rfs(14px, font-size);
     color: variables.$orange;
     font-weight: bold;
     text-transform: uppercase;
     line-height: 0.9;
     text-align: center;
-    margin-bottom: 12px;
+    //margin-bottom: 15px;
+    @include scss.rfs(15px, margin-bottom);
   }
   .teams--carousel-item-name {
     //font-size: 30px;
-    @include mixin.font-size(30px);
+    //@include mixin.font-size(30px);
+    @include scss.rfs(30px, font-size);
     color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
     text-align: center;
-    margin-bottom: 29px;
+    letter-spacing: -0.2px;
+    //margin-bottom: 29px;
+    @include scss.rfs(25px, margin-bottom);
   }
   .teams--carousel-item-descr {
     //font-size: 15px;
-    @include mixin.font-size(15px);
+    //@include mixin.font-size(15px);
+    @include scss.rfs(15px, font-size);
     color: variables.$gray;
-    line-height: 1.5;
+    line-height: 1.6;
     text-align: center;
-    margin-bottom: 30px;
+    //margin-bottom: 30px;
+    @include scss.rfs(30px, margin-bottom);
     display: none;
   }
   .teams--carousel-item-social {
@@ -1145,15 +1115,21 @@ picture {
       padding: 0 5px;
       display: inline-block;
       //font-size: 16px;
-      @include mixin.font-size(16px);
+      //@include mixin.font-size(16px);
+      @include scss.rfs(16px, font-size);
       &:hover {
         color: variables.$orange;
       }
     }
   }
   .teams--animated-svg {
-    animation: animate-svg-stroke 16s cubic-bezier(0.47, 0, 0.745, 0.715) 0s both infinite;
+    animation-name: animate-svg-stroke;
+    animation-duration: 16s;
+    animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
+    animation-delay: 0s;
     animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: both;
     fill: none;
     stroke: variables.$blue;
     stroke-width: 2;
@@ -1169,13 +1145,6 @@ picture {
   }
 }
 
-article {
-  @include helpers.clearfix;
-}
-.looper {
-  @include helpers.clearfix;
-}
-
 .main--footer {
   position: absolute;
   bottom: 0;
@@ -1185,7 +1154,7 @@ article {
   height: variables.$footer;
   .footer--copy {
     padding-top: 0;
-    padding-left: 0;
+    padding-left: 15px;
   }
   .footer-email {
     margin-bottom: 25px;
@@ -1225,7 +1194,8 @@ article {
     }
     a {
       //font-size: 16px;
-      @include mixin.font-size(16px);
+      //@include mixin.font-size(16px);
+      @include scss.rfs(16px, font-size);
       font-weight: bold;
       color: variables.$orange-dark;
       text-decoration: underline;
@@ -1245,11 +1215,12 @@ article {
   .footer--copyright {
     color: variables.$gray;
     //font-size: 13px;
-    @include mixin.font-size(13px);
+    //@include mixin.font-size(13px);
+    @include scss.rfs(13px, font-size);
   }
   .footer--pager {
-    padding-top: 25px;
-    padding-right: 0;
+    padding-top: 15px;
+    padding-right: 15px;
     text-align: right;
     position: relative;
     display: flex;
@@ -1261,11 +1232,11 @@ article {
   }
   .footer--pager-mouse {
     position: absolute;
-    right: 31px;
+    right: 45px;
     width: 18px;
     height: 24px;
     margin-right: -9px;
-    top: -30px;
+    top: -35px;
     box-shadow: inset 0 0 0 2px #000;
     border-radius: 25px;
     &:before {
@@ -1297,7 +1268,8 @@ article {
     border-bottom: 1px solid variables.$blue;
     > span {
       //font-size: 48px;
-      @include mixin.font-size(48px);
+      //@include mixin.font-size(48px);
+      @include scss.rfs(48px, font-size);
       line-height: 0.6;
       height: 48px;
     }
@@ -1305,32 +1277,12 @@ article {
   .footer--page-title {
     color: variables.$gray-light;
     //font-size: 15px;
-    @include mixin.font-size(15px);
-    line-height: 1.867;
+    //@include mixin.font-size(15px);
+    @include scss.rfs(15px, font-size);
+    line-height: 1.2;
     span {
       text-transform: capitalize;
     }
-  }
-}
-
-@keyframes modal-fade-in {
-  0%{
-    opacity: 0;
-    transform: translateY(-100%);
-  }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes modal-fade-out {
-  0%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-  100%{
-    opacity: 0;
-    transform: translateY(-100%);
   }
 }
 
@@ -1366,41 +1318,55 @@ article {
     animation-duration: 0.5s;
     animation-fill-mode: both;
   }
+  .modal--contact-left,
+  .modal--contact-right {
+    //top: -10px;
+    padding-top: 10px;
+    padding-bottom: 0;
+  }
   .modal--contact-title {
     //font-size: 36px;
-    @include mixin.font-size(36px);
+    //@include mixin.font-size(36px);
+    @include scss.rfs(36px, font-size);
     font-weight: bold;
     color: variables.$blue;
-    margin-bottom: 60px;
+    //margin-bottom: 50px;
+    @include scss.rfs(50px, margin-bottom);
+    line-height: 1;
   }
   p {
     font-weight: 500;
     //font-size: 16px;
-    @include mixin.font-size(16px);
-    line-height: 1.875;
+    //@include mixin.font-size(16px);
+    @include scss.rfs(16px, font-size);
+    line-height: 2.2;
+    padding-right: 20%;
     color: variables.$black;
-    margin-bottom: 24px;
+    //margin-bottom: 15px;
+    @include scss.rfs(15px, margin-bottom);
     a {
       text-decoration: none;
       color: variables.$black;
     }
   }
   .modal--contact-email {
-    margin-bottom: 60px;
+    //margin-bottom: 60px;
+    @include scss.rfs(60px, margin-bottom);
     color: variables.$orange;
     //font-size: 24px;
-    @include mixin.font-size(24px);
+    //@include mixin.font-size(24px);
+    @include scss.rfs(24px, font-size);
     font-weight: bold;
     text-decoration: underline;
     display: inline-block;
-    line-height: 1.167;
+    line-height: 1.2;
   }
   .modal--contact-social {
     display: block;
   }
   .modal--contact-social-item {
     display: inline-block;
-    margin-right: 14px;
+    margin-right: 10px;
     a {
       display: flex;
       flex-direction: column;
@@ -1410,7 +1376,7 @@ article {
       align-items: center;
       border-radius: 20px;
       background-color: #fff;
-      box-shadow: 0px 27px 24px 0px rgba(0, 0, 0, 0.11);
+      box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.11);
       //box-shadow: 0 0 5px variables.$gray;
       width: 50px;
       height: 50px;
@@ -1440,17 +1406,25 @@ article {
       border: 0;
       border-bottom: 1px solid #E1E1E1;
       //font-size: 15px;
-      @include mixin.font-size(15px);
-      margin-bottom: 30px;
+      //@include mixin.font-size(15px);
+      @include scss.rfs(15px, font-size);
       background-color: transparent;
       box-shadow: none;
       @include mixin.placeholder {
         color: #898989;
       };
+      &[type="text"],
+      &[type="email"]{
+        //margin-bottom: 30px;
+        @include scss.rfs(30px, margin-bottom);
+        padding: 8px 0;
+        line-height: 1;
+      }
       &[type="submit"] {
         background-color: variables.$orange;
         //font-size: 16px;
-        @include mixin.font-size(16px);
+        //@include mixin.font-size(16px);
+        @include scss.rfs(16px, font-size);
         font-weight: bold;
         color: #fff;
         border-radius: 22px;
@@ -1469,7 +1443,10 @@ article {
       }
     }
     textarea {
-      height: 100px;
+      padding: 10px 0;
+      height: 105px;
+      //margin-bottom: 50px;
+      @include scss.rfs(50px, margin-bottom);
     }
   }
   .modal-bg-element--1,
@@ -1510,14 +1487,17 @@ article {
   .modal-bg-element--3 {
     //width: 408px;
     //height: 647px;
-    width: 21.2vw;
+    //width: 21.2vw;
     aspect-ratio: 408 / 647;
     //height: 59.91vh;
     //left: 70.99vw;
-    right: -7.76vw;
+    //right: -7.76vw;
     //top: 18.06vh;
-    bottom: 22.04vh;
+    //bottom: 22.04vh;
     z-index: -2;
+    width: 40.2vw;
+    right: -11.5vw;
+    bottom: -8vh;
     background-image: url(../img/bg/modal-bg-element--3.svg);
     //background-image: url(../img/bg/modal-bg-element--3.png);
   }
@@ -1538,19 +1518,29 @@ article {
   .modal-bg-element--5 {
     //width: 119px;
     //height: 118px;
-    width: 11.02vh;
+    //width: 11.02vh;
     aspect-ratio: 1 / 1;
     //height: 11.02vh;
-    left: 16.93vw;
+    //left: 16.93vw;
     //top: 80.65vh;
-    bottom: 8.33vh;
+    //bottom: 8.33vh;
     z-index: -3;
+    width: 19.02vh;
+    left: 15.23vw;
+    bottom: 3.53vh;
     background-image: url(../img/bg/modal-bg-element--5.svg);
     //background-image: url(../img/bg/modal-bg-element--5.png);
   }
+
   &.modal--contact__active {
     .modal-bg-element--1 {
-      animation: modal-bg-element-1 25s linear infinite;
+      animation-name: modal-bg-element-1;
+      animation-duration: 25s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: both;
     }
     .modal-bg-element--2 {
 
@@ -1559,53 +1549,26 @@ article {
 
     }
     .modal-bg-element--4 {
-      animation: modal-bg-element-4 linear 30s infinite;
+      animation-name: modal-bg-element-4;
+      animation-duration: 30s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: both;
     }
     .modal-bg-element--5 {
-      animation: modal-bg-element-5 linear 10s infinite;
-      //transform: translate(0,0);
+      animation-name: modal-bg-element-5;
+      animation-duration: 10s;
+      animation-timing-function: linear;
+      animation-delay: 0s;
+      animation-iteration-count: infinite;
+      animation-direction: normal;
+      animation-fill-mode: both;
     }
   }
 }
-@keyframes modal-bg-element-1 {
-  0%{
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  100%{
-    transform: translateY(117vh) rotate(720deg);
-    opacity: 0;
-  }
-}
-@keyframes modal-bg-element-4 {
-  0%{
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
-  }
-  50%{
-    transform: translateY(-100vh) rotate(720deg);
-    opacity: 0.5;
-  }
-  100%{
-    transform: translateY(0) rotate(720deg);
-    opacity: 1;
-  }
-}
-@keyframes modal-bg-element-5 {
-  0%{
-    //transform: translate(-13.07vw,-11.67vh) rotate(0deg);
-    transform: translate(0,0) rotate(0deg);
-  }
-  25%{
-    transform: translate(6.93vw,-14.67vh) rotate(360deg) scale(1.2);
-  }
-  50%{
-    transform: translate(-1.07vw,-8.67vh) rotate(720deg) scale(0.8);
-  }
-  100%{
-    transform: translate(0,0) rotate(360deg) scale(1);
-  }
-}
+
 .modal--project {
   z-index: 11;
   &.modal--project__active {
@@ -1623,13 +1586,15 @@ article {
   }
   .modal--project-logo {
     height: 120px;
-    padding-top: 60px;
-    padding-left: 0;
+    padding-top: 75px;
+    //@include scss.rfs(75px, padding-top);
+    padding-left: 15px;
     padding-bottom: 0;
     span,
     a {
       //font-size: 26px;
-      @include mixin.font-size(26px);
+      //@include mixin.font-size(26px);
+      @include scss.rfs(28px, font-size);
       line-height: 1.2;
       font-weight: bold;
       color: variables.$black;
@@ -1646,13 +1611,19 @@ article {
         position: absolute;
         left: 0;
         bottom: 17px;
-        animation: modal-project-bg 20s infinite;
+        animation-name: modal-project-bg;
+        animation-duration: 20s;
+        animation-timing-function: linear;
+        animation-delay: 0s;
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: both;
       }
     }
   }
   .modal--project-close {
-    height: 120px;
-    padding-right: 0;
+    height: 114px;
+    padding-right: 15px;
     padding-bottom: 0;
     display: flex;
     flex-direction: column;
@@ -1706,44 +1677,56 @@ article {
     }
   }
   .modal--project-preview {
-
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
   }
   .modal--project-image {
-
+    //height: mixin.get-vh(20px);
   }
   .modal--project-content {
-
+    //padding-top: 90px;
+    @include scss.rfs(90px, padding-top);
   }
   .modal--project-cat {
     //font-size: 14px;
-    @include mixin.font-size(14px);
+    //@include mixin.font-size(14px);
+    @include scss.rfs(14px, font-size);
     color: variables.$orange;
     font-weight: bold;
     text-transform: uppercase;
-    line-height: 1.286;
-    margin-bottom: 21px;
+    line-height: 1.3;
+    //margin-bottom: 21px;
+    @include scss.rfs(21px, margin-bottom);
   }
   .modal--project-title {
     //font-size: 48px;
-    @include mixin.font-size(48px);
+    //@include mixin.font-size(48px);
+    @include scss.rfs(48px, font-size);
     color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
-    margin-bottom: 57px;
+    //margin-bottom: 57px;
+    @include scss.rfs(57px, margin-bottom);
   }
   .modal--project-props {
-    margin-bottom: 12px;
+    //margin-bottom: 40px;
+    @include scss.rfs(40px, margin-bottom);
     dt,
     dd {
       padding-left: 34px;
       line-height: 1.6;
       //font-size: 15px;
-      @include mixin.font-size(15px);
+      //@include mixin.font-size(15px);
+      @include scss.rfs(15px, font-size);
       @include helpers.clearfix;
     }
     dt {
-      padding-bottom: 8px;
-      margin: 0 0 8px;
+      padding-bottom: 0;
+      margin: 0;
       font-weight: bold;
       color: variables.$black;
       position: relative;
@@ -1758,11 +1741,12 @@ article {
     dd {
       color: variables.$gray;
       font-weight: normal;
-      margin-bottom: 32px;
+      //margin-bottom: 26px;
+      @include scss.rfs(26px, margin-bottom);
     }
     span {
       display: block;
-      width: 50%;
+      width: 44%;
       float: left;
     }
   }
@@ -1789,8 +1773,9 @@ article {
   }
   p {
     //font-size: 15px;
-    @include mixin.font-size(15px);
-    line-height: 1.667;
+    //@include mixin.font-size(15px);
+    @include scss.rfs(15px, font-size);
+    line-height: 1.7;
     color: variables.$gray;
   }
   .modal--project-nav {
@@ -1800,16 +1785,18 @@ article {
     justify-content: flex-start;
     align-content: stretch;
     align-items: flex-end;
-    height: 155px;
+    height: 186px;
   }
   .modal--project-nav-title {
     width: 72px;
     //font-size: 12px;
-    @include mixin.font-size(12px);
+    //@include mixin.font-size(12px);
+    @include scss.rfs(12px, font-size);
     text-transform: uppercase;
     line-height: 1.2;
     color: variables.$gray;
-    margin-bottom: 20px;
+    //margin-bottom: 15px;
+    @include scss.rfs(15px, margin-bottom);
     visibility: hidden;
     opacity: 0;
     transition: all 0.5s ease-in-out;
@@ -1869,44 +1856,320 @@ article {
     //width: 1292px;
     //height: 1292px;
     width: 119.63vh;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
     //top: -159px;
     //left: -207px;
     top: -14.72vh;
-    left: -10.78vw;
+    left: -14.78vw;
     opacity: 0.5;
     z-index: -2;
-    animation: modal-project-bg 20s infinite;
+    animation-name: modal-project-bg;
+    animation-duration: 20s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: both;
   }
   .modal--project-bg-2 {
     //width: 1101px;
     //height: 1101px;
     width: 101.94vh;
     //height: 1101px;
-    aspect-ratio: 1;
+    aspect-ratio: 1 / 1;
     //left: -263px;
     //top: -119px;
-    left: -13.7vw;
+    left: -17.7vw;
     top: -11.02vh;
     z-index: -1;
-    animation: modal-project-bg 15s infinite;
+    animation-name: modal-project-bg;
+    animation-duration: 15s;
+    animation-timing-function: linear;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    animation-fill-mode: both;
+  }
+}
+
+@keyframes header-menu-fall {
+  0% {
+    transform: rotateY(-25deg);
+  }
+  25% {
+    transform: translateY(2%) rotateY(25deg);
+  }
+  50% {
+    transform: rotateY(-25deg);
+  }
+  75% {
+    transform: translateY(4%) rotateY(25deg);
+  }
+  100% {
+    transform: rotateY(-25deg);
+  }
+}
+@keyframes home-bg-element-1 {
+  0% {
+    transform: rotateY(-25deg);
+  }
+  25% {
+    transform: translate(2%, 7%) rotateY(25deg);
+  }
+  50% {
+    transform: rotateY(-25deg);
+  }
+  75% {
+    transform: translate(7%, 3%) rotateY(25deg);
+  }
+  100% {
+    transform: rotateY(-25deg);
+  }
+}
+@keyframes home-bg-element-2 {
+  0% {
+    transform: translate(-8vw, 0) scale(0.7);
+  }
+  100% {
+    transform: translate(-4.27vw, 35.56vh) scale(1);
+  }
+}
+@keyframes home-bg-element-3 {
+    0% {
+      transform: translate(0) scale(1);
+      animation-timing-function: ease-out;
+    }
+    25% {
+      transform: translate(2%, -7%) scale(0.8) rotate(45deg);
+      animation-timing-function: ease-in;
+    }
+    50% {
+      transform: translate(5%, 10%) scale(0.5) rotate(-90deg);
+      animation-timing-function: ease-out;
+    }
+    75% {
+      transform: translate(4%, 4%) scale(0.6) rotate(45deg);
+      animation-timing-function: ease-out;
+    }
+    90% {
+      transform: translate(2%, 2%) scale(0.8);
+      animation-timing-function: ease-in;
+    }
+    100% {
+      transform: translate(0) scale(1);
+      animation-timing-function: ease-out;
+    }
+}
+@keyframes home-bg-element-4 {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translateY(50%);
+  }
+  24% {
+    opacity: 0.2;
+  }
+  40% {
+    animation-timing-function: ease-in;
+    transform: translateY(40%);
+    opacity: 0.4;
+  }
+  65% {
+    animation-timing-function: ease-in;
+    transform: translateY(30%);
+    opacity: 0.6;
+  }
+  82% {
+    animation-timing-function: ease-in;
+    transform: translateY(20%);
+    opacity: 0.8;
+  }
+  93% {
+    animation-timing-function: ease-in;
+    transform: translateY(10%);
+    opacity: 0.9;
+  }
+  100% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes home-bg-element-5 {
+  0%{
+    width: 0;
+    height: 0;
+    transform: rotate(180deg);
+  }
+  100%{
+    height: 19.02vh;
+    width: 19.02vh;
+    transform: rotate(0);
+  }
+}
+@keyframes about-bg-element-1 {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25%, 75% {
+    transform: translateY(-8%);
+  }
+  50%{
+    transform: translateY(8%);
+  }
+}
+@keyframes about-bg-element-2 {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translate(50%, 50%);
+  }
+  24% {
+    opacity: 0.2;
+  }
+  40% {
+    animation-timing-function: ease-in;
+    transform: translate(40%, 40%);
+    opacity: 0.4;
+  }
+  65% {
+    animation-timing-function: ease-in;
+    transform: translate(30%, 30%);
+    opacity: 0.6;
+  }
+  82% {
+    animation-timing-function: ease-in;
+    transform: translate(20%, 20%);
+    opacity: 0.8;
+  }
+  93% {
+    animation-timing-function: ease-in;
+    transform: translate(10%, 10%);
+    opacity: 0.9;
+  }
+  100% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@keyframes about-bg-element-3 {
+  0%{
+    transform: translate(-30vw, 20vh) scale(0);
+  }
+  100%{
+    transform: translate(0) scale(1);
+  }
+}
+@keyframes about-bg-element-4 {
+  0%, 100% {
+    transform: translate(0) scale(1) rotate(0);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: translate(200px, -250px) scale(0.5) rotate(180deg);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translate(50px, -150) scale(0.7) rotate(90deg);
+    animation-timing-function: ease-in;
+  }
+  75% {
+    transform: translate(-200px, -75px) scale(0.5) rotate(90deg);
+    animation-timing-function: ease-out;
+  }
+}
+@keyframes animate-svg-stroke {
+  0% {
+    transform: translate(0) scale(1) rotate(3deg);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: translate(-10vw) scale(1.3) rotate(-3deg);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translate(-30vw) scale(1.5) rotate(5deg);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: translate(-10vw) scale(1.2) rotate(-5deg);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translate(0) scale(1.1) rotate(1deg);
+    animation-timing-function: ease-out;
+  }
+}
+@keyframes modal-fade-in {
+  0%{
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes modal-fade-out {
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes modal-bg-element-1 {
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(117vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+@keyframes modal-bg-element-4 {
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50%{
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0.5;
+  }
+  100%{
+    transform: translateY(0) rotate(720deg);
+    opacity: 1;
+  }
+}
+@keyframes modal-bg-element-5 {
+  0%{
+    transform: translate(0,0) rotate(0deg);
+  }
+  25%{
+    transform: translate(6.93vw,-14.67vh) rotate(360deg) scale(1.2);
+  }
+  50%{
+    transform: translate(-1.07vw,-8.67vh) rotate(720deg) scale(0.8);
+  }
+  100%{
+    transform: translate(0,0) rotate(360deg) scale(1);
   }
 }
 @keyframes modal-project-bg{
   0%{
     transform: scale(0.8);
   }
-
   50%{
     transform: scale(1.2);
   }
-
   100%{
     transform: scale(0.8);
   }
 }
-
-
 @keyframes mouse-scroll {
   0% {
     opacity: 1;

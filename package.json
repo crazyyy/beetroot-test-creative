@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "jquery": "^3.6.0",
-    "modernizr": "^3.12.0"
+    "modernizr": "^3.12.0",
+    "rfs": "^9.0.6"
   },
   "description": "Simple html and css framework",
   "devDependencies": {

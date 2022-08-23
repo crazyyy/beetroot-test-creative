@@ -71,7 +71,7 @@ $(document).ready(function() {
     //   'position': 'right',
     //   'tooltips': ['section1', 'section2', 'section3', 'section4']
     // },
-    normalScrollElements: null,
+    normalScrollElements: '#element1, .element2',
     normalScrollElementTouchThreshold: 5,
     touchSensitivity: 5,
     keyboardScrolling: true,
@@ -79,10 +79,11 @@ $(document).ready(function() {
     animateAnchor: true,
 
     //events
-    onLeave: function(index, nextIndex, direction){},
+    onLeave: function(index, nextIndex, direction){
+    },
     afterLoad: function(anchorLink, index){
-      console.log("Section index " + index + " ended loading");
-      $pagerNum.html('0' + index)
+      // console.log("Section index " + index + " ended loading");
+      $pagerNum.html(`0${index}`)
       $pagerTitle.html(anchorLink)
       if(anchorLink == 'home'){
         console.log("Section home ended loading");
@@ -97,70 +98,6 @@ $(document).ready(function() {
     afterRender: function(){},
   });
 
-  // Modal window
-  // Contact button modal window
-  const $contactButton = document.querySelector('.header--contact-button');
-  const $contactModalContainer = document.querySelector('.modal--contact');
-
-  $contactButton.addEventListener("click", function(){
-    if ($contactModalContainer.classList.contains('modal--contact__active')) {
-      $contactModalContainer.classList.add('modal--contact__close');
-      $contactButton.classList.remove('header--contact-button__active');
-      setTimeout(function() {
-        $contactModalContainer.classList.remove('modal--contact__active');
-        $contactModalContainer.classList.remove('modal--contact__close');
-      }, 500);
-    } else {
-      $contactButton.classList.add('header--contact-button__active');
-      $contactModalContainer.classList.add('modal--contact__active');
-    }
-  });
-
-  // Projects modal window
-  const $modalProjectContainer = document.querySelector('.modal--project')
-  // const $jobsBtnMore = document.querySelector('.jobs--carousel-item-more')
-  const $jobsBtnMoreArray = [...document.querySelectorAll('.jobs--carousel-item-more')];
-  $jobsBtnMoreArray.forEach(($jobsBtnMore) => {
-    $jobsBtnMore.addEventListener("click", function(){
-      $modalProjectContainer.classList.add('modal--project__active');
-    });
-  })
-
-  const $modalProjectBtnClose = document.querySelector('.modal--project-close-button')
-  $modalProjectBtnClose.addEventListener("click", function(){
-    $modalProjectContainer.classList.add('modal--project__close');
-    setTimeout(function() {
-      $modalProjectContainer.classList.remove('modal--project__active');
-      $modalProjectContainer.classList.remove('modal--project__close');
-    }, 500);
-  });
-
-  // Next / Prev Projects
-
-  const $modalProjectBtnNext = document.querySelector('.modal--project-btn-next')
-  const $modalProjectBtnPrev = document.querySelector('.modal--project-btn-prev')
-  const $modalProjectTitle = document.querySelector('.modal--project-nav-title')
-  const $modalProjectTitleDirect = document.querySelector('.modal--project-nav-title span')
-
-  $modalProjectBtnNext.addEventListener("mouseover", (event) => {
-    $modalProjectTitleDirect.innerHTML = 'Next'
-    $modalProjectTitle.classList.add('modal--project-nav-title__next');
-  }, false);
-
-  $modalProjectBtnNext.addEventListener("mouseout", (event) => {
-    $modalProjectTitle.classList.remove('modal--project-nav-title__next');
-  }, false);
-
-  $modalProjectBtnPrev.addEventListener("mouseover", (event) => {
-    $modalProjectTitleDirect.innerHTML = 'Previous'
-    $modalProjectTitle.classList.add('modal--project-nav-title__prev');
-  }, false);
-
-  $modalProjectBtnPrev.addEventListener("mouseout", (event) => {
-    $modalProjectTitle.classList.remove('modal--project-nav-title__prev');
-  }, false);
-
-
   Splitting();
 
   // Jobs slider carousel
@@ -168,6 +105,8 @@ $(document).ready(function() {
   const $jobsCarouselNav = document.querySelector('.jobs--carousel-nav');
   const $jobsCarouselNavNext = document.querySelector('.jobs--carousel-nav-next');
   const $jobsCarouselNavPrev = document.querySelector('.jobs--carousel-nav-prev');
+
+  // https://github.com/ganlanyuan/tiny-slider
   const jobsSlider = tns({
     container: $jobsCarouselContainer,
     controlsContainer: $jobsCarouselNav,
@@ -241,6 +180,8 @@ $(document).ready(function() {
   const $teamsCarouselNav = document.querySelector('.teams--carousel-nav');
   const $teamsCarouselNavNext = document.querySelector('.teams--carousel-nav-next');
   const $teamsCarouselNavPrev = document.querySelector('.teams--carousel-nav-prev');
+
+  // https://github.com/ganlanyuan/tiny-slider
   const teamsSlider = tns({
     container: $teamsCarouselContainer,
     controlsContainer: $teamsCarouselNav,
@@ -294,5 +235,104 @@ $(document).ready(function() {
     })
   }
 
+  // Modal window
+  // Contact button modal window
+  const $contactButton = document.querySelector('.header--contact-button');
+  const $contactModalContainer = document.querySelector('.modal--contact');
+
+  $contactButton.addEventListener("click", function(){
+    if ($contactModalContainer.classList.contains('modal--contact__active')) {
+      $contactModalContainer.classList.add('modal--contact__close');
+      $contactButton.classList.remove('header--contact-button__active');
+      setTimeout(function() {
+        $contactModalContainer.classList.remove('modal--contact__active');
+        $contactModalContainer.classList.remove('modal--contact__close');
+      }, 500);
+    } else {
+      $contactButton.classList.add('header--contact-button__active');
+      $contactModalContainer.classList.add('modal--contact__active');
+    }
+  });
+
+  // Projects modal window
+  const $modalProjectContainer = document.querySelector('.modal--project')
+  const $modalProjectCat = document.querySelector('.modal--project-cat')
+  const $modalProjectTitle = document.querySelector('.modal--project-title')
+  const $jobsBtnMoreArray = [...document.querySelectorAll('.jobs--carousel-item-more')];
+  $jobsBtnMoreArray.forEach(($jobsBtnMore) => {
+    $jobsBtnMore.addEventListener("click", function(event){
+      const $projectsContainer = event.target.parentNode.parentNode;
+      const projectId = $projectsContainer.dataset.project
+      const $currentTitleContainer = $projectsContainer.querySelector('.jobs--carousel-item-title')
+      const currentTitle = $currentTitleContainer.innerHTML
+      console.log(projectId)
+      console.log(currentTitle)
+      $modalProjectContainer.classList.add('modal--project__active');
+      $modalProjectTitle.innerHTML = currentTitle
+    });
+  })
+
+  const $modalProjectBtnClose = document.querySelector('.modal--project-close-button')
+  $modalProjectBtnClose.addEventListener("click", function(){
+    $modalProjectContainer.classList.add('modal--project__close');
+    setTimeout(function() {
+      $modalProjectContainer.classList.remove('modal--project__active');
+      $modalProjectContainer.classList.remove('modal--project__close');
+    }, 500);
+  });
+
+  // Next / Prev Projects
+  const $modalProjectBtnNext = document.querySelector('.modal--project-btn-next')
+  const $modalProjectBtnPrev = document.querySelector('.modal--project-btn-prev')
+  const $modalProjectTitleNav = document.querySelector('.modal--project-nav-title')
+  const $modalProjectTitleDirect = document.querySelector('.modal--project-nav-title span')
+
+  $modalProjectBtnNext.addEventListener("mouseover", (event) => {
+    $modalProjectTitleDirect.innerHTML = 'Next'
+    $modalProjectTitleNav.classList.add('modal--project-nav-title__next');
+  }, false);
+
+  $modalProjectBtnNext.addEventListener("mouseout", (event) => {
+    $modalProjectTitleNav.classList.remove('modal--project-nav-title__next');
+  }, false);
+
+  $modalProjectBtnPrev.addEventListener("mouseover", (event) => {
+    $modalProjectTitleDirect.innerHTML = 'Previous'
+    $modalProjectTitleNav.classList.add('modal--project-nav-title__prev');
+  }, false);
+
+  $modalProjectBtnPrev.addEventListener("mouseout", (event) => {
+    $modalProjectTitleNav.classList.remove('modal--project-nav-title__prev');
+  }, false);
+
+  $modalProjectBtnNext.addEventListener("click", function(){
+    const projectSliderInfo = jobsSlider.getInfo(),
+      // indexPrev = jobsSliderInfo.indexCached,
+      projectIndexCurrent = projectSliderInfo.index;
+    console.log(projectIndexCurrent)
+    jobsSlider.goTo('next');
+    const $projectSlideNew = document.querySelector('.jobs--carousel-item__active')
+    const newProjectId = $projectSlideNew.dataset.project
+    const $newTitleContainer = $projectSlideNew.querySelector('.jobs--carousel-item-title')
+    const newCurrentTitle = $newTitleContainer.innerHTML
+    console.log('projectId: ', newProjectId)
+    console.log('currentTitle: ', newCurrentTitle)
+    $modalProjectTitle.innerHTML = newCurrentTitle
+  });
+
+  $modalProjectBtnPrev.addEventListener("click", function(){
+    const projectSliderInfo = jobsSlider.getInfo(),
+      // indexPrev = jobsSliderInfo.indexCached,
+      projectIndexCurrent = projectSliderInfo.index;
+    console.log(projectIndexCurrent)
+    jobsSlider.goTo('prev');
+    const $projectSlideNew = document.querySelector('.jobs--carousel-item__active')
+    const newProjectId = $projectSlideNew.dataset.project
+    const $newTitleContainer = $projectSlideNew.querySelector('.jobs--carousel-item-title')
+    const newCurrentTitle = $newTitleContainer.innerHTML
+    console.log('projectId: ', newProjectId)
+    console.log('currentTitle: ', newCurrentTitle)
+    $modalProjectTitle.innerHTML = newCurrentTitle
+  });
 
 });

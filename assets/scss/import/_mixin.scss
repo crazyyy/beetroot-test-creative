@@ -338,10 +338,72 @@
 //  @include font-size(14px)
 //}
 @function calculateRem($size) {
-  $remSize: $size / 16px;
+  $remSize: math.div($size, 16px);
   @return $remSize * 1rem;
 }
 @mixin font-size($size) {
   font-size: $size;
   font-size: calculateRem($size);
+}
+
+// Font convert px to vw
+$vw-viewport: 1920;
+@function get-vw($font){
+  $vw-context: $vw-viewport * 0.01 * 1px;
+  @return math.div($font, $vw-context) * 1vw;
+  @return $font;
+}
+@mixin font-size-vw($size) {
+  font-size: $size;
+  font-size: get-vw($size);
+}
+
+// Size convert px to vw
+//.element{
+//  width: mixin.get-vw(20px);
+//}
+//$vw-viewport: 1920;
+@function get-vw($px-vw, $base-vw: 1920px){
+  //$vw-context: $vw-viewport * 0.01 * 1px;
+  //@return $size / strip-unit($vw-context) * 1vw;
+  //@return $size;
+  @return #{strip-unit($px-vw) * math.div(100, strip-unit($base-vw))}vw;
+}
+// Size convert px to vh
+//.element{
+//  height: mixin.get-vh(20px);
+//}
+//$vh-viewport: 1080;
+@function get-vh($px-vh, $base-vh: 1080px){
+  //$vh-context: $vh-viewport * 0.01 * 1px;
+  //@return $size / strip-unit($vh-context) * 1vw;
+  //@return $size;
+  @return #{strip-unit($px-vh) * math.div(100, strip-unit($base-vh))}vh;
+}
+
+// RTL
+//.sidebar {
+//  @include rtl(float, left, right);
+//}
+@mixin rtl($property, $ltr-value, $rtl-value) { // with argumens
+  #{$property}: $ltr-value;
+  [dir=rtl] & {
+    #{$property}: $rtl-value;
+  }
+}
+
+// transition to fade-in and fade-out
+//.sidebar {
+//  @include rtl(float, left, right);
+//}
+@mixin fade($type) {
+  @if $type== "hide" {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s, opacity 1s;
+  } @else if $type== "show" {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s, opacity 1s;
+  }
 }
