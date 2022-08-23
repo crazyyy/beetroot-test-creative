@@ -103,7 +103,8 @@ picture {
     padding: 0 0 0 15px;
     span,
     a {
-      font-size: 26px;
+      //font-size: 26px;
+      @include mixin.font-size(26px);
       line-height: 1.2;
       font-weight: bold;
       color: variables.$black;
@@ -153,7 +154,8 @@ picture {
     }
   }
   a {
-    font-size: 15px;
+    //font-size: 15px;
+    @include mixin.font-size(15px);
     text-decoration: none;
     color: variables.$black;
     font-weight: 600;
@@ -212,7 +214,8 @@ picture {
     height: 53px;
     text-align: center;
     font-weight: 600;
-    font-size: 16px;
+    //font-size: 16px;
+    @include mixin.font-size(16px);
     color: variables.$blue;
     border: 1px solid variables.$gray-medium;
     background-color: transparent;
@@ -221,46 +224,47 @@ picture {
     background-position: center;
     background-repeat: no-repeat;
     background-image: none;
-    transition: .2s transform ease-in-out;
+    transition: all 0.3s ease-in-out;
     will-change: transform;
     position: relative;
     overflow: hidden;
-    &:after {
-      background-color: variables.$blue;
-      border-radius: 22px;
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      transform: translate(-100%, 0) rotate(10deg);
-      transform-origin: top left;
-      transition: .2s transform ease-out;
-      will-change: transform;
-      z-index: -1;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
     &:hover {
-      border: 2px solid transparent;
-      color: #fff;
-      transform :scale(1.05);
-      will-change: transform;
-      &:after{
-        transform: translate(0, 0);
-      }
+      box-shadow: 0 0 5px variables.$gray;
     }
-
+    &:active {
+      box-shadow: 0 0 10px variables.$gray;
+    }
     &.header--contact-button__active {
       font-size: 0;
       width: 53px;
       height: 53px;
-      background-image: url(../img/bg/header--contact-button.png);
+      &:before,
+      &:after {
+        display: block;
+        content: '';
+        background-color: variables.$black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: all 0.5s ease-in-out;
+        transform: rotate(45deg);
+      }
+      &:before {
+        width: 2px;
+        height: 14px;
+        margin-left: -1px;
+        margin-top: -7px;
+      }
+      &:after {
+        width: 14px;
+        height: 2px;
+        margin-left: -7px;
+        margin-top: -1px;
+      }
       &:hover {
+        &:before,
         &:after {
-          background-image: url(../img/bg/header--contact-button-close.png);
+          transform: scale(1.5) rotate(45deg);
         }
       }
     }
@@ -275,7 +279,8 @@ picture {
 #home {
   .home--title {
     font-weight: bold;
-    font-size: 140px;
+    //font-size: 140px;
+    @include mixin.font-size(140px);
     text-align: center;
     color: variables.$blue;
     line-height: 1;
@@ -289,7 +294,8 @@ picture {
   .home--description {
     text-align: center;
     margin-bottom: 14px;
-    font-size: 18px;
+    //font-size: 18px;
+    @include mixin.font-size(18px);
     padding-top: 0;
     padding-bottom: 0;
     position: relative;
@@ -548,20 +554,23 @@ picture {
 }
 #about {
   .about--title {
-    font-size: 30px;
+    //font-size: 30px;
+    @include mixin.font-size(30px);
     color: variables.$blue;
     font-weight: 200;
   }
   .about--content {
     .about--content-title {
       font-weight: bold;
-      font-size: 48px;
+      //font-size: 48px;
+      @include mixin.font-size(48px);
       line-height: 60px;
       margin-bottom: 40px;
     }
     p {
       margin-bottom: 35px;
-      font-size: 15px;
+      //font-size: 15px;
+      @include mixin.font-size(15px);
       color: variables.$gray;
     }
   }
@@ -570,7 +579,8 @@ picture {
       text-transform: uppercase;
       display: inline-block;
       width: 150px;
-      font-size: 14px;
+      //font-size: 14px;
+      @include mixin.font-size(14px);
       color: rgb(161, 161, 161);
       font-weight: bold;
       line-height: 1.286;
@@ -601,7 +611,8 @@ picture {
         }
       }
       i {
-        font-size: 30px;
+        //font-size: 30px;
+        @include mixin.font-size(30px);
         line-height: 1.2;
         color: variables.$black;
       }
@@ -611,13 +622,15 @@ picture {
 
   }
   .about--provide-title {
-    font-size: 30px;
+    //font-size: 30px;
+    @include mixin.font-size(30px);
     color: variables.$blue;
     font-weight: 200;
     margin-bottom: 65px;
   }
   .about--provide-list {
-    font-size: 15px;
+    //font-size: 15px;
+    @include mixin.font-size(15px);
     color: variables.$gray;
 
   }
@@ -838,7 +851,8 @@ picture {
   .jobs--title {
     color: variables.$blue;
     font-weight: bold;
-    font-size: 36px;
+    //font-size: 36px;
+    @include mixin.font-size(36px);
     padding: 0 15px;
     margin-bottom: 20px;
     line-height: 0.6;
@@ -899,7 +913,7 @@ picture {
   }
   .jobs--carousel-item__active {
     padding-top: 0;
-    background-color: red;
+    //background-color: red;
     //background-position: center top;
     .jobs--carousel-item-more {
       visibility: visible;
@@ -914,7 +928,8 @@ picture {
   }
   .jobs--carousel-item-category {
     color: variables.$orange;
-    font-size: 14px;
+    //font-size: 14px;
+    @include mixin.font-size(14px);
     font-weight: 600;
     margin-bottom: 15px;
     text-align: center;
@@ -922,7 +937,8 @@ picture {
     width: 100%;
   }
   .jobs--carousel-item-title {
-    font-size: 30px;
+    //font-size: 30px;
+    @include mixin.font-size(30px);
     color: variables.$blue;
     text-align: center;
     width: 100%;
@@ -939,9 +955,20 @@ picture {
     display: inline-block;
     visibility: hidden;
     opacity: 0;
-    transition: visibility 0.3s, opacity 0.3s linear;
+    //transition: visibility 0.3s, opacity 0.3s linear;
+    transition: all 0.3s ease-in-out;
     font-size: 0;
     position: relative;
+    &:hover {
+      box-shadow: 0 0 5px variables.$gray;
+      &:before,
+      &:after {
+        transform: scale(1.5);
+      }
+    }
+    &:active {
+      box-shadow: 0 0 10px variables.$gray;
+    }
     &:before,
     &:after {
       display: block;
@@ -984,7 +1011,8 @@ picture {
 
 #teams {
   .teams--title {
-    font-size: 36px;
+    //font-size: 36px;
+    @include mixin.font-size(36px);
     color: variables.$blue;
     font-weight: bold;
     margin-bottom: 18px;
@@ -1074,7 +1102,8 @@ picture {
     //width: 50%;
   }
   .teams--carousel-item-post {
-    font-size: 14px;
+    //font-size: 14px;
+    @include mixin.font-size(14px);
     color: variables.$orange;
     font-weight: bold;
     text-transform: uppercase;
@@ -1083,7 +1112,8 @@ picture {
     margin-bottom: 12px;
   }
   .teams--carousel-item-name {
-    font-size: 30px;
+    //font-size: 30px;
+    @include mixin.font-size(30px);
     color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
@@ -1091,7 +1121,8 @@ picture {
     margin-bottom: 29px;
   }
   .teams--carousel-item-descr {
-    font-size: 15px;
+    //font-size: 15px;
+    @include mixin.font-size(15px);
     color: variables.$gray;
     line-height: 1.5;
     text-align: center;
@@ -1113,7 +1144,8 @@ picture {
       color: variables.$blue;
       padding: 0 5px;
       display: inline-block;
-      font-size: 16px;
+      //font-size: 16px;
+      @include mixin.font-size(16px);
       &:hover {
         color: variables.$orange;
       }
@@ -1192,7 +1224,8 @@ article {
       margin-bottom: 10px;
     }
     a {
-      font-size: 16px;
+      //font-size: 16px;
+      @include mixin.font-size(16px);
       font-weight: bold;
       color: variables.$orange-dark;
       text-decoration: underline;
@@ -1211,7 +1244,8 @@ article {
   }
   .footer--copyright {
     color: variables.$gray;
-    font-size: 13px;
+    //font-size: 13px;
+    @include mixin.font-size(13px);
   }
   .footer--pager {
     padding-top: 25px;
@@ -1262,18 +1296,41 @@ article {
     color: variables.$orange;
     border-bottom: 1px solid variables.$blue;
     > span {
-      font-size: 48px;
+      //font-size: 48px;
+      @include mixin.font-size(48px);
       line-height: 0.6;
       height: 48px;
     }
   }
   .footer--page-title {
     color: variables.$gray-light;
-    font-size: 15px;
+    //font-size: 15px;
+    @include mixin.font-size(15px);
     line-height: 1.867;
     span {
       text-transform: capitalize;
     }
+  }
+}
+
+@keyframes modal-fade-in {
+  0%{
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes modal-fade-out {
+  0%{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100%{
+    opacity: 0;
+    transform: translateY(-100%);
   }
 }
 
@@ -1292,21 +1349,34 @@ article {
   justify-content: center;
   align-content: stretch;
   align-items: flex-start;
+  transition: all 200ms ease;
+  opacity: 0;
+  backface-visibility: hidden;
 }
 
 .modal--contact {
   &.modal--contact__active {
     display: flex;
+    animation-name: modal-fade-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+  }
+  &.modal--contact__close {
+    animation-name: modal-fade-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
   }
   .modal--contact-title {
-    font-size: 36px;
+    //font-size: 36px;
+    @include mixin.font-size(36px);
     font-weight: bold;
     color: variables.$blue;
     margin-bottom: 60px;
   }
   p {
     font-weight: 500;
-    font-size: 16px;
+    //font-size: 16px;
+    @include mixin.font-size(16px);
     line-height: 1.875;
     color: variables.$black;
     margin-bottom: 24px;
@@ -1318,7 +1388,8 @@ article {
   .modal--contact-email {
     margin-bottom: 60px;
     color: variables.$orange;
-    font-size: 24px;
+    //font-size: 24px;
+    @include mixin.font-size(24px);
     font-weight: bold;
     text-decoration: underline;
     display: inline-block;
@@ -1340,11 +1411,20 @@ article {
       border-radius: 20px;
       background-color: #fff;
       box-shadow: 0px 27px 24px 0px rgba(0, 0, 0, 0.11);
+      //box-shadow: 0 0 5px variables.$gray;
       width: 50px;
       height: 50px;
+      transition: all 0.3s ease-in-out;
+      //&:hover {
+      //
+      //}
+      //&:active {
+      //  box-shadow: 0 0 10px variables.$gray;
+      //}
       &:hover {
         background-color: rgb(54, 41, 154);
-        box-shadow: 0px 24px 27px 0px rgba(0, 0, 0, 0.11);
+        //box-shadow: 0px 24px 27px 0px rgba(0, 0, 0, 0.11);
+        box-shadow: 0 0 10px variables.$gray;
         i {
           color: rgb(255, 255, 255);
         }
@@ -1359,7 +1439,8 @@ article {
     textarea {
       border: 0;
       border-bottom: 1px solid #E1E1E1;
-      font-size: 15px;
+      //font-size: 15px;
+      @include mixin.font-size(15px);
       margin-bottom: 30px;
       background-color: transparent;
       box-shadow: none;
@@ -1368,12 +1449,23 @@ article {
       };
       &[type="submit"] {
         background-color: variables.$orange;
-        font-size: 16px;
+        //font-size: 16px;
+        @include mixin.font-size(16px);
         font-weight: bold;
         color: #fff;
         border-radius: 22px;
         width: 180px;
         height: 55px;
+        margin-bottom: 0;
+        transition: all 0.3s ease-in-out;
+        text-align: center;
+        //box-shadow: 0px 27px 24px 0px rgba(0, 0, 0, 0.11);
+        &:hover {
+          box-shadow: 0 0 5px variables.$gray;
+        }
+        &:active {
+          box-shadow: 0 0 10px variables.$gray;
+        }
       }
     }
     textarea {
@@ -1398,6 +1490,7 @@ article {
     //height: 42.41vh;
     left: 19.9vw;
     top: -16.48vh;
+    z-index: -2;
     background-image: url(../img/bg/modal-bg-element--1.svg);
     //background-image: url(../img/bg/modal-bg-element--1.png);
   }
@@ -1437,6 +1530,8 @@ article {
     left: 3.23vw;
     //top: 74.81vh;
     bottom: -19.25vh;
+
+    z-index: -4;
     background-image: url(../img/bg/modal-bg-element--4.svg);
     //background-image: url(../img/bg/modal-bg-element--4.png);
   }
@@ -1449,12 +1544,13 @@ article {
     left: 16.93vw;
     //top: 80.65vh;
     bottom: 8.33vh;
+    z-index: -3;
     background-image: url(../img/bg/modal-bg-element--5.svg);
     //background-image: url(../img/bg/modal-bg-element--5.png);
   }
   &.modal--contact__active {
     .modal-bg-element--1 {
-
+      animation: modal-bg-element-1 25s linear infinite;
     }
     .modal-bg-element--2 {
 
@@ -1463,17 +1559,68 @@ article {
 
     }
     .modal-bg-element--4 {
-
+      animation: modal-bg-element-4 linear 30s infinite;
     }
     .modal-bg-element--5 {
-      animation: modal-bg-element-5 linear 20s infinite;
+      animation: modal-bg-element-5 linear 10s infinite;
+      //transform: translate(0,0);
     }
   }
 }
-
+@keyframes modal-bg-element-1 {
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(117vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+@keyframes modal-bg-element-4 {
+  0%{
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  50%{
+    transform: translateY(-100vh) rotate(720deg);
+    opacity: 0.5;
+  }
+  100%{
+    transform: translateY(0) rotate(720deg);
+    opacity: 1;
+  }
+}
+@keyframes modal-bg-element-5 {
+  0%{
+    //transform: translate(-13.07vw,-11.67vh) rotate(0deg);
+    transform: translate(0,0) rotate(0deg);
+  }
+  25%{
+    transform: translate(6.93vw,-14.67vh) rotate(360deg) scale(1.2);
+  }
+  50%{
+    transform: translate(-1.07vw,-8.67vh) rotate(720deg) scale(0.8);
+  }
+  100%{
+    transform: translate(0,0) rotate(360deg) scale(1);
+  }
+}
 .modal--project {
-  display: flex;
   z-index: 11;
+  &.modal--project__active {
+    display: flex;
+    animation-name: modal-fade-in;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
+  &.modal--project__close {
+    animation-name: modal-fade-out;
+    animation-duration: 0.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+  }
   .modal--project-logo {
     height: 120px;
     padding-top: 60px;
@@ -1481,7 +1628,8 @@ article {
     padding-bottom: 0;
     span,
     a {
-      font-size: 26px;
+      //font-size: 26px;
+      @include mixin.font-size(26px);
       line-height: 1.2;
       font-weight: bold;
       color: variables.$black;
@@ -1567,7 +1715,8 @@ article {
 
   }
   .modal--project-cat {
-    font-size: 14px;
+    //font-size: 14px;
+    @include mixin.font-size(14px);
     color: variables.$orange;
     font-weight: bold;
     text-transform: uppercase;
@@ -1575,7 +1724,8 @@ article {
     margin-bottom: 21px;
   }
   .modal--project-title {
-    font-size: 48px;
+    //font-size: 48px;
+    @include mixin.font-size(48px);
     color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
@@ -1587,7 +1737,8 @@ article {
     dd {
       padding-left: 34px;
       line-height: 1.6;
-      font-size: 15px;
+      //font-size: 15px;
+      @include mixin.font-size(15px);
       @include helpers.clearfix;
     }
     dt {
@@ -1637,7 +1788,8 @@ article {
     }
   }
   p {
-    font-size: 15px;
+    //font-size: 15px;
+    @include mixin.font-size(15px);
     line-height: 1.667;
     color: variables.$gray;
   }
@@ -1652,7 +1804,8 @@ article {
   }
   .modal--project-nav-title {
     width: 72px;
-    font-size: 12px;
+    //font-size: 12px;
+    @include mixin.font-size(12px);
     text-transform: uppercase;
     line-height: 1.2;
     color: variables.$gray;
@@ -1752,11 +1905,7 @@ article {
     transform: scale(0.8);
   }
 }
-@keyframes modal-bg-element-5 {
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 
 @keyframes mouse-scroll {
   0% {

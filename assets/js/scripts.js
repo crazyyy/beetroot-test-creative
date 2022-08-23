@@ -103,14 +103,40 @@ $(document).ready(function() {
   const $contactModalContainer = document.querySelector('.modal--contact');
 
   $contactButton.addEventListener("click", function(){
-    $contactButton.classList.toggle('header--contact-button__active');
-    $contactModalContainer.classList.toggle('modal--contact__active');
+    if ($contactModalContainer.classList.contains('modal--contact__active')) {
+      $contactModalContainer.classList.add('modal--contact__close');
+      $contactButton.classList.remove('header--contact-button__active');
+      setTimeout(function() {
+        $contactModalContainer.classList.remove('modal--contact__active');
+        $contactModalContainer.classList.remove('modal--contact__close');
+      }, 500);
+    } else {
+      $contactButton.classList.add('header--contact-button__active');
+      $contactModalContainer.classList.add('modal--contact__active');
+    }
   });
 
   // Projects modal window
+  const $modalProjectContainer = document.querySelector('.modal--project')
+  // const $jobsBtnMore = document.querySelector('.jobs--carousel-item-more')
+  const $jobsBtnMoreArray = [...document.querySelectorAll('.jobs--carousel-item-more')];
+  $jobsBtnMoreArray.forEach(($jobsBtnMore) => {
+    $jobsBtnMore.addEventListener("click", function(){
+      $modalProjectContainer.classList.add('modal--project__active');
+    });
+  })
 
+  const $modalProjectBtnClose = document.querySelector('.modal--project-close-button')
+  $modalProjectBtnClose.addEventListener("click", function(){
+    $modalProjectContainer.classList.add('modal--project__close');
+    setTimeout(function() {
+      $modalProjectContainer.classList.remove('modal--project__active');
+      $modalProjectContainer.classList.remove('modal--project__close');
+    }, 500);
+  });
 
   // Next / Prev Projects
+
   const $modalProjectBtnNext = document.querySelector('.modal--project-btn-next')
   const $modalProjectBtnPrev = document.querySelector('.modal--project-btn-prev')
   const $modalProjectTitle = document.querySelector('.modal--project-nav-title')
