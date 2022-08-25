@@ -189,9 +189,6 @@ html {
   scroll-behavior: smooth;
   text-size-adjust: 100%;
   line-height: 1;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  -moz-text-size-adjust: 100%;
 }
 
 body {
@@ -469,7 +466,7 @@ table {
   border-collapse: collapse;
 
   th {
-    text-align: -webkit-match-parent;
+    text-align: match-parent;
   }
 
   thead,
@@ -676,7 +673,7 @@ progress {
   -moz-user-modify: read-write;
   -webkit-user-modify: read-write;
   overflow-wrap: break-word;
-  -webkit-line-break: after-white-space;
+  line-break: auto;
   -webkit-user-select: auto;
 }
 

@@ -568,9 +568,22 @@
         <div class="modal--contact-right col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xlg-3">
           <h4 class="modal--contact-title">Get in touch</h4>
           <form action="" class="modal--contact-form">
-            <input type="text" name="name" placeholder="What your Name?">
-            <input type="email" name="email" placeholder="Your fancy Email">
-            <textarea name="message" id="message" placeholder="Your message"></textarea>
+            <div class="form-field">
+              <label for="your-name">What your Name?</label>
+              <input type="text" name="name" id="your-name" placeholder="What your Name?">
+            </div>
+            <!-- /.form-field -->
+            <div class="form-field">
+              <label for="your-email">Your fancy Email</label>
+              <input type="email" name="email" id="your-email" placeholder="Your fancy Email">
+            </div>
+            <!-- /.form-field -->
+            <div class="form-field">
+              <label for="your-message">Your message</label>
+              <textarea name="message" id="your-message" placeholder="Your message"></textarea>
+            </div>
+            <!-- /.form-field -->
+
             <input type="submit" value="Send">
           </form>
         </div>

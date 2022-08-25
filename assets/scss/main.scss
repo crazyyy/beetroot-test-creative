@@ -35,26 +35,26 @@ $show-breakpoints: (mobile, mobileLandscape, tablet, desktop, wide);
 
 html,
 body {
-  height: 100%;
+  font-size: 100%;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100%;
   margin: 0;
   padding: 0;
-  left: 0;
-  top: 0;
-  font-size: 100%;
 }
 
 body {
-  background-color: variables.$base-background-color;
-  color: variables.$base-font-color;
   font-family: variables.$font-family-base;
   font-size: variables.$base-font-size;
   font-weight: variables.$fnorm;
   line-height: variables.$base-line-height;
-  min-width: 320px;
   transition: variables.$base-transition;
+  color: variables.$base-font-color;
+  background-color: variables.$base-background-color;
   -webkit-font-smoothing: antialiased;
 }
+
 h1,
 h2,
 h3,
@@ -66,25 +66,30 @@ h6 {
   line-height: variables.$heading-line-height;
   margin: 0 0 variables.$small-spacing;
 }
+
 p,
 pre {
   margin: 0 0 variables.$small-spacing;
 }
+
 a {
   transition: variables.$base-transition;
   text-decoration: none;
   color: variables.$action-color;
+
   &:active,
   &:focus,
   &:hover {
     color: color.adjust(variables.$action-color, $lightness: -15%);
   }
+
   &:active,
   &:focus {
     color: color.adjust(variables.$action-color, $lightness: 15%);
     outline: none;
   }
 }
+
 hr {
   margin: variables.$base-spacing 0;
   border-top: none;
@@ -92,6 +97,7 @@ hr {
   border-bottom: variables.$base-border;
   border-left: none;
 }
+
 img,
 picture {
   max-width: 100%;
@@ -101,8 +107,8 @@ picture {
 .container {
   position: relative;
   max-width: variables.$width;
-  padding-left: 0;
   padding-right: 0;
+  padding-left: 0;
 }
 
 .grid-full-height {
@@ -110,86 +116,100 @@ picture {
 }
 
 .main--header {
-  height: 115px;
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
   z-index: 11;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 115px;
   padding-top: 60px;
   @include mq.mq($until: xs) {
-    padding-top: 10px;
     margin-bottom: 10px;
+    padding-top: 10px;
   }
   @include mq.mq($from: xs, $until: tablet) {
-    padding-top: 10px;
     margin-bottom: 10px;
+    padding-top: 10px;
   }
   @include mq.mq($from: tablet, $until: desktop) {
+    height: 70px;
     padding-top: 15px;
     padding-left: 15px;
-    height: 70px;
   }
   @include mq.mq($from: desktop, $until: wide) {
     height: 80px;
     padding: 0 15px;
   }
   @include mq.mq($from: wide) {
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
-  @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-    padding-top: 15px;
+  @include mq.mq($from: tablet) {
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      padding-top: 15px;
+    }
+  }
+  @include mq.mq($from: wide) {
+    @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+      padding-top: 20px;
+    }
   }
   .header--logo {
     padding: 12px 0 0 15px;
-    @include mq.mq($until: xs) {
+    @include mq.mq($until: mobile) {
+      padding: 15px 0 0 15px;
+      width: 40%;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       padding: 20px 0 0 15px;
-      order: 0;
       width: 35%;
+    }
+    @include mq.mq($until: xs) {
       display: flex;
+      align-content: center;
+      align-items: center;
       flex-direction: column;
       flex-wrap: wrap;
       justify-content: flex-start;
-      align-content: center;
-      align-items: center;
+      order: 0;
+
     }
     @include mq.mq($from: xs, $until: tablet) {
-      padding: 20px 0 0 30px;
       order: 0;
+      padding: 20px 0 0 30px;
     }
     @include mq.mq($from: desktop, $until: wide) {
       padding-top: 20px;
     }
+
     span,
     a {
       //font-size: 26px;
-      //@include mixin.font-size(26px);
-      //@include mixin.font-size-vw(26px);
       @include scss.rfs(26px, font-size);
-      line-height: 1.2;
       font-weight: bold;
-      color: variables.$black;
+      line-height: 1.2;
       position: relative;
       z-index: 6;
       letter-spacing: 1.2px;
+      color: variables.$black;
+
       &:before {
+        position: absolute;
+        z-index: -1;
+        bottom: 13px;
+        left: 0;
         display: inline-block;
-        content: '';
         width: 34px;
         height: 34px;
-        background-color: variables.$orange;
-        border-radius: 50%;
-        z-index: -1;
-        position: absolute;
-        left: 0;
-        bottom: 13px;
+        content: '';
         animation-name: modal-project-bg;
         animation-duration: 20s;
         animation-timing-function: linear;
         animation-delay: 0s;
         animation-iteration-count: infinite;
         animation-direction: normal;
+        border-radius: 50%;
+        background-color: variables.$orange;
         animation-fill-mode: both;
       }
     }
@@ -198,9 +218,15 @@ picture {
 
 .header--nav {
   padding: 18px 0 0;
-  @include mq.mq($until: xs) {
-    padding: 10px 0;
+  @include mq.mq($until: mobile) {
+    padding: 20px 0;
+    margin: 0;
+  }
+  @include mq.mq($from: mobile, $until: xs) {
     margin-bottom: 10px;
+    padding: 10px 0;
+  }
+  @include mq.mq($until: xs) {
     order: 2;
   }
   @include mq.mq($from: xs, $until: tablet) {
@@ -219,26 +245,30 @@ picture {
   text-align: center;
   @include mq.mq($until: xs) {
     display: flex;
+    align-content: flex-start;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-around;
-    align-content: flex-start;
-    align-items: flex-start;
   }
+
   li {
     display: inline-block;
     margin: 0 25px;
     @include mq.mq($until: xs) {
       margin: 0;
     }
+
     &.active {
       a {
         color: variables.$orange;
+
         &:active,
         &:focus,
         &:hover {
           color: color.adjust(variables.$orange, $lightness: -15%);
         }
+
         &:active,
         &:focus {
           color: color.adjust(variables.$orange, $lightness: 15%);
@@ -247,33 +277,37 @@ picture {
       }
     }
   }
+
   a {
     //font-size: 15px;
     @include scss.rfs(15px, font-size);
-    text-decoration: none;
-    color: variables.$black;
     font-weight: 600;
+    text-decoration: none;
     letter-spacing: -0.9px;
+    color: variables.$black;
+
     &:active,
     &:focus,
     &:hover {
       text-decoration: underline;
       color: color.adjust(variables.$black, $lightness: -15%);
+
       .word,
       .char {
-        animation-delay: calc(var(--char-index) * -0.05s);
-        animation-direction: normal;
-        animation-duration: 1600ms;
-        animation-iteration-count: infinite;
-        animation-name: header-menu-fall;
-        animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
-        animation-fill-mode: forwards;
-        display: inline-block;
         position: relative;
-        transform-origin: 50% 100%;
         z-index: 1;
+        display: inline-block;
+        transform-origin: 50% 100%;
+        animation-name: header-menu-fall;
+        animation-duration: 1600ms;
+        animation-timing-function: cubic-bezier(0.165, 0.44, 0.64, 1);
+        animation-delay: calc(var(--char-index) * -0.05s);
+        animation-iteration-count: infinite;
+        animation-direction: normal;
+        animation-fill-mode: forwards;
       }
     }
+
     &:active,
     &:focus {
       color: color.adjust(variables.$black, $lightness: 15%);
@@ -284,16 +318,22 @@ picture {
 }
 
 .header--contact {
-  text-align: right;
   padding: 0 15px 0 0;
-  @include mq.mq($until: xs) {
+  text-align: right;
+  @include mq.mq($until: mobile) {
+    padding: 0 20px 0 0;
+    width: 60%;
+  }
+  @include mq.mq($from: mobile, $until: xs) {
     padding: 0 30px 0 15px;
-    order: 1;
     width: 65%;
   }
-  @include mq.mq($from: xs, $until: tablet) {
-    padding: 0 30px 0 0;
+  @include mq.mq($until: xs) {
     order: 1;
+  }
+  @include mq.mq($from: xs, $until: tablet) {
+    order: 1;
+    padding: 0 30px 0 0;
   }
   @include mq.mq($from: tablet, $until: desktop) {
     padding: 0 30px 0 0;
@@ -301,67 +341,74 @@ picture {
   @include mq.mq($from: desktop, $until: wide) {
     padding-top: 10px;
   }
+
   .header--contact-button {
+    font-weight: 600;
+    line-height: 0.9;
+    position: relative;
     display: inline-block;
+    overflow: hidden;
+    //font-size: 16px;
+    @include scss.rfs(16px, font-size);
     width: 200px;
     height: 53px;
+    transition: all 0.3s ease-in-out;
     text-align: center;
-    font-weight: 600;
-    //font-size: 16px;
-    //@include mixin.font-size(16px);
-    //@include mixin.font-size-vw(16px);
-    @include scss.rfs(16px, font-size);
     color: variables.$blue;
     border: 1px solid variables.$gray-medium;
-    background-color: transparent;
     border-radius: 22px;
-    line-height: 0.9;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: transparent;
     background-image: none;
-    transition: all 0.3s ease-in-out;
+    background-repeat: no-repeat;
+    background-position: center;
     will-change: transform;
-    position: relative;
-    overflow: hidden;
+
     &:hover {
       box-shadow: 0 0 5px variables.$gray;
     }
+
     &:active {
       box-shadow: 0 0 10px variables.$gray;
     }
+
     &.header--contact-button__active {
       font-size: 0;
       width: 53px;
       height: 53px;
+
       &:before,
       &:after {
-        display: block;
-        content: '';
-        background-color: variables.$black;
         position: absolute;
         top: 50%;
         left: 50%;
+        display: block;
+        content: '';
         transition: all 0.5s ease-in-out;
         transform: rotate(45deg);
+        background-color: variables.$black;
       }
+
       &:before {
         width: 2px;
         height: 14px;
-        margin-left: -1px;
         margin-top: -7px;
+        margin-left: -1px;
       }
+
       &:after {
         width: 14px;
         height: 2px;
-        margin-left: -7px;
         margin-top: -1px;
+        margin-left: -7px;
       }
+
       &:hover {
         &:before,
         &:after {
           transform: scale(1.5) rotate(45deg);
         }
       }
+
       @include mq.mq($until: xs) {
         width: 45px;
         height: 45px;
@@ -387,16 +434,23 @@ picture {
         }
       }
     }
-    @include mq.mq($until: xs) {
-      max-width: 100%;
-      @include scss.rfs(14px, font-size);
+
+    @include mq.mq($until: mobile) {
+      width: 100%;
+      line-height: 1.1;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       width: 180px;
+    }
+    @include mq.mq($until: xs) {
+      @include scss.rfs(14px, font-size);
+      max-width: 100%;
       height: 45px;
     }
     @include mq.mq($from: xs, $until: tablet) {
-      max-width: 100%;
-      @include scss.rfs(15px, font-size);
       width: 190px;
+      @include scss.rfs(15px, font-size);
+      max-width: 100%;
       height: 50px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
@@ -415,57 +469,58 @@ picture {
   .home--title {
     font-weight: bold;
     //font-size: 140px;
-    //@include mixin.font-size(140px);
     @include scss.rfs(140px, font-size);
-    //@include mixin.font-size-vw(140px);
-    text-align: center;
-    color: variables.$blue;
     line-height: 0.5;
     padding: 0 30px;
+    text-align: center;
+    color: variables.$blue;
     //margin-bottom: 0;
     //@include scss.rfs(40px, margin-bottom);
     @include scss.rfs(10px, margin-bottom);
+
     span {
-      display: block;
       position: relative;
+      display: block;
       //top: -18px;
       @include scss.rfs(100px, padding-top);
       //@include scss.rfs(20px, padding-bottom);
       @include scss.rfs(-38px, top);
       @include mq.mq($until: xs) {
         top: 0;
-        padding-top: 0;
         display: inline;
+        padding-top: 0;
       }
     }
+
     @include mq.mq($until: xs) {
       line-height: 1.3;
       @include scss.rfs(100px, font-size);
       padding: 0 10px;
     }
   }
+
   .home--description {
-    text-align: center;
-    margin-bottom: 14px;
-    //font-size: 18px;
-    //@include mixin.font-size(18px);
-    //@include mixin.font-size-vw(18px);
-    @include scss.rfs(18px, font-size);
-    padding: 0 30px;
     position: relative;
-    letter-spacing: -0.2px;
     z-index: 4;
+    //font-size: 18px;
+    @include scss.rfs(18px, font-size);
+    margin-bottom: 14px;
+    padding: 0 30px;
+    text-align: center;
+    letter-spacing: -0.2px;
   }
+
   .home-bg-element--1,
   .home-bg-element--2,
   .home-bg-element--3,
   .home-bg-element--4,
   .home-bg-element--5 {
+    position: absolute;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    position: absolute;
   }
+
   .home-bg-element--1 {
     //width: 195px;
     //height: 195px;
@@ -476,15 +531,17 @@ picture {
     //left: 64.79vw;
     //width: 458px;
     //height: 458px;
-    width: 42.41vh;
-    aspect-ratio: 1 / 1;
+    z-index: -1;
+    top: 15.83vh;
     //height: 42.41vh;
     left: 59.06vw;
-    top: 15.83vh;
+    width: 42.41vh;
     //background-image: url(../img/bg/home-bg-element--1.png);
     background-image: url(../img/bg/home-bg-element--1.svg);
-    z-index: -1;
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   .home-bg-element--2 {
     //width: 839px; // 763 real
     //height: 365px;
@@ -496,18 +553,20 @@ picture {
     //width: 855px;
     //height: 400px;
     //width: 44.53vw;
-    width: mixin.get-vw(855px);
-    aspect-ratio: 855 / 400;
+    z-index: 2;
+    top: 0;
     //height: 37.04vh;
     //left: -4.27vw;
     //top: 35.56vh;
-    top: 0;
     left: 0;
+    width: mixin.get-vw(855px);
     transform: scale(0.7);
-    z-index: 2;
-    //background-image: url(../img/bg/home-bg-element--2.png);
     background-image: url(../img/bg/home-bg-element--2.svg);
+    //background-image: url(../img/bg/home-bg-element--2.png);
+    //@include mixin.aspect-ratio(855, 400);
+    aspect-ratio: 855 / 400;
   }
+
   .home-bg-element--3 {
     //width: 254px;
     //height: 254px;
@@ -519,15 +578,17 @@ picture {
     //width: 480px;
     //height: 480px;
     //width: 44.44vh;
-    width: mixin.get-vh(480px);
-    aspect-ratio: 1 / 1;
+    z-index: 3;
+    top: 46.11vh;
     //height: 44.44vh;
     left: 13.13vw;
-    top: 46.11vh;
-    z-index: 3;
-    //background-image: url(../img/bg/home-bg-element--3.png);
+    width: mixin.get-vh(480px);
     background-image: url(../img/bg/home-bg-element--3.svg);
+    //background-image: url(../img/bg/home-bg-element--3.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   .home-bg-element--4 {
     //width: 325px;
     //height: 535px; // real 375
@@ -538,17 +599,19 @@ picture {
     //left: 66.35vw;
     //width: 325px;
     //height: 535px;
-    width: 16.93vw;
-    aspect-ratio: 325 / 535;
+    z-index: -2;
+    right: 17.93vw;
     //height: 49.54vh;
     //left: 64.95vw;
-    right: 17.93vw;
-    //top: 64.44vh;
     bottom: -13.98vh;
-    z-index: -2;
-    //background-image: url(../img/bg/home-bg-element--4.png);
+    //top: 64.44vh;
+    width: 16.93vw;
     background-image: url(../img/bg/home-bg-element--4.svg);
+    //background-image: url(../img/bg/home-bg-element--4.png);
+    //@include mixin.aspect-ratio(325, 535);
+    aspect-ratio: 325 / 535;
   }
+
   .home-bg-element--5 {
     //width: 117px;
     //height: 116px;
@@ -562,14 +625,16 @@ picture {
     //height: 10.93vh;
     //left: 78.85vw;
     //top: 80.28vh;
-    width: 19.02vh;
-    aspect-ratio: 1/1;
+    z-index: -1;
     right: 12vw;
     bottom: 3.8vh;
-    z-index: -1;
-    //background-image: url(../img/bg/home-bg-element--5.png);
+    width: 19.02vh;
     background-image: url(../img/bg/home-bg-element--5.svg);
+    //background-image: url(../img/bg/home-bg-element--5.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   &.active {
     .home-bg-element--1 {
       animation-name: home-bg-element-1;
@@ -580,6 +645,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: forwards;
     }
+
     .home-bg-element--2 {
       animation-name: home-bg-element-2;
       animation-duration: 2s;
@@ -589,6 +655,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: forwards;
     }
+
     .home-bg-element--3 {
       animation-name: home-bg-element-3;
       animation-duration: 30s;
@@ -598,6 +665,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: none;
     }
+
     .home-bg-element--4 {
       animation-name: home-bg-element-4;
       animation-duration: 2s;
@@ -607,6 +675,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: forwards;
     }
+
     .home-bg-element--5 {
       animation-name: home-bg-element-5;
       animation-duration: 3s;
@@ -626,9 +695,14 @@ picture {
   .about--provide {
     @include scss.rfs(-35px, top);
     //top: -35px;
+    @include mq.mq($until: mobile) {
+      padding: 0 20px;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
+      padding: 0 30px;
+    }
     @include mq.mq($until: xs) {
       top: 0;
-      padding: 0 30px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       top: 0;
@@ -639,12 +713,17 @@ picture {
       padding: 0 30px;
     }
   }
+
   .about--title {
     //font-size: 30px;
-    //@include mixin.font-size(30px);
     @include scss.rfs(30px, font-size);
-    color: variables.$blue;
     font-weight: 200;
+    color: variables.$blue;
+    @include mq.mq($until: mobile) {
+      @include scss.rfs(14px, font-size);
+      @include scss.rfs(5px, margin-bottom);
+      font-weight: bold;
+    }
     @include mq.mq($from: mobile, $until: xs) {
       @include scss.rfs(16px, font-size);
       @include scss.rfs(10px, margin-bottom);
@@ -665,20 +744,33 @@ picture {
     @include mq.mq($from: wide) {
       padding-left: 30px;
     }
+    @include mq.mq($from: mobile, $until: xs) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(30px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+      }
+    }
   }
+
   .about--content {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-right: 15px;
     }
+
     .about--content-title {
       font-weight: bold;
       //font-size: 48px;
-      //@include mixin.font-size(48px);
       @include scss.rfs(48px, font-size);
       line-height: 1.2;
       letter-spacing: -0.2px;
       //margin-bottom: 25px;
       @include scss.rfs(25px, margin-bottom);
+      @include mq.mq($until: mobile) {
+        @include scss.rfs(14px, font-size);
+        @include scss.rfs(5px, margin-bottom);
+        font-weight: bold;
+      }
       @include mq.mq($from: mobile, $until: xs) {
         line-height: 0.9;
         @include scss.rfs(16px, font-size);
@@ -699,19 +791,40 @@ picture {
         @include scss.rfs(30px, font-size);
         @include scss.rfs(20px, margin-bottom);
       }
-      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-        line-height: 1;
-        @include scss.rfs(26px, font-size);
-        @include scss.rfs(15px, margin-bottom);
+      @include mq.mq($from: mobile, $until: xs) {
+        @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+          line-height: 1;
+          @include scss.rfs(30px, font-size);
+          @include scss.rfs(20px, margin-bottom);
+        }
+      }
+      @include mq.mq($from: tablet) {
+        @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+          line-height: 1;
+          @include scss.rfs(26px, font-size);
+          @include scss.rfs(15px, margin-bottom);
+        }
+      }
+      @include mq.mq($from: wide) {
+        @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+          line-height: 1;
+          @include scss.rfs(30px, font-size);
+          @include scss.rfs(20px, margin-bottom);
+        }
       }
     }
+
     p {
       //margin-bottom: 35px;
       @include scss.rfs(35px, margin-bottom);
       //font-size: 15px;
-      //@include mixin.font-size(15px);
       @include scss.rfs(15px, font-size);
       color: variables.$gray;
+      @include mq.mq($until: mobile) {
+        @include scss.rfs(12px, font-size);
+        @include scss.rfs(5px, margin-bottom);
+        line-height: 1;
+      }
       @include mq.mq($from: mobile, $until: xs) {
         line-height: 1;
         @include scss.rfs(13px, font-size);
@@ -729,20 +842,32 @@ picture {
       @include mq.mq($from: desktop, $until: wide) {
         @include scss.rfs(20px, margin-bottom);
       }
-      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-        @include scss.rfs(15px, margin-bottom);
+      @include mq.mq($from: tablet) {
+        @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+          @include scss.rfs(15px, margin-bottom);
+        }
+      }
+      @include mq.mq($from: wide) {
+        @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+          @include scss.rfs(20px, margin-bottom);
+        }
       }
     }
   }
+
   .about--content-partners {
     //padding-top: 90px;
     @include scss.rfs(90px, padding-top);
     display: flex;
+    align-content: flex-start;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-content: flex-start;
-    align-items: flex-start;
+    @include mq.mq($until: mobile) {
+      padding-top: 0;
+      @include scss.rfs(5px, margin-bottom);
+    }
     @include mq.mq($from: mobile, $until: xs) {
       padding-top: 0;
       @include scss.rfs(10px, margin-bottom);
@@ -757,20 +882,32 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, padding-top);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(20px, padding-top);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(20px, padding-top);
+      }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, padding-top);
+      }
+    }
+
     span {
-      text-transform: uppercase;
-      display: inline-block;
-      width: 150px;
-      //font-size: 14px;
-      //@include mixin.font-size(14px);
-      @include scss.rfs(14px, font-size);
-      color: rgb(161, 161, 161);
       font-weight: bold;
       line-height: 1.3;
+      display: inline-block;
+      //font-size: 14px;
+      @include scss.rfs(14px, font-size);
+      width: 150px;
       letter-spacing: -0.2px;
+      text-transform: uppercase;
+      color: rgb(161, 161, 161);
+      @include mq.mq($until: mobile) {
+        width: 100%;
+        @include scss.rfs(11px, font-size);
+        @include scss.rfs(5px, margin-bottom);
+      }
       @include mq.mq($from: mobile, $until: xs) {
         @include scss.rfs(12px, font-size);
       }
@@ -778,16 +915,22 @@ picture {
         @include scss.rfs(14px, font-size);
       }
     }
+
     .partners--list {
       display: flex;
+      align-content: stretch;
+      align-items: center;
       flex-direction: row;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      align-content: stretch;
-      align-items: center;
       width: calc(100% - 150px);
       //padding-left: 50px;
       @include scss.rfs(50px, padding-left);
+      @include mq.mq($until: mobile) {
+        padding-left: 10px;
+        padding-right: 10px;
+        @include scss.rfs(5px, margin-bottom);
+      }
       @include mq.mq($until: xs) {
         @include scss.rfs(10px, padding-left);
       }
@@ -795,19 +938,22 @@ picture {
         @include scss.rfs(20px, padding-left);
       }
     }
+
     .partners--item {
-      margin-right: 36px;
-      height: 31px;
       display: flex;
+      align-content: stretch;
+      align-items: center;
       flex-direction: column;
       flex-wrap: nowrap;
       justify-content: center;
-      align-content: stretch;
-      align-items: center;
+      height: 31px;
+      margin-right: 36px;
       @include scss.rfs(36px, margin-right);
+
       &:last-child {
         margin-right: 0;
       }
+
       a {
         &:hover {
           i {
@@ -815,9 +961,9 @@ picture {
           }
         }
       }
+
       i {
         //font-size: 30px;
-        //@include mixin.font-size(30px);
         @include scss.rfs(30px, font-size);
         line-height: 1.2;
         color: variables.$black;
@@ -827,6 +973,7 @@ picture {
       }
     }
   }
+
   .about--provide {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-left: 15px;
@@ -835,19 +982,29 @@ picture {
       padding-right: 30px;
     }
   }
+
   .about--provide-title {
     //font-size: 30px;
-    //@include mixin.font-size(30px);
     @include scss.rfs(30px, font-size);
-    color: variables.$blue;
     font-weight: 200;
+    letter-spacing: -0.2px;
     //margin-bottom: 60px;
     @include scss.rfs(60px, margin-bottom);
-    letter-spacing: -0.2px;
+    color: variables.$blue;
+    @include mq.mq($until: mobile) {
+      @include scss.rfs(14px, font-size);
+      @include scss.rfs(5px, margin-bottom);
+      font-weight: bold;
+    }
     @include mq.mq($from: mobile, $until: xs) {
       @include scss.rfs(16px, font-size);
       font-weight: bold;
       @include scss.rfs(5px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(30px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       @include scss.rfs(24px, font-size);
@@ -855,10 +1012,10 @@ picture {
       @include scss.rfs(15px, margin-bottom);
     }
     @include mq.mq($from: tablet, $until: desktop) {
-      line-height: 1;
+      font-weight: bold;
       @include scss.rfs(26px, font-size);
       @include scss.rfs(20px, margin-bottom);
-      font-weight: bold;
+      line-height: 1;
       color: variables.$base-font-color;
     }
     @include mq.mq($from: desktop, $until: wide) {
@@ -866,32 +1023,49 @@ picture {
       @include scss.rfs(30px, font-size);
       @include scss.rfs(20px, margin-bottom);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      line-height: 1;
-      @include scss.rfs(26px, font-size);
-      @include scss.rfs(15px, margin-bottom);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(26px, font-size);
+        @include scss.rfs(15px, margin-bottom);
+      }
+    }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(30px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
   }
+
   .about--provide-list {
     //font-size: 15px;
-    //@include mixin.font-size(15px);
     @include scss.rfs(15px, font-size);
     color: variables.$gray;
+    @include mq.mq($until: mobile) {
+      @include scss.rfs(14px, font-size);
+    }
   }
+
   .about--provide-item {
     //margin-bottom: 50px;
     @include scss.rfs(50px, margin-bottom);
     //padding-left: 65px;
     @include scss.rfs(65px, padding-left);
     position: relative;
-    height: 42px;
     display: flex;
+    align-content: stretch;
+    align-items: flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    align-content: stretch;
-    align-items: flex-start;
+    height: 42px;
     letter-spacing: 0.6px;
+    @include mq.mq($until: mobile) {
+      padding-left: 40px;
+      @include scss.rfs(5px, margin-bottom);
+      @include scss.rfs(12px, font-size);
+    }
     @include mq.mq($from: mobile, $until: xs) {
       @include scss.rfs(5px, margin-bottom);
       padding-left: 40px;
@@ -916,40 +1090,52 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(15px, margin-bottom);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, margin-bottom);
+      }
+    }
+
     &:before {
-      content: '';
       position: absolute;
-      left: 0;
       top: 0;
+      left: 0;
+      display: block;
       width: 36px;
       height: 42px;
-      display: block;
+      content: '';
       background-repeat: no-repeat;
       background-position: center;
-
     }
+
     &:nth-child(1) {
       background-image: url(../img/content/about--provide-item-1.png);
     }
+
     &:nth-child(2) {
       background-image: url(../img/content/about--provide-item-2.png);
     }
+
     &:nth-child(3) {
       background-image: url(../img/content/about--provide-item-3.png);
     }
   }
+
   .about-bg-element--1,
   .about-bg-element--2,
   .about-bg-element--3,
   .about-bg-element--4 {
+    position: absolute;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    position: absolute;
   }
+
   .about-bg-element--1 {
     //width: 195px;
     //height: 195px; // real 140
@@ -960,15 +1146,17 @@ picture {
     //top: -5.09vh;
     //width: 458px;
     //height: 458px;
-    width: 42.41vh;
-    aspect-ratio: 1 / 1;
+    z-index: -1;
+    top: -15.93vh;
     //height: 42.41vh;
     left: 65.21vw;
-    top: -15.93vh;
-    z-index: -1;
-    //background-image: url(../img/bg/about-bg-element--1.png);
+    width: 42.41vh;
     background-image: url(../img/bg/about-bg-element--1.svg);
+    //background-image: url(../img/bg/about-bg-element--1.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   .about-bg-element--2 {
     //width: 633px;
     //height: 359px; // real 251
@@ -979,17 +1167,19 @@ picture {
     //bottom: -10vh;
     //width: 633px;
     //height: 359px;
-    width: 32.97vw;
-    aspect-ratio: 633 / 359;
+    z-index: -1;
+    right: -1.93vw;
     //height: 33.24vh;
     //left: 68.96vw;
-    right: -1.93vw;
-    //top: 77.13vh;
     bottom: -10.37vh;
-    z-index: -1;
-    //background-image: url(../img/bg/about-bg-element--2.png);
+    //top: 77.13vh;
+    width: 32.97vw;
     background-image: url(../img/bg/about-bg-element--2.svg);
+    //background-image: url(../img/bg/about-bg-element--2.png);
+    //@include mixin.aspect-ratio(633, 359);
+    aspect-ratio: 633 / 359;
   }
+
   .about-bg-element--3 {
     //width: 115px;
     //height: 252px; // real 182
@@ -1000,16 +1190,18 @@ picture {
     //bottom: -6.48vh;
     //width: 236px;
     //height: 374px;
-    width: 12.29vw;
-    aspect-ratio: 236 / 374;
+    z-index: -1;
+    bottom: -11.57vh;
     //height: 21.85vh;
     left: 24.32vw;
     //top: 76.94vh;
-    bottom: -11.57vh;
-    z-index: -1;
-    //background-image: url(../img/bg/about-bg-element--3.png);
+    width: 12.29vw;
     background-image: url(../img/bg/about-bg-element--3.svg);
+    //background-image: url(../img/bg/about-bg-element--3.png);
+    //@include mixin.aspect-ratio(236, 374);
+    aspect-ratio: 236 / 374;
   }
+
   .about-bg-element--4 {
     //width: 240px;
     //height: 241px; // real 110
@@ -1020,16 +1212,18 @@ picture {
     //bottom: -12.13vh;
     //width: 454px;
     //height: 454px;
-    width: 42.04vh;
-    aspect-ratio: 1 / 1;
+    z-index: -2;
+    bottom: -24.17vh;
     //height: 42.04vh;
     left: 15.31vw;
     //top: 82.22vh;
-    bottom: -24.17vh;
-    z-index: -2;
-    //background-image: url(../img/bg/about-bg-element--4.png);
+    width: 42.04vh;
     background-image: url(../img/bg/about-bg-element--4.svg);
+    //background-image: url(../img/bg/about-bg-element--4.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   &.active {
     .about-bg-element--1 {
       animation-name: about-bg-element-1;
@@ -1040,6 +1234,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: both;
     }
+
     .about-bg-element--2 {
       animation-name: about-bg-element-2;
       animation-duration: 1s;
@@ -1049,6 +1244,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: forwards;
     }
+
     .about-bg-element--3 {
       animation-name: about-bg-element-3;
       animation-duration: 3s;
@@ -1058,6 +1254,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: forwards;
     }
+
     .about-bg-element--4 {
       animation-name: about-bg-element-4;
       animation-duration: 16s;
@@ -1076,44 +1273,47 @@ picture {
 
 #jobs {
   .jobs--title {
-    color: variables.$blue;
     font-weight: bold;
+    line-height: 0.6;
     //font-size: 36px;
-    //@include mixin.font-size(36px);
     @include scss.rfs(36px, font-size);
     //padding: 45px 15px 0;
-    padding-left: 15px;
     padding-right: 15px;
     padding-bottom: 0;
+    padding-left: 15px;
     @include scss.rfs(45px, padding-top);
     //margin-bottom: 10px;
     @include scss.rfs(10px, margin-bottom);
-    line-height: 0.6;
+    color: variables.$blue;
     @include mq.mq($until: xs) {
       text-align: center;
       @include scss.rfs(24px, font-size);
       @include scss.rfs(10px, padding-top);
-      //@include scss.rfs(30px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(30px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(15px, margin-bottom);
     }
     @include mq.mq($from: tablet, $until: desktop) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(20px, margin-bottom);
     }
     @include mq.mq($from: desktop, $until: wide) {
-      padding-left: 30px;
-      padding-right: 30px;
       padding-top: 0;
+      padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(20px, margin-bottom);
     }
     @include mq.mq($from: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
     @include mq.mq($from: tablet) {
       @include mq.mq($until: 600px, $range-feature: height) {
@@ -1129,77 +1329,96 @@ picture {
         @include scss.rfs(15px, margin-bottom);
       }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(28px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+        line-height: .6;
+      }
+    }
   }
+
   .jobs--carousel {
     //width: 100%;
     padding: 0;
     white-space: normal;
   }
+
   .jobs--carousel-nav {
-    padding: 0 15px;
-    text-align: right;
     position: absolute;
     top: 42px;
-    @include scss.rfs(42px, top);
-    left: 0;
     right: 0;
+    left: 0;
+    @include scss.rfs(42px, top);
     width: 100%;
+    padding: 0 15px;
+    text-align: right;
     @include mq.mq($until: xs) {
-      top: 0;
       position: relative;
+      top: 0;
       padding: 0 30px;
       text-align: center;
       @include scss.rfs(10px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       padding: 0 30px;
       @include scss.rfs(10px, margin-bottom);
     }
     @include mq.mq($from: tablet, $until: desktop) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
     @include mq.mq($from: desktop, $until: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(5px, top);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(5px, top);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(5px, top);
+      }
     }
     @include mq.mq($from: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
+
     .jobs--carousel-nav-prev,
     .jobs--carousel-nav-next {
       width: 21px;
       height: 10px;
       padding: 0;
-      background-color: #ccc;
-      background-position: center;
       border-radius: 0;
+      background-color: #cccccc;
+      background-position: center;
       mask-image: url(../img/bg/carousel-nav-arrow.svg);
       mask-repeat: no-repeat;
       mask-position: center;
       @include mq.mq($until: xs) {
         transform: scale(1.5);
       }
+
       &:hover {
         background-color: variables.$orange;
       }
     }
+
     .jobs--carousel-nav-prev {
       margin-right: 12px;
     }
+
     .jobs--carousel-nav-next {
-      transform: scaleX(-1);
       margin-left: 12px;
+      transform: scaleX(-1);
       @include mq.mq($until: xs) {
         transform: scale(1.5) rotate(180deg);
       }
     }
   }
+
   .jobs--carousel-item {
     //padding-top: 100px;
     @include scss.rfs(100px, padding-top);
@@ -1225,33 +1444,45 @@ picture {
         @include scss.rfs(50px, padding-top);
       }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(50px, padding-top);
+      }
+    }
+
     .jobs--carousel-item-inner {
       display: flex;
+      align-content: stretch;
+      align-items: center;
       flex-direction: column;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      align-content: stretch;
-      align-items: center;
       width: 73.59%;
       margin: 0 auto;
     }
   }
+
   .jobs--carousel-item__active {
     padding-top: 0;
+
     .jobs--carousel-item-more {
       visibility: visible;
       opacity: 1;
     }
   }
+
   .jobs--carousel-item-img {
     //margin-bottom: 35px;
     @include scss.rfs(35px, margin-bottom);
     //width: 100%;
-    max-width: 100%;
     overflow: hidden;
+    max-width: 100%;
     @include mq.mq($from: mobile, $until: xs) {
       max-height: 40vh;
       @include scss.rfs(5px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       max-height: 40vh;
@@ -1273,21 +1504,34 @@ picture {
         max-height: 40vh;
         @include scss.rfs(15px, margin-bottom);
       }
+      @include mq.mq($from: 801px, $until: 1000px, $range-feature: height) {
+        max-height: 45vh;
+        @include scss.rfs(20px, margin-bottom);
+      }
+    }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        max-height: 45vh;
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
   }
+
   .jobs--carousel-item-category {
-    color: variables.$orange;
-    //font-size: 14px;
-    //@include mixin.font-size(14px);
-    @include scss.rfs(14px, font-size);
     font-weight: 600;
+    //font-size: 14px;
+    @include scss.rfs(14px, font-size);
+    display: block;
     //margin-bottom: 20px;
     @include scss.rfs(20px, margin-bottom);
-    text-align: center;
-    display: block;
     width: 100%;
+    text-align: center;
+    color: variables.$orange;
     @include mq.mq($from: mobile, $until: xs) {
       @include scss.rfs(5px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       @include scss.rfs(10px, margin-bottom);
@@ -1304,20 +1548,23 @@ picture {
       }
     }
   }
+
   .jobs--carousel-item-title {
     //font-size: 30px;
-    //@include mixin.font-size(30px);
     @include scss.rfs(30px, font-size);
-    color: variables.$blue;
-    text-align: center;
+    font-weight: bold;
+    line-height: 0.9;
     width: 100%;
     //margin-bottom: 30px;
     @include scss.rfs(30px, margin-bottom);
-    font-weight: bold;
-    line-height: 0.9;
+    text-align: center;
+    color: variables.$blue;
     @include mq.mq($from: mobile, $until: xs) {
       @include scss.rfs(24px, font-size);
       @include scss.rfs(5px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       @include scss.rfs(24px, font-size);
@@ -1340,57 +1587,70 @@ picture {
         @include scss.rfs(15px, margin-bottom);
       }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, margin-bottom);
+      }
+    }
   }
+
   .jobs--carousel-item-more {
-    width: 50px;
-    height: 50px;
-    border: 0;
-    border-radius: 40%;
-    background-color: #fff;
-    text-align: center;
-    padding: 15px;
-    display: inline-block;
-    visibility: hidden;
-    opacity: 0;
-    //transition: visibility 0.3s, opacity 0.3s linear;
-    transition: all 0.3s ease-in-out;
     font-size: 0;
     position: relative;
+    display: inline-block;
+    visibility: hidden;
+    width: 50px;
+    height: 50px;
+    padding: 15px;
+    transition: all 0.3s ease-in-out;
+    text-align: center;
+    opacity: 0;
+    //transition: visibility 0.3s, opacity 0.3s linear;
+    border: 0;
+    border-radius: 40%;
+    background-color: #ffffff;
+
     &:hover {
       box-shadow: 0 0 5px variables.$gray;
+
       &:before,
       &:after {
         transform: scale(1.5);
       }
     }
+
     &:active {
       box-shadow: 0 0 10px variables.$gray;
     }
+
     &:before,
     &:after {
-      display: block;
-      content: '';
       position: absolute;
       top: 50%;
       left: 50%;
+      display: block;
+      content: '';
       background-color: variables.$black;
     }
-    &:before{
+
+    &:before {
       width: 2px;
       height: 16px;
-      margin-left: -1px;
       margin-top: -8px;
+      margin-left: -1px;
     }
+
     &:after {
       width: 16px;
       height: 2px;
-      margin-left: -8px;
       margin-top: -1px;
+      margin-left: -8px;
     }
+
     @include mq.mq($until: xs) {
       width: 40px;
       height: 40px;
-      &:before{
+      &:before {
         height: 12px;
         margin-top: -6px;
       }
@@ -1400,7 +1660,12 @@ picture {
       }
     }
   }
+
   .jobs--animated-svg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -12.22vh;
     animation-name: animate-svg-stroke;
     animation-duration: 16s;
     animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -1413,61 +1678,61 @@ picture {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-dasharray: 0 3;
-    stroke-dashoffset: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
     //height: 264px;
     //height: 24.44vh;
-    margin-top: -12.22vh;
+    stroke-dashoffset: 0;
   }
 }
 
 #teams {
   .teams--title {
     //font-size: 36px;
-    //@include mixin.font-size(36px);
     @include scss.rfs(36px, font-size);
-    color: variables.$blue;
     font-weight: bold;
+    line-height: 1.4;
     margin-bottom: 0;
     //padding-top: 70px;
     @include scss.rfs(70px, padding-top);
     padding-bottom: 0;
-    line-height: 1.4;
+    color: variables.$blue;
     @include mq.mq($until: xs) {
       @include scss.rfs(24px, font-size);
       @include scss.rfs(10px, margin-bottom);
       @include scss.rfs(40px, padding-top);
-      text-align: center;
       line-height: .6;
+      text-align: center;
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(30px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       @include scss.rfs(28px, font-size);
       @include scss.rfs(20px, padding-top);
-      padding-left: 30px;
+      line-height: .6;
       padding-right: 30px;
       @include scss.rfs(10px, margin-bottom);
-      line-height: .6;
+      padding-left: 30px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
       @include scss.rfs(36px, font-size);
       @include scss.rfs(20px, margin-bottom);
       line-height: 0.6;
       padding-top: 0;
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
     @include mq.mq($from: desktop, $until: wide) {
-      padding-left: 30px;
-      padding-right: 30px;
-      padding-top: 0;
       line-height: .6;
+      padding-top: 0;
+      padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(20px, margin-bottom);
     }
     @include mq.mq($from: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
     @include mq.mq($from: tablet) {
       @include mq.mq($until: 600px, $range-feature: height) {
@@ -1483,26 +1748,38 @@ picture {
         @include scss.rfs(15px, margin-bottom);
       }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(28px, font-size);
+        @include scss.rfs(20px, margin-bottom);
+        line-height: .6;
+      }
+    }
   }
+
   .teams--carousel {
     padding: 0;
     white-space: normal;
   }
+
   .teams--carousel-nav {
-    padding: 0 15px;
-    text-align: right;
     position: absolute;
+    right: 0;
+    left: 0;
     //top: 85px;
     @include scss.rfs(85px, top);
-    left: 0;
-    right: 0;
     width: 100%;
+    padding: 0 15px;
+    text-align: right;
     @include mq.mq($until: xs) {
-      top: 0;
       position: relative;
+      top: 0;
       padding: 0 30px;
       text-align: center;
       @include scss.rfs(10px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(20px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       padding: 0 30px;
@@ -1510,51 +1787,64 @@ picture {
       @include scss.rfs(10px, margin-bottom);
     }
     @include mq.mq($from: tablet, $until: desktop) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(5px, top);
     }
     @include mq.mq($from: desktop, $until: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
       @include scss.rfs(5px, top);
     }
     @include mq.mq($from: wide) {
-      padding-left: 30px;
       padding-right: 30px;
+      padding-left: 30px;
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(5px, top);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(5px, top);
+      }
     }
+    @include mq.mq($from: wide) {
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(70px, top);
+      }
+    }
+
     .teams--carousel-nav-prev,
     .teams--carousel-nav-next {
       width: 21px;
       height: 10px;
       padding: 0;
-      background-color: #ccc;
-      background-position: center;
       border-radius: 0;
+      background-color: #cccccc;
+      background-position: center;
       mask-image: url(../img/bg/carousel-nav-arrow.svg);
       mask-repeat: no-repeat;
       mask-position: center;
+
       &:hover {
         background-color: variables.$orange;
       }
+
       @include mq.mq($until: xs) {
         transform: scale(1.5);
       }
     }
+
     .teams--carousel-nav-prev {
       margin-right: 12px;
     }
+
     .teams--carousel-nav-next {
-      transform: scaleX(-1);
       margin-left: 12px;
+      transform: scaleX(-1);
       @include mq.mq($until: xs) {
         transform: scale(1.5) rotate(180deg);
       }
     }
   }
+
   .teams--carousel-item {
     //padding-top: 95px;
     @include scss.rfs(95px, padding-top);
@@ -1578,13 +1868,14 @@ picture {
         @include scss.rfs(60px, padding-top);
       }
     }
+
     .teams--carousel-item-inner {
       display: flex;
+      align-content: stretch;
+      align-items: center;
       flex-direction: column;
       flex-wrap: nowrap;
       justify-content: flex-start;
-      align-content: stretch;
-      align-items: center;
       width: 73.59%;
       margin: 0 auto;
       @include mq.mq($from: desktop, $until: wide) {
@@ -1592,21 +1883,26 @@ picture {
       }
     }
   }
+
   .teams--carousel-item__active {
     padding-top: 0;
+
     .teams--carousel-item-photo {
       //margin-top: -95px;
     }
+
     .teams--carousel-item-descr {
       display: block;
     }
+
     .teams--carousel-item-social {
       display: flex;
     }
   }
+
   .teams--carousel-item-photo {
-    border-radius: 50%;
     overflow: hidden;
+    max-width: 100%;
     //margin-bottom: 35px;
     @include scss.rfs(35px, margin-bottom);
     //width: 418px;
@@ -1614,10 +1910,13 @@ picture {
     //width: 38.7vh;
     //height: 38.7vh;
     //margin-bottom: 3.15vh;
-    max-width: 100%;
+    border-radius: 50%;
     @include mq.mq($until: xs) {
       max-height: 40vh;
       @include scss.rfs(8px, margin-bottom);
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
       max-height: 45vh;
@@ -1639,17 +1938,21 @@ picture {
         max-height: 35vh;
         @include scss.rfs(12px, margin-bottom);
       }
+      @include mq.mq($from: 801px, $until: 1000px, $range-feature: height) {
+        max-height: 40vh;
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
+
   .teams--carousel-item-post {
     //font-size: 14px;
-    //@include mixin.font-size(14px);
     @include scss.rfs(14px, font-size);
-    color: variables.$orange;
     font-weight: bold;
-    text-transform: uppercase;
     line-height: 0.9;
     text-align: center;
+    text-transform: uppercase;
+    color: variables.$orange;
     //margin-bottom: 15px;
     @include scss.rfs(15px, margin-bottom);
     @include mq.mq($until: xs) {
@@ -1671,15 +1974,15 @@ picture {
       }
     }
   }
+
   .teams--carousel-item-name {
     //font-size: 30px;
-    //@include mixin.font-size(30px);
     @include scss.rfs(30px, font-size);
-    color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
     text-align: center;
     letter-spacing: -0.2px;
+    color: variables.$blue;
     //margin-bottom: 29px;
     @include scss.rfs(25px, margin-bottom);
     @include mq.mq($until: xs) {
@@ -1708,16 +2011,16 @@ picture {
       }
     }
   }
+
   .teams--carousel-item-descr {
     //font-size: 15px;
-    //@include mixin.font-size(15px);
     @include scss.rfs(15px, font-size);
-    color: variables.$gray;
     line-height: 1.6;
+    display: none;
     text-align: center;
     //margin-bottom: 30px;
     @include scss.rfs(30px, margin-bottom);
-    display: none;
+    color: variables.$gray;
     @include mq.mq($until: xs) {
       @include scss.rfs(12px, font-size);
       @include scss.rfs(8px, margin-bottom);
@@ -1747,30 +2050,38 @@ picture {
       }
     }
   }
+
   .teams--carousel-item-social {
+    display: none;
+    align-content: stretch;
+    align-items: center;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: center;
-    align-content: stretch;
-    align-items: center;
-    display: none;
+
     li {
       //display: inline-block;
       margin: 0 10px;
     }
+
     a {
-      color: variables.$blue;
-      padding: 0 5px;
       display: inline-block;
+      padding: 0 5px;
+      color: variables.$blue;
       //font-size: 16px;
-      //@include mixin.font-size(16px);
       @include scss.rfs(16px, font-size);
+
       &:hover {
         color: variables.$orange;
       }
     }
   }
+
   .teams--animated-svg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -12.22vh;
     animation-name: animate-svg-stroke;
     animation-duration: 16s;
     animation-timing-function: cubic-bezier(0.47, 0, 0.745, 0.715);
@@ -1783,45 +2094,46 @@ picture {
     stroke-width: 2;
     stroke-linecap: round;
     stroke-dasharray: 0 4;
-    stroke-dashoffset: 0;
-    position: absolute;
-    top: 50%;
-    left: 0;
     //height: 264px;
     //height: 24.44vh;
-    margin-top: -12.22vh;
+    stroke-dashoffset: 0;
   }
 }
 
 .main--footer {
   position: absolute;
+  z-index: 5;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  z-index: 5;
   height: variables.$footer;
+  @include mq.mq($until: mobile) {
+    padding: 0 10px;
+  }
+  @include mq.mq($from: mobile, $until: xs) {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
   @include mq.mq($until: xs) {
     height: 65px;
-    padding-left: 15px;
-    padding-right: 15px;
   }
   @include mq.mq($from: xs, $until: tablet) {
     height: 90px;
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
   @include mq.mq($from: tablet, $until: desktop) {
     height: 100px;
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
   @include mq.mq($from: desktop, $until: wide) {
     height: 110px;
     padding: 0 15px;
   }
   @include mq.mq($from: wide) {
-    padding-left: 15px;
     padding-right: 15px;
+    padding-left: 15px;
   }
   @include mq.mq($from: tablet) {
     @include mq.mq($until: 600px, $range-feature: height) {
@@ -1831,39 +2143,52 @@ picture {
       height: 80px;
     }
   }
+  @include mq.mq($from: wide) {
+    @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+      height: 100px;
+    }
+  }
+
   .footer--copy {
     padding-top: 0;
     padding-left: 15px;
     @include mq.mq($until: xs) {
-      padding-right: 0;
       width: calc(100% - 65px);
+      padding-right: 0;
     }
   }
+
   .footer-email {
-    margin-bottom: 25px;
-    padding-left: 65px;
-    height: 50px;
     position: relative;
     display: flex;
+    align-content: stretch;
+    align-items: flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: center;
-    align-content: stretch;
-    align-items: flex-start;
+    height: 50px;
+    margin-bottom: 25px;
+    padding-left: 65px;
+
     &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: inline-block;
       width: 50px;
       height: 50px;
-      display: inline-block;
       content: '';
-      background-color: #fff;
+      border-radius: 40%;
+      background-color: #ffffff;
+      background-image: url(../img/bg/footer-email.png);
       background-repeat: no-repeat;
       background-position: center;
-      background-image: url(../img/bg/footer-email.png);
-      border-radius: 40%;
-      position: absolute;
-      left: 0;
-      top: 0;
-      @include mq.mq($until: xs) {
+      @include mq.mq($until: mobile) {
+        width: 30px;
+        height: 30px;
+        background-size: 50%;
+      }
+      @include mq.mq($from: mobile, $until: xs) {
         width: 40px;
         height: 40px;
       }
@@ -1882,10 +2207,16 @@ picture {
         }
       }
     }
-    @include mq.mq($until: xs) {
+    @include mq.mq($until: mobile) {
+      height: 30px;
+      padding-left: 35px;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       height: 40px;
-      @include scss.rfs(5px, margin-bottom);
       padding-left: 45px;
+    }
+    @include mq.mq($until: xs) {
+      @include scss.rfs(5px, margin-bottom);
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 45px;
@@ -1908,6 +2239,7 @@ picture {
         @include scss.rfs(8px, margin-bottom);
       }
     }
+
     span {
       display: block;
       text-transform: uppercase;
@@ -1915,8 +2247,13 @@ picture {
       @include scss.rfs(16px, font-size);
       //margin-bottom: 10px;
       @include scss.rfs(10px, margin-bottom);
-      @include mq.mq($until: xs) {
+      @include mq.mq($until: mobile) {
+        @include scss.rfs(10px, font-size);
+      }
+      @include mq.mq($from: mobile, $until: xs) {
         @include scss.rfs(12px, font-size);
+      }
+      @include mq.mq($until: xs) {
         @include scss.rfs(5px, margin-bottom);
       }
       @include mq.mq($from: xs, $until: tablet) {
@@ -1930,25 +2267,30 @@ picture {
         }
       }
     }
+
     a {
       //font-size: 16px;
-      //@include mixin.font-size(16px);
       @include scss.rfs(16px, font-size);
       font-weight: bold;
-      color: variables.$orange-dark;
       text-decoration: underline;
+      color: variables.$orange-dark;
+
       &:active,
       &:focus,
       &:hover {
         text-decoration: none;
         color: color.adjust(variables.$action-color, $lightness: -15%);
       }
+
       &:active,
       &:focus {
         color: color.adjust(variables.$action-color, $lightness: 15%);
         outline: none;
       }
-      @include mq.mq($until: xs) {
+      @include mq.mq($until: mobile) {
+        @include scss.rfs(12px, font-size);
+      }
+      @include mq.mq($from: mobile, $until: xs) {
         @include scss.rfs(14px, font-size);
       }
       @include mq.mq($from: tablet) {
@@ -1958,25 +2300,34 @@ picture {
       }
     }
   }
+
   .footer--copyright {
     color: variables.$gray;
     //font-size: 13px;
-    //@include mixin.font-size(13px);
     @include scss.rfs(13px, font-size);
+    @include mq.mq($until: mobile) {
+      @include scss.rfs(10px, font-size);
+    }
   }
+
   .footer--pager {
-    padding-top: 15px;
-    padding-right: 15px;
-    text-align: right;
     position: relative;
     display: flex;
+    align-content: stretch;
+    align-items: flex-end;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-end;
-    @include mq.mq($until: xs) {
+    padding-top: 15px;
+    padding-right: 15px;
+    text-align: right;
+    @include mq.mq($until: mobile) {
+      padding: 10px 10px 0 0;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       padding: 15px 15px 0 0;
+    }
+    @include mq.mq($until: xs) {
       width: 65px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
@@ -1991,33 +2342,41 @@ picture {
       }
     }
   }
+
   .footer--pager-mouse {
     position: absolute;
+    top: -35px;
     right: 45px;
     width: 18px;
     height: 24px;
     margin-right: -9px;
-    top: -35px;
-    box-shadow: inset 0 0 0 2px #000;
     border-radius: 25px;
+    box-shadow: inset 0 0 0 2px #000000;
+
     &:before {
       position: absolute;
+      top: 2px;
       left: 50%;
-      content: '';
       width: 2px;
       height: 5px;
-      background: #000;
       margin-left: -1px;
-      top: 2px;
+      content: '';
+      animation-name: mouse-scroll;
       animation-duration: 2.5s;
       animation-iteration-count: infinite;
-      animation-name: mouse-scroll;
+      background: #000000;
+    }
+
+    @include mq.mq($until: mobile) {
+      margin-right: -18px;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
+      margin-right: -13px;
     }
     @include mq.mq($until: xs) {
+      top: -25px;
       width: 14px;
       height: 18px;
-      top: -25px;
-      margin-right: -13px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       top: -20px;
@@ -2027,25 +2386,28 @@ picture {
     }
     @include mq.mq($from: tablet) {
       @include mq.mq($until: 600px, $range-feature: height) {
+        top: -25px;
         width: 14px;
         height: 18px;
-        top: -25px;
         margin-right: -13px;
       }
     }
   }
+
   .footer--page-num,
   .footer--page-title {
     width: 62px;
     text-align: center;
+
     span {
       display: block;
-      text-align: center;
       padding: 10px 0;
+      text-align: center;
       @include mq.mq($until: xs) {
         padding: 5px 0;
       }
     }
+
     @include mq.mq($until: xs) {
       width: 50px;
     }
@@ -2058,12 +2420,13 @@ picture {
       }
     }
   }
+
   .footer--page-num {
     color: variables.$orange;
     border-bottom: 1px solid variables.$blue;
+
     > span {
       //font-size: 48px;
-      //@include mixin.font-size(48px);
       @include scss.rfs(48px, font-size);
       line-height: 0.6;
       height: 48px;
@@ -2087,15 +2450,17 @@ picture {
       }
     }
   }
+
   .footer--page-title {
-    color: variables.$gray-light;
-    //font-size: 15px;
-    //@include mixin.font-size(15px);
-    @include scss.rfs(15px, font-size);
     line-height: 1.2;
+    //font-size: 15px;
+    @include scss.rfs(15px, font-size);
+    color: variables.$gray-light;
+
     span {
       text-transform: capitalize;
     }
+
     @include mq.mq($until: xs) {
       @include scss.rfs(12px, font-size);
     }
@@ -2116,20 +2481,20 @@ picture {
 .modal {
   //position: absolute;
   position: fixed;
+  z-index: 10;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10;
-  background-color: variables.$base-background-color;
+  left: 0;
   display: none;
+  align-content: stretch;
+  align-items: flex-start;
   flex-direction: column;
   flex-wrap: nowrap;
   justify-content: center;
-  align-content: stretch;
-  align-items: flex-start;
   transition: all 200ms ease;
   opacity: 0;
+  background-color: variables.$base-background-color;
   backface-visibility: hidden;
 }
 
@@ -2140,11 +2505,13 @@ picture {
     animation-duration: 0.5s;
     animation-fill-mode: both;
   }
+
   &.modal--contact__close {
     animation-name: modal-fade-out;
     animation-duration: 0.5s;
     animation-fill-mode: both;
   }
+
   .modal--contact-left,
   .modal--contact-right {
     //top: -10px;
@@ -2157,25 +2524,27 @@ picture {
       padding: 0 30px;
     }
   }
+
   .modal--contact-left {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-left: 30px;
     }
   }
+
   .modal--contact-right {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-right: 30px;
     }
   }
+
   .modal--contact-title {
     //font-size: 36px;
-    //@include mixin.font-size(36px);
     @include scss.rfs(36px, font-size);
     font-weight: bold;
-    color: variables.$blue;
+    line-height: 1;
     //margin-bottom: 50px;
     @include scss.rfs(50px, margin-bottom);
-    line-height: 1;
+    color: variables.$blue;
     @include mq.mq($until: xs) {
       @include scss.rfs(20px, font-size);
       @include scss.rfs(10px, margin-bottom);
@@ -2189,10 +2558,10 @@ picture {
       @include scss.rfs(15px, margin-bottom);
     }
   }
+
   p {
     font-weight: 500;
     //font-size: 16px;
-    //@include mixin.font-size(16px);
     @include scss.rfs(16px, font-size);
     line-height: 2.2;
     padding-right: 20%;
@@ -2212,22 +2581,23 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-right: 0;
     }
+
     a {
       text-decoration: none;
       color: variables.$black;
     }
   }
+
   .modal--contact-email {
     //margin-bottom: 60px;
     @include scss.rfs(60px, margin-bottom);
-    color: variables.$orange;
-    //font-size: 24px;
-    //@include mixin.font-size(24px);
-    @include scss.rfs(24px, font-size);
     font-weight: bold;
-    text-decoration: underline;
-    display: inline-block;
+    //font-size: 24px;
+    @include scss.rfs(24px, font-size);
     line-height: 1.2;
+    display: inline-block;
+    text-decoration: underline;
+    color: variables.$orange;
     @include mq.mq($until: xs) {
       @include scss.rfs(14px, font-size);
       @include scss.rfs(10px, margin-bottom);
@@ -2241,6 +2611,7 @@ picture {
       @include scss.rfs(20px, margin-bottom);
     }
   }
+
   .modal--contact-social {
     display: block;
     @include mq.mq($until: xs) {
@@ -2250,23 +2621,25 @@ picture {
       @include scss.rfs(15px, margin-bottom);
     }
   }
+
   .modal--contact-social-item {
     display: inline-block;
     margin-right: 10px;
+
     a {
       display: flex;
+      align-content: stretch;
+      align-items: center;
       flex-direction: column;
       flex-wrap: nowrap;
       justify-content: center;
-      align-content: stretch;
-      align-items: center;
-      border-radius: 20px;
-      background-color: #fff;
-      box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.11);
-      //box-shadow: 0 0 5px variables.$gray;
       width: 50px;
       height: 50px;
       transition: all 0.3s ease-in-out;
+      //box-shadow: 0 0 5px variables.$gray;
+      border-radius: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.11);
       @include mq.mq($until: xs) {
         width: 35px;
         height: 35px;
@@ -2279,41 +2652,71 @@ picture {
         padding-top: 3px;
         @include scss.rfs(16px, font-size);
       }
+
       &:hover {
         background-color: rgb(54, 41, 154);
         //box-shadow: 0px 24px 27px 0px rgba(0, 0, 0, 0.11);
         box-shadow: 0 0 10px variables.$gray;
+
         i {
           color: rgb(255, 255, 255);
         }
       }
     }
+
     i {
       color: rgb(54, 41, 154);
     }
   }
+
   .modal--contact-form {
+    .form-field {
+      position: relative;
+      &:focus-within {
+        label {
+          opacity: 1;
+          visibility: visible;
+          @include scss.rfs(8px, font-size);
+          top: -2px;
+        }
+        input,
+        textarea {
+          &::placeholder {
+            color: transparent;
+          }
+        }
+      }
+      label {
+        position: absolute;
+        top: 12px;
+        left: 0;
+        @include scss.rfs(14px, font-size);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in-out;
+      }
+    }
     input,
     textarea {
       border: 0;
-      border-bottom: 1px solid #E1E1E1;
+      border-bottom: 1px solid #e1e1e1;
       //font-size: 15px;
-      //@include mixin.font-size(15px);
       @include scss.rfs(15px, font-size);
       background-color: transparent;
       box-shadow: none;
       @include mixin.placeholder {
         color: #898989;
-      };
+      }
       @include mq.mq($until: xs) {
         @include scss.rfs(14px, font-size);
       }
+
       &[type="text"],
-      &[type="email"]{
+      &[type="email"] {
         //margin-bottom: 30px;
         @include scss.rfs(30px, margin-bottom);
-        padding: 8px 0;
         line-height: 1;
+        padding: 8px 0;
         @include mq.mq($until: xs) {
           padding: 4px 0;
           @include scss.rfs(10px, margin-bottom);
@@ -2325,43 +2728,46 @@ picture {
           @include scss.rfs(20px, margin-bottom);
         }
       }
+
       &[type="submit"] {
-        background-color: variables.$orange;
-        //font-size: 16px;
-        //@include mixin.font-size(16px);
-        @include scss.rfs(16px, font-size);
         font-weight: bold;
-        color: #fff;
-        border-radius: 22px;
+        //font-size: 16px;
+        @include scss.rfs(16px, font-size);
         width: 180px;
         height: 55px;
         margin-bottom: 0;
         transition: all 0.3s ease-in-out;
         text-align: center;
+        color: #ffffff;
+        border-radius: 22px;
+        background-color: variables.$orange;
         //box-shadow: 0px 27px 24px 0px rgba(0, 0, 0, 0.11);
         &:hover {
           box-shadow: 0 0 5px variables.$gray;
         }
+
         &:active {
           box-shadow: 0 0 10px variables.$gray;
         }
+
         @include mq.mq($until: xs) {
-          height: 40px;
           width: 100%;
+          height: 40px;
         }
         @include mq.mq($from: xs, $until: tablet) {
           height: 50px;
         }
       }
     }
+
     textarea {
-      padding: 10px 0;
       height: 105px;
+      padding: 10px 0;
       //margin-bottom: 50px;
       @include scss.rfs(50px, margin-bottom);
       @include mq.mq($until: xs) {
-        padding: 4px 0;
         height: 50px;
+        padding: 4px 0;
         @include scss.rfs(10px, margin-bottom);
       }
       @include mq.mq($from: xs, $until: tablet) {
@@ -2374,87 +2780,92 @@ picture {
       }
     }
   }
+
   .modal-bg-element--1,
   .modal-bg-element--2,
   .modal-bg-element--3,
   .modal-bg-element--4,
   .modal-bg-element--5 {
+    position: absolute;
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    position: absolute;
   }
+
   .modal-bg-element--1 {
     //width: 458px;
     //height: 458px;
-    width: 42.41vh;
-    aspect-ratio: 1 / 1;
+    z-index: -2;
+    top: -16.48vh;
     //height: 42.41vh;
     left: 19.9vw;
-    top: -16.48vh;
-    z-index: -2;
+    width: 42.41vh;
     background-image: url(../img/bg/modal-bg-element--1.svg);
-    //background-image: url(../img/bg/modal-bg-element--1.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   .modal-bg-element--2 {
     //width: 633px;
     //height: 359px;
-    width: 32.97vw;
-    aspect-ratio: 633 / 359;
+    z-index: -1;
+    top: 37.59vh;
     //height: 33.24vh;
     //left: 83.91vw;
     right: -16.88vw;
-    top: 37.59vh;
-    z-index: -1;
+    width: 32.97vw;
     background-image: url(../img/bg/modal-bg-element--2.svg);
-    //background-image: url(../img/bg/modal-bg-element--2.png);
+    //@include mixin.aspect-ratio(633, 359);
+    aspect-ratio: 633 / 359;
   }
+
   .modal-bg-element--3 {
     //width: 408px;
     //height: 647px;
     //width: 21.2vw;
-    aspect-ratio: 408 / 647;
+    z-index: -2;
     //height: 59.91vh;
     //left: 70.99vw;
     //right: -7.76vw;
     //top: 18.06vh;
     //bottom: 22.04vh;
-    z-index: -2;
-    width: 40.2vw;
     right: -11.5vw;
     bottom: -8vh;
+    width: 40.2vw;
     background-image: url(../img/bg/modal-bg-element--3.svg);
-    //background-image: url(../img/bg/modal-bg-element--3.png);
+    //@include mixin.aspect-ratio(408, 647);
+    aspect-ratio: 408 / 647;
   }
+
   .modal-bg-element--4 {
     //width: 480px;
     //height: 480px;
-    width: 44.44vh;
-    aspect-ratio: 1 / 1;
+    z-index: -4;
+    bottom: -19.25vh;
     //height: 44.44vh;
     left: 3.23vw;
     //top: 74.81vh;
-    bottom: -19.25vh;
-
-    z-index: -4;
+    width: 44.44vh;
     background-image: url(../img/bg/modal-bg-element--4.svg);
-    //background-image: url(../img/bg/modal-bg-element--4.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
+
   .modal-bg-element--5 {
     //width: 119px;
     //height: 118px;
     //width: 11.02vh;
-    aspect-ratio: 1 / 1;
+    z-index: -3;
     //height: 11.02vh;
     //left: 16.93vw;
     //top: 80.65vh;
     //bottom: 8.33vh;
-    z-index: -3;
-    width: 19.02vh;
-    left: 15.23vw;
     bottom: 3.53vh;
+    left: 15.23vw;
+    width: 19.02vh;
     background-image: url(../img/bg/modal-bg-element--5.svg);
-    //background-image: url(../img/bg/modal-bg-element--5.png);
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
 
   &.modal--contact__active {
@@ -2467,12 +2878,15 @@ picture {
       animation-direction: normal;
       animation-fill-mode: both;
     }
+
     .modal-bg-element--2 {
 
     }
+
     .modal-bg-element--3 {
 
     }
+
     .modal-bg-element--4 {
       animation-name: modal-bg-element-4;
       animation-duration: 30s;
@@ -2482,6 +2896,7 @@ picture {
       animation-direction: normal;
       animation-fill-mode: both;
     }
+
     .modal-bg-element--5 {
       animation-name: modal-bg-element-5;
       animation-duration: 10s;
@@ -2496,19 +2911,22 @@ picture {
 
 .modal--project {
   z-index: 11;
+
   &.modal--project__active {
     display: flex;
     animation-name: modal-fade-in;
     animation-duration: 0.5s;
-    animation-fill-mode: both;
     animation-timing-function: ease-out;
+    animation-fill-mode: both;
   }
+
   &.modal--project__close {
     animation-name: modal-fade-out;
     animation-duration: 0.5s;
-    animation-fill-mode: both;
     animation-timing-function: ease-out;
+    animation-fill-mode: both;
   }
+
   .align-content-space-between {
     @include mq.mq($until: xs) {
       align-content: center
@@ -2520,21 +2938,28 @@ picture {
       align-content: center
     }
   }
+
   .modal--project-logo {
     height: 120px;
     padding-top: 75px;
     //@include scss.rfs(75px, padding-top);
-    padding-left: 15px;
     padding-bottom: 0;
-    @include mq.mq($until: xs) {
-      width: 50%;
+    padding-left: 15px;
+    @include mq.mq($until: mobile) {
+      padding-top: 20px;
+      padding-left: 20px;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       padding-top: 30px;
       padding-left: 30px;
-      height: 60px;
+    }
+    @include mq.mq($until: xs) {
       position: absolute;
+      z-index: 3;
       top: 0;
       left: 0;
-      z-index: 3;
+      width: 50%;
+      height: 60px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2542,84 +2967,93 @@ picture {
       padding-left: 30px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
       height: 70px;
       padding-top: 30px;
       padding-left: 30px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 3;
     }
     @include mq.mq($from: desktop, $until: wide) {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      left: 0;
       height: 70px;
       padding-top: 30px;
       padding-left: 30px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 3;
     }
     @include mq.mq($from: wide) {
-      padding-left: 30px;
       position: absolute;
+      z-index: 3;
       top: 0;
       left: 0;
-      z-index: 3;
+      padding-left: 30px;
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      height: 70px;
-      padding-top: 30px;
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        height: 70px;
+        padding-top: 30px;
+      }
     }
     span,
     a {
       //font-size: 26px;
-      //@include mixin.font-size(26px);
       @include scss.rfs(28px, font-size);
-      line-height: 1.2;
       font-weight: bold;
-      color: variables.$black;
+      line-height: 1.2;
       position: relative;
       z-index: 6;
+      color: variables.$black;
+
       &:before {
+        position: absolute;
+        z-index: -1;
+        bottom: 17px;
+        left: 0;
         display: inline-block;
-        content: '';
         width: 34px;
         height: 34px;
-        background-color: variables.$orange;
-        border-radius: 50%;
-        z-index: -1;
-        position: absolute;
-        left: 0;
-        bottom: 17px;
+        content: '';
         animation-name: modal-project-bg;
         animation-duration: 20s;
         animation-timing-function: linear;
         animation-delay: 0s;
         animation-iteration-count: infinite;
         animation-direction: normal;
+        border-radius: 50%;
+        background-color: variables.$orange;
         animation-fill-mode: both;
       }
     }
   }
+
   .modal--project-close {
-    height: 114px;
-    padding-right: 15px;
-    padding-bottom: 0;
     display: flex;
+    align-content: flex-end;
+    align-items: flex-end;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: flex-end;
-    align-content: flex-end;
-    align-items: flex-end;
-    @include mq.mq($until: xs) {
-      width: 50%;
-      height: 60px;
+    height: 114px;
+    padding-right: 15px;
+    padding-bottom: 0;
+    @include mq.mq($until: mobile) {
+      padding-top: 10px;
+      padding-right: 20px;
+    }
+    @include mq.mq($from: mobile, $until: xs) {
       padding-top: 15px;
       padding-right: 30px;
+    }
+    @include mq.mq($until: xs) {
       position: absolute;
+      z-index: 3;
       top: 0;
       right: 0;
-      z-index: 3;
+      width: 50%;
+      height: 60px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2627,78 +3061,88 @@ picture {
       padding-right: 30px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      right: 0;
       height: 70px;
       padding-top: 20px;
       padding-right: 30px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 3;
     }
     @include mq.mq($from: desktop, $until: wide) {
+      position: absolute;
+      z-index: 3;
+      top: 0;
+      right: 0;
       height: 70px;
       padding-top: 20px;
       padding-right: 30px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 3;
     }
     @include mq.mq($from: wide) {
-      padding-right: 30px;
       position: absolute;
+      z-index: 3;
       top: 0;
       right: 0;
-      z-index: 3;
+      padding-right: 30px;
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      height: 70px;
-      padding-top: 20px;
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        height: 70px;
+        padding-top: 20px;
+      }
     }
   }
+
   .modal--project-close-button {
     //border: 1px solid variables.$gray;
-    border: 1px solid #80808061;
-    border-radius: 22px;
-    width: 53px;
-    height: 53px;
-    background-color: transparent;
     font-size: 0;
     position: relative;
+    width: 53px;
+    height: 53px;
     transition: all 0.3s ease-in-out;
+    border: 1px solid #80808061;
+    border-radius: 22px;
+    background-color: transparent;
+
     &:before,
     &:after {
-      display: block;
-      content: '';
-      background-color: variables.$black;
       position: absolute;
       top: 50%;
       left: 50%;
+      display: block;
+      content: '';
       transition: all 0.5s ease-in-out;
       transform: rotate(45deg);
+      background-color: variables.$black;
     }
+
     &:before {
       width: 2px;
       height: 14px;
-      margin-left: -1px;
       margin-top: -7px;
+      margin-left: -1px;
     }
+
     &:after {
       width: 14px;
       height: 2px;
-      margin-left: -7px;
       margin-top: -1px;
+      margin-left: -7px;
     }
+
     &:hover {
       box-shadow: 0 0 5px variables.$gray;
+
       &:before,
       &:after {
         transform: scale(1.5) rotate(45deg);
       }
     }
+
     &:active {
       box-shadow: 0 0 10px variables.$gray;
     }
+
     @include mq.mq($until: xs) {
       width: 45px;
       height: 45px;
@@ -2712,22 +3156,26 @@ picture {
       }
     }
   }
+
   .modal--project-preview {
     display: flex;
+    align-content: center;
+    align-items: center;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
-    align-content: center;
-    align-items: center;
     @include mq.mq($until: xs) {
       height: 30vh;
       @include scss.rfs(10px, margin-bottom);
       padding-top: 0;
       padding-bottom: 0;
+      @include mq.mq($from: 801px, $until: 900px, $range-feature: height) {
+        height: 40vh;
+      }
     }
     @include mq.mq($from: xs, $until: tablet) {
-      padding-left: 30px;
       padding-right: 15px;
+      padding-left: 30px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
       padding-left: 30px;
@@ -2739,6 +3187,7 @@ picture {
       padding-left: 30px;
     }
   }
+
   .modal--project-image {
     @include mq.mq($until: xs) {
       max-height: 100%;
@@ -2749,6 +3198,7 @@ picture {
       }
     }
   }
+
   .modal--project-content {
     //padding-top: 90px;
     @include scss.rfs(90px, padding-top);
@@ -2768,18 +3218,18 @@ picture {
       padding-right: 30px;
     }
     @include mq.mq($from: wide) {
-      padding-top: 0;
+      @include scss.rfs(55px, padding-top);
       padding-right: 30px;
     }
   }
+
   .modal--project-cat {
     //font-size: 14px;
-    //@include mixin.font-size(14px);
     @include scss.rfs(14px, font-size);
-    color: variables.$orange;
     font-weight: bold;
-    text-transform: uppercase;
     line-height: 1.3;
+    text-transform: uppercase;
+    color: variables.$orange;
     //margin-bottom: 21px;
     @include scss.rfs(21px, margin-bottom);
     @include mq.mq($until: xs) {
@@ -2793,17 +3243,19 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       @include scss.rfs(20px, margin-bottom);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(18px, margin-bottom);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(18px, margin-bottom);
+      }
     }
   }
+
   .modal--project-title {
     //font-size: 48px;
-    //@include mixin.font-size(48px);
     @include scss.rfs(48px, font-size);
-    color: variables.$blue;
     font-weight: bold;
     line-height: 0.8;
+    color: variables.$blue;
     //margin-bottom: 57px;
     @include scss.rfs(57px, margin-bottom);
     @include mq.mq($until: xs) {
@@ -2822,11 +3274,14 @@ picture {
       @include scss.rfs(46px, font-size);
       @include scss.rfs(20px, margin-bottom);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(36px, font-size);
-      @include scss.rfs(18px, margin-bottom);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(36px, font-size);
+        @include scss.rfs(18px, margin-bottom);
+      }
     }
   }
+
   .modal--project-props {
     //margin-bottom: 40px;
     @include scss.rfs(40px, margin-bottom);
@@ -2842,15 +3297,17 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
     }
-    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-      @include scss.rfs(18px, margin-bottom);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(18px, margin-bottom);
+      }
     }
+
     dt,
     dd {
-      padding-left: 34px;
       line-height: 1.6;
+      padding-left: 34px;
       //font-size: 15px;
-      //@include mixin.font-size(15px);
       @include scss.rfs(15px, font-size);
       @include helpers.clearfix;
       @include mq.mq($until: tablet) {
@@ -2864,19 +3321,22 @@ picture {
         padding-left: 30px;
       }
     }
+
     dt {
-      padding-bottom: 0;
-      margin: 0;
       font-weight: bold;
-      color: variables.$black;
       position: relative;
+      margin: 0;
+      padding-bottom: 0;
+      color: variables.$black;
+
       &:before {
-        content: '';
-        display: block;
         position: absolute;
         top: 3px;
         left: 0;
+        display: block;
+        content: '';
       }
+
       @include mq.mq($from: xs, $until: tablet) {
         @include scss.rfs(10px, margin-bottom);
         &:before {
@@ -2884,13 +3344,15 @@ picture {
         }
       }
     }
+
     dd {
-      color: variables.$gray;
       font-weight: normal;
+      color: variables.$gray;
       //margin-bottom: 26px;
       &:last-child {
         margin-bottom: 0;
       }
+
       @include scss.rfs(26px, margin-bottom);
       @include mq.mq($until: xs) {
         @include scss.rfs(10px, margin-bottom);
@@ -2904,16 +3366,20 @@ picture {
       @include mq.mq($from: desktop, $until: wide) {
         @include scss.rfs(20px, margin-bottom);
       }
-      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
-        @include scss.rfs(18px, margin-bottom);
+      @include mq.mq($from: tablet) {
+        @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+          @include scss.rfs(18px, margin-bottom);
+        }
       }
     }
+
     span {
       display: block;
-      width: 50%;
       float: left;
+      width: 50%;
     }
   }
+
   .modal--project-props-date {
     &:before {
       width: 14px;
@@ -2921,6 +3387,7 @@ picture {
       background-image: url(../img/bg/modal--project-props-date.png);
     }
   }
+
   .modal--project-props-location {
     &:before {
       width: 12px;
@@ -2928,6 +3395,7 @@ picture {
       background-image: url(../img/bg/modal--project-props-location.png);
     }
   }
+
   .modal--project-props-services {
     &:before {
       width: 20px;
@@ -2935,9 +3403,9 @@ picture {
       background-image: url(../img/bg/modal--project-props-services.png);
     }
   }
+
   p {
     //font-size: 15px;
-    //@include mixin.font-size(15px);
     @include scss.rfs(15px, font-size);
     line-height: 1.7;
     color: variables.$gray;
@@ -2955,34 +3423,35 @@ picture {
       line-height: 1.5;
     }
   }
+
   .modal--project-nav {
     display: flex;
+    align-content: stretch;
+    align-items: flex-end;
     flex-direction: column;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    align-content: stretch;
-    align-items: flex-end;
     height: 186px;
     @include mq.mq($until: xs) {
-      height: 40px;
-      padding: 0 45px;
       position: absolute;
+      z-index: 3;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
-      z-index: 3;
+      height: 40px;
+      padding: 0 45px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
       padding: 0 45px;
     }
     @include mq.mq($from: tablet, $until: desktop) {
-      height: 80px;
-      padding: 0 30px;
       position: absolute;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
+      height: 80px;
+      padding: 0 30px;
     }
     @include mq.mq($from: tablet) {
       @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
@@ -2990,48 +3459,53 @@ picture {
       }
     }
     @include mq.mq($from: desktop, $until: wide) {
-      padding-right: 30px;
       position: absolute;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
       height: 100px;
+      padding-right: 30px;
     }
     @include mq.mq($from: wide) {
-      padding-right: 30px;
       position: absolute;
+      right: 0;
       bottom: 0;
       left: 0;
-      right: 0;
+      padding-right: 30px;
     }
   }
+
   .modal--project-nav-title {
-    width: 72px;
-    //font-size: 12px;
-    //@include mixin.font-size(12px);
-    @include scss.rfs(12px, font-size);
-    text-transform: uppercase;
     line-height: 1.2;
-    color: variables.$gray;
+    //font-size: 12px;
+    @include scss.rfs(12px, font-size);
+    visibility: hidden;
+    width: 72px;
+    transition: all 0.5s ease-in-out;
     //margin-bottom: 15px;
     @include scss.rfs(15px, margin-bottom);
-    visibility: hidden;
+    text-transform: uppercase;
     opacity: 0;
-    transition: all 0.5s ease-in-out;
+    color: variables.$gray;
+
     .modal--project-nav-direct {
       display: block;
     }
+
     &.modal--project-nav-title__next,
     &.modal--project-nav-title__prev {
       visibility: visible;
       opacity: 1;
     }
+
     &.modal--project-nav-title__next {
       text-align: right;
     }
+
     &.modal--project-nav-title__prev {
       text-align: left;
     }
+
     @include mq.mq($until: tablet) {
       display: none;
     }
@@ -3039,47 +3513,53 @@ picture {
       display: none;
     }
   }
+
   .modal--project-nav-buttons {
-    width: 72px;
     line-height: 0.7;
     display: flex;
+    align-content: flex-start;
+    align-items: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-content: flex-start;
-    align-items: flex-start;
+    width: 72px;
     @include mq.mq($until: xs) {
-      width: 100%;
       line-height: 1.1;
+      width: 100%;
     }
     @include mq.mq($from: xs, $until: tablet) {
-      width: 100%;
       justify-content: flex-end;
+      width: 100%;
     }
   }
+
   .modal--project-btn {
+    font-size: 0;
     width: 21px;
     height: 10px;
     padding: 0;
-    background-color: #ccc;
-    background-position: center;
     border-radius: 0;
+    background-color: #cccccc;
+    background-position: center;
     mask-image: url(../img/bg/carousel-nav-arrow.svg);
     mask-repeat: no-repeat;
     mask-position: center;
-    font-size: 0;
+
     &:hover {
       background-color: variables.$orange;
     }
+
     @include mq.mq($until: tablet) {
       transform: scale(2);
     }
   }
+
   .modal--project-btn-prev {
     @include mq.mq($from: xs, $until: tablet) {
       margin-right: 20px;
     }
   }
+
   .modal--project-btn-next {
     transform: rotate(180deg);
     @include mq.mq($until: tablet) {
@@ -3089,42 +3569,46 @@ picture {
       margin-left: 20px;
     }
   }
+
   .modal--project-bg-1,
   .modal--project-bg-2 {
-    border-radius: 50%;
     position: absolute;
-    background-color: #FFD6E9;
+    border-radius: 50%;
+    background-color: #ffd6e9;
   }
+
   .modal--project-bg-1 {
     //width: 1292px;
     //height: 1292px;
-    width: 119.63vh;
-    aspect-ratio: 1 / 1;
+    z-index: -2;
+    top: -14.72vh;
     //top: -159px;
     //left: -207px;
-    top: -14.72vh;
     left: -14.78vw;
-    opacity: 0.5;
-    z-index: -2;
+    width: 119.63vh;
     animation-name: modal-project-bg;
     animation-duration: 20s;
     animation-timing-function: linear;
     animation-delay: 0s;
     animation-iteration-count: infinite;
     animation-direction: normal;
+    opacity: 0.5;
     animation-fill-mode: both;
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
+
   }
+
   .modal--project-bg-2 {
     //width: 1101px;
     //height: 1101px;
-    width: 101.94vh;
+    z-index: -1;
     //height: 1101px;
-    aspect-ratio: 1 / 1;
+    top: -11.02vh;
     //left: -263px;
     //top: -119px;
     left: -17.7vw;
-    top: -11.02vh;
-    z-index: -1;
+    width: 101.94vh;
     animation-name: modal-project-bg;
     animation-duration: 15s;
     animation-timing-function: linear;
@@ -3132,6 +3616,8 @@ picture {
     animation-iteration-count: infinite;
     animation-direction: normal;
     animation-fill-mode: both;
+    //@include mixin.aspect-ratio(1, 1);
+    aspect-ratio: 1 / 1;
   }
 }
 
@@ -3152,6 +3638,7 @@ picture {
     transform: rotateY(-25deg);
   }
 }
+
 @keyframes home-bg-element-1 {
   0% {
     transform: rotateY(-25deg);
@@ -3169,6 +3656,7 @@ picture {
     transform: rotateY(-25deg);
   }
 }
+
 @keyframes home-bg-element-2 {
   0% {
     transform: translate(-8vw, 0) scale(0.7);
@@ -3177,32 +3665,34 @@ picture {
     transform: translate(-4.27vw, 35.56vh) scale(1);
   }
 }
+
 @keyframes home-bg-element-3 {
-    0% {
-      transform: translate(0) scale(1);
-      animation-timing-function: ease-out;
-    }
-    25% {
-      transform: translate(2%, -7%) scale(0.8) rotate(45deg);
-      animation-timing-function: ease-in;
-    }
-    50% {
-      transform: translate(5%, 10%) scale(0.5) rotate(-90deg);
-      animation-timing-function: ease-out;
-    }
-    75% {
-      transform: translate(4%, 4%) scale(0.6) rotate(45deg);
-      animation-timing-function: ease-out;
-    }
-    90% {
-      transform: translate(2%, 2%) scale(0.8);
-      animation-timing-function: ease-in;
-    }
-    100% {
-      transform: translate(0) scale(1);
-      animation-timing-function: ease-out;
-    }
+  0% {
+    transform: translate(0) scale(1);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: translate(2%, -7%) scale(0.8) rotate(45deg);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: translate(5%, 10%) scale(0.5) rotate(-90deg);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: translate(4%, 4%) scale(0.6) rotate(45deg);
+    animation-timing-function: ease-out;
+  }
+  90% {
+    transform: translate(2%, 2%) scale(0.8);
+    animation-timing-function: ease-in;
+  }
+  100% {
+    transform: translate(0) scale(1);
+    animation-timing-function: ease-out;
+  }
 }
+
 @keyframes home-bg-element-4 {
   0% {
     animation-timing-function: ease-in;
@@ -3238,18 +3728,20 @@ picture {
     transform: translateY(0);
   }
 }
+
 @keyframes home-bg-element-5 {
-  0%{
+  0% {
     width: 0;
     height: 0;
     transform: rotate(180deg);
   }
-  100%{
+  100% {
     height: 19.02vh;
     width: 19.02vh;
     transform: rotate(0);
   }
 }
+
 @keyframes about-bg-element-1 {
   0%, 100% {
     transform: translateY(0);
@@ -3257,10 +3749,11 @@ picture {
   25%, 75% {
     transform: translateY(-8%);
   }
-  50%{
+  50% {
     transform: translateY(8%);
   }
 }
+
 @keyframes about-bg-element-2 {
   0% {
     animation-timing-function: ease-in;
@@ -3296,14 +3789,16 @@ picture {
     transform: translate(0);
   }
 }
+
 @keyframes about-bg-element-3 {
-  0%{
+  0% {
     transform: translate(-30vw, 20vh) scale(0);
   }
-  100%{
+  100% {
     transform: translate(0) scale(1);
   }
 }
+
 @keyframes about-bg-element-4 {
   0%, 100% {
     transform: translate(0) scale(1) rotate(0);
@@ -3322,6 +3817,7 @@ picture {
     animation-timing-function: ease-out;
   }
 }
+
 @keyframes animate-svg-stroke {
   0% {
     transform: translate(0) scale(1) rotate(3deg);
@@ -3344,75 +3840,82 @@ picture {
     animation-timing-function: ease-out;
   }
 }
+
 @keyframes modal-fade-in {
-  0%{
+  0% {
     opacity: 0;
     transform: translateY(-100%);
   }
-  100%{
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 @keyframes modal-fade-out {
-  0%{
+  0% {
     opacity: 1;
     transform: translateY(0);
   }
-  100%{
+  100% {
     opacity: 0;
     transform: translateY(-100%);
   }
 }
+
 @keyframes modal-bg-element-1 {
-  0%{
+  0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
-  100%{
+  100% {
     transform: translateY(117vh) rotate(720deg);
     opacity: 0;
   }
 }
+
 @keyframes modal-bg-element-4 {
-  0%{
+  0% {
     transform: translateY(0) rotate(0deg);
     opacity: 1;
   }
-  50%{
+  50% {
     transform: translateY(-100vh) rotate(720deg);
     opacity: 0.5;
   }
-  100%{
+  100% {
     transform: translateY(0) rotate(720deg);
     opacity: 1;
   }
 }
+
 @keyframes modal-bg-element-5 {
-  0%{
-    transform: translate(0,0) rotate(0deg);
+  0% {
+    transform: translate(0, 0) rotate(0deg);
   }
-  25%{
-    transform: translate(6.93vw,-14.67vh) rotate(360deg) scale(1.2);
+  25% {
+    transform: translate(6.93vw, -14.67vh) rotate(360deg) scale(1.2);
   }
-  50%{
-    transform: translate(-1.07vw,-8.67vh) rotate(720deg) scale(0.8);
+  50% {
+    transform: translate(-1.07vw, -8.67vh) rotate(720deg) scale(0.8);
   }
-  100%{
-    transform: translate(0,0) rotate(360deg) scale(1);
+  100% {
+    transform: translate(0, 0) rotate(360deg) scale(1);
   }
 }
-@keyframes modal-project-bg{
-  0%{
+
+@keyframes modal-project-bg {
+  0% {
     transform: scale(0.8);
   }
-  50%{
+  50% {
     transform: scale(1.2);
   }
-  100%{
+  100% {
     transform: scale(0.8);
   }
 }
+
 @keyframes mouse-scroll {
   0% {
     opacity: 1;
