@@ -418,8 +418,7 @@ picture {
     text-align: center;
     color: variables.$blue;
     line-height: 0.5;
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 30px;
     //margin-bottom: 0;
     //@include scss.rfs(40px, margin-bottom);
     @include scss.rfs(10px, margin-bottom);
@@ -447,8 +446,7 @@ picture {
     //@include mixin.font-size(18px);
     //@include mixin.font-size-vw(18px);
     @include scss.rfs(18px, font-size);
-    padding-top: 0;
-    padding-bottom: 0;
+    padding: 0 30px;
     position: relative;
     letter-spacing: -0.2px;
     z-index: 4;
@@ -1831,7 +1829,7 @@ picture {
       width: 14px;
       height: 18px;
       top: -10px;
-      margin-right: -11px;
+      margin-right: -13px;
     }
     @include mq.mq($from: xs, $until: tablet) {
       top: -20px;
@@ -2293,6 +2291,12 @@ picture {
     animation-timing-function: ease-out;
   }
   .align-content-space-between {
+    @include mq.mq($until: xs) {
+      align-content: center
+    }
+    @include mq.mq($from: tablet, $until: desktop) {
+      align-content: center
+    }
     @include mq.mq($from: desktop) {
       align-content: center
     }
@@ -2308,6 +2312,9 @@ picture {
       padding-top: 30px;
       padding-left: 30px;
       height: 60px;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2318,6 +2325,9 @@ picture {
       height: 70px;
       padding-top: 30px;
       padding-left: 30px;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
     @include mq.mq($from: desktop, $until: wide) {
       height: 70px;
@@ -2379,6 +2389,9 @@ picture {
       height: 60px;
       padding-top: 15px;
       padding-right: 30px;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2389,6 +2402,9 @@ picture {
       height: 70px;
       padding-top: 20px;
       padding-right: 30px;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
     @include mq.mq($from: desktop, $until: wide) {
       height: 70px;
@@ -2469,8 +2485,10 @@ picture {
     align-content: center;
     align-items: center;
     @include mq.mq($until: xs) {
-      height: 25vh;
+      height: 30vh;
       @include scss.rfs(10px, margin-bottom);
+      padding-top: 0;
+      padding-bottom: 0;
     }
     @include mq.mq($from: xs, $until: tablet) {
       padding-left: 30px;
@@ -2699,8 +2717,12 @@ picture {
     align-items: flex-end;
     height: 186px;
     @include mq.mq($until: xs) {
-      height: 100px;
+      height: 40px;
       padding: 0 45px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2709,6 +2731,10 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       height: 80px;
       padding: 0 30px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
     }
     @include mq.mq($from: desktop, $until: wide) {
       padding-right: 30px;
