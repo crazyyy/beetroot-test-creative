@@ -26,7 +26,7 @@ $breakpoints: (
 $show-breakpoints: (mobile, mobileLandscape, tablet, desktop, wide);
 @use "import/mq" with (
   $breakpoints: $breakpoints,
-  $show-breakpoints: $show-breakpoints
+  //$show-breakpoints: $show-breakpoints
 );
 @include mq.add-breakpoint(xs, 576px);
 @include mq.add-breakpoint(xlg, 1600px);
