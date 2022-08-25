@@ -122,7 +122,7 @@ $(document).ready(function() {
       320: {
         items: 1
       },
-      900: {
+      993: {
         items: 3
       }
     }
@@ -196,7 +196,7 @@ $(document).ready(function() {
       320: {
         items: 1
       },
-      900: {
+      993: {
         items: 3
       }
     }
