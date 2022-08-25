@@ -138,6 +138,9 @@ picture {
     padding-left: 15px;
     padding-right: 15px;
   }
+  @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+    padding-top: 15px;
+  }
   .header--logo {
     padding: 12px 0 0 15px;
     @include mq.mq($until: xs) {
@@ -436,7 +439,9 @@ picture {
       }
     }
     @include mq.mq($until: xs) {
-      line-height: 1;
+      line-height: 1.3;
+      @include scss.rfs(100px, font-size);
+      padding: 0 10px;
     }
   }
   .home--description {
@@ -694,6 +699,11 @@ picture {
         @include scss.rfs(30px, font-size);
         @include scss.rfs(20px, margin-bottom);
       }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        line-height: 1;
+        @include scss.rfs(26px, font-size);
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
     p {
       //margin-bottom: 35px;
@@ -719,6 +729,9 @@ picture {
       @include mq.mq($from: desktop, $until: wide) {
         @include scss.rfs(20px, margin-bottom);
       }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
   .about--content-partners {
@@ -742,6 +755,9 @@ picture {
       @include scss.rfs(20px, padding-top);
     }
     @include mq.mq($from: desktop, $until: wide) {
+      @include scss.rfs(20px, padding-top);
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
       @include scss.rfs(20px, padding-top);
     }
     span {
@@ -850,6 +866,11 @@ picture {
       @include scss.rfs(30px, font-size);
       @include scss.rfs(20px, margin-bottom);
     }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      line-height: 1;
+      @include scss.rfs(26px, font-size);
+      @include scss.rfs(15px, margin-bottom);
+    }
   }
   .about--provide-list {
     //font-size: 15px;
@@ -894,6 +915,9 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      @include scss.rfs(15px, margin-bottom);
     }
     &:before {
       content: '';
@@ -1091,6 +1115,20 @@ picture {
       padding-left: 30px;
       padding-right: 30px;
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        line-height: .6;
+        padding-top: 0;
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        line-height: .6;
+        padding-top: 0;
+        @include scss.rfs(15px, margin-bottom);
+      }
+    }
   }
   .jobs--carousel {
     //width: 100%;
@@ -1124,6 +1162,9 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       padding-left: 30px;
       padding-right: 30px;
+      @include scss.rfs(5px, top);
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
       @include scss.rfs(5px, top);
     }
     @include mq.mq($from: wide) {
@@ -1176,6 +1217,14 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(50px, padding-top);
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(30px, padding-top);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(50px, padding-top);
+      }
+    }
     .jobs--carousel-item-inner {
       display: flex;
       flex-direction: column;
@@ -1201,10 +1250,11 @@ picture {
     max-width: 100%;
     overflow: hidden;
     @include mq.mq($from: mobile, $until: xs) {
+      max-height: 40vh;
       @include scss.rfs(5px, margin-bottom);
     }
     @include mq.mq($from: xs, $until: tablet) {
-      max-height: 45vh;
+      max-height: 40vh;
       @include scss.rfs(10px, margin-bottom);
     }
     @include mq.mq($from: tablet, $until: desktop) {
@@ -1213,6 +1263,16 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        max-height: 35vh;
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        max-height: 40vh;
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
   .jobs--carousel-item-category {
@@ -1234,6 +1294,14 @@ picture {
     }
     @include mq.mq($from: tablet, $until: desktop) {
       @include scss.rfs(15px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
   .jobs--carousel-item-title {
@@ -1261,6 +1329,16 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(24px, font-size);
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
   .jobs--carousel-item-more {
@@ -1384,12 +1462,26 @@ picture {
       padding-left: 30px;
       padding-right: 30px;
       padding-top: 0;
-      line-height: 0.6;
+      line-height: .6;
       @include scss.rfs(20px, margin-bottom);
     }
     @include mq.mq($from: wide) {
       padding-left: 30px;
       padding-right: 30px;
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        line-height: .6;
+        padding-top: 0;
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        line-height: .6;
+        padding-top: 0;
+        @include scss.rfs(15px, margin-bottom);
+      }
     }
   }
   .teams--carousel {
@@ -1430,6 +1522,9 @@ picture {
     @include mq.mq($from: wide) {
       padding-left: 30px;
       padding-right: 30px;
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      @include scss.rfs(5px, top);
     }
     .teams--carousel-nav-prev,
     .teams--carousel-nav-next {
@@ -1475,8 +1570,13 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-top: 0;
     }
-    @include mq.mq($from: desktop, $until: wide) {
-      //@include scss.rfs(75px, padding-top);
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(50px, padding-top);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(60px, padding-top);
+      }
     }
     .teams--carousel-item-inner {
       display: flex;
@@ -1516,6 +1616,7 @@ picture {
     //margin-bottom: 3.15vh;
     max-width: 100%;
     @include mq.mq($until: xs) {
+      max-height: 40vh;
       @include scss.rfs(8px, margin-bottom);
     }
     @include mq.mq($from: xs, $until: tablet) {
@@ -1528,6 +1629,16 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        max-height: 35vh;
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        max-height: 35vh;
+        @include scss.rfs(12px, margin-bottom);
+      }
     }
   }
   .teams--carousel-item-post {
@@ -1550,6 +1661,14 @@ picture {
     }
     @include mq.mq($from: tablet, $until: desktop) {
       @include scss.rfs(15px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(12px, margin-bottom);
+      }
     }
   }
   .teams--carousel-item-name {
@@ -1578,6 +1697,16 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(26px, font-size);
+        @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(28px, font-size);
+        @include scss.rfs(12px, margin-bottom);
+      }
+    }
   }
   .teams--carousel-item-descr {
     //font-size: 15px;
@@ -1605,6 +1734,17 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(14px, font-size);
+        @include scss.rfs(10px, margin-bottom);
+        line-height: 1.2;
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        line-height: 1.2;
+        @include scss.rfs(12px, margin-bottom);
+      }
     }
   }
   .teams--carousel-item-social {
@@ -1683,10 +1823,19 @@ picture {
     padding-left: 15px;
     padding-right: 15px;
   }
+  @include mq.mq($from: tablet) {
+    @include mq.mq($until: 600px, $range-feature: height) {
+      height: 70px;
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      height: 80px;
+    }
+  }
   .footer--copy {
     padding-top: 0;
     padding-left: 15px;
     @include mq.mq($until: xs) {
+      padding-right: 0;
       width: calc(100% - 65px);
     }
   }
@@ -1722,6 +1871,16 @@ picture {
         width: 45px;
         height: 45px;
       }
+      @include mq.mq($until: 600px, $range-feature: height) {
+        width: 40px;
+        height: 40px;
+      }
+      @include mq.mq($from: tablet) {
+        @include mq.mq($until: 600px, $range-feature: height) {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
     @include mq.mq($until: xs) {
       height: 40px;
@@ -1739,6 +1898,16 @@ picture {
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        height: 40px;
+        @include scss.rfs(5px, margin-bottom);
+        padding-left: 45px;
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(8px, margin-bottom);
+      }
+    }
     span {
       display: block;
       text-transform: uppercase;
@@ -1753,6 +1922,12 @@ picture {
       @include mq.mq($from: xs, $until: tablet) {
         @include scss.rfs(14px, font-size);
         @include scss.rfs(10px, margin-bottom);
+      }
+      @include mq.mq($from: tablet) {
+        @include mq.mq($until: 600px, $range-feature: height) {
+          @include scss.rfs(12px, font-size);
+          @include scss.rfs(5px, margin-bottom);
+        }
       }
     }
     a {
@@ -1775,6 +1950,11 @@ picture {
       }
       @include mq.mq($until: xs) {
         @include scss.rfs(14px, font-size);
+      }
+      @include mq.mq($from: tablet) {
+        @include mq.mq($until: 600px, $range-feature: height) {
+          @include scss.rfs(14px, font-size);
+        }
       }
     }
   }
@@ -1802,6 +1982,14 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       padding-top: 0;
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        padding-top: 0;
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        padding-top: 0;
+      }
+    }
   }
   .footer--pager-mouse {
     position: absolute;
@@ -1828,7 +2016,7 @@ picture {
     @include mq.mq($until: xs) {
       width: 14px;
       height: 18px;
-      top: -10px;
+      top: -25px;
       margin-right: -13px;
     }
     @include mq.mq($from: xs, $until: tablet) {
@@ -1836,6 +2024,14 @@ picture {
     }
     @include mq.mq($from: tablet, $until: desktop) {
       top: -30px;
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        width: 14px;
+        height: 18px;
+        top: -25px;
+        margin-right: -13px;
+      }
     }
   }
   .footer--page-num,
@@ -1856,6 +2052,11 @@ picture {
     @include mq.mq($from: xs, $until: tablet) {
       width: 60px;
     }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        width: 50px;
+      }
+    }
   }
   .footer--page-num {
     color: variables.$orange;
@@ -1874,6 +2075,16 @@ picture {
         @include scss.rfs(38px, font-size);
         height: auto;
       }
+      @include mq.mq($from: tablet) {
+        @include mq.mq($until: 600px, $range-feature: height) {
+          @include scss.rfs(30px, font-size);
+          height: auto;
+        }
+        @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+          @include scss.rfs(32px, font-size);
+          height: auto;
+        }
+      }
     }
   }
   .footer--page-title {
@@ -1890,6 +2101,14 @@ picture {
     }
     @include mq.mq($from: xs, $until: tablet) {
       @include scss.rfs(13px, font-size);
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($until: 600px, $range-feature: height) {
+        @include scss.rfs(12px, font-size);
+      }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(13px, font-size);
+      }
     }
   }
 }
@@ -2315,6 +2534,7 @@ picture {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 3;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2328,6 +2548,7 @@ picture {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 3;
     }
     @include mq.mq($from: desktop, $until: wide) {
       height: 70px;
@@ -2336,12 +2557,18 @@ picture {
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 3;
     }
     @include mq.mq($from: wide) {
       padding-left: 30px;
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 3;
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      height: 70px;
+      padding-top: 30px;
     }
     span,
     a {
@@ -2392,6 +2619,7 @@ picture {
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 3;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2405,6 +2633,7 @@ picture {
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 3;
     }
     @include mq.mq($from: desktop, $until: wide) {
       height: 70px;
@@ -2413,12 +2642,18 @@ picture {
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 3;
     }
     @include mq.mq($from: wide) {
       padding-right: 30px;
       position: absolute;
       top: 0;
       right: 0;
+      z-index: 3;
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      height: 70px;
+      padding-top: 20px;
     }
   }
   .modal--project-close-button {
@@ -2508,6 +2743,11 @@ picture {
     @include mq.mq($until: xs) {
       max-height: 100%;
     }
+    @include mq.mq($from: xs) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        max-height: 70vh;
+      }
+    }
   }
   .modal--project-content {
     //padding-top: 90px;
@@ -2553,6 +2793,9 @@ picture {
     @include mq.mq($from: tablet, $until: desktop) {
       @include scss.rfs(20px, margin-bottom);
     }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      @include scss.rfs(18px, margin-bottom);
+    }
   }
   .modal--project-title {
     //font-size: 48px;
@@ -2579,6 +2822,10 @@ picture {
       @include scss.rfs(46px, font-size);
       @include scss.rfs(20px, margin-bottom);
     }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      @include scss.rfs(36px, font-size);
+      @include scss.rfs(18px, margin-bottom);
+    }
   }
   .modal--project-props {
     //margin-bottom: 40px;
@@ -2594,6 +2841,9 @@ picture {
     }
     @include mq.mq($from: desktop, $until: wide) {
       @include scss.rfs(20px, margin-bottom);
+    }
+    @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+      @include scss.rfs(18px, margin-bottom);
     }
     dt,
     dd {
@@ -2654,17 +2904,14 @@ picture {
       @include mq.mq($from: desktop, $until: wide) {
         @include scss.rfs(20px, margin-bottom);
       }
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        @include scss.rfs(18px, margin-bottom);
+      }
     }
     span {
       display: block;
-      width: 44%;
+      width: 50%;
       float: left;
-      @include mq.mq($until: tablet) {
-        width: 50%;
-      }
-      @include mq.mq($from: tablet, $until: desktop) {
-        width: 50%;
-      }
     }
   }
   .modal--project-props-date {
@@ -2723,6 +2970,7 @@ picture {
       bottom: 0;
       left: 0;
       right: 0;
+      z-index: 3;
     }
     @include mq.mq($from: xs, $until: tablet) {
       height: 70px;
@@ -2735,6 +2983,11 @@ picture {
       bottom: 0;
       left: 0;
       right: 0;
+    }
+    @include mq.mq($from: tablet) {
+      @include mq.mq($from: 601px, $until: 800px, $range-feature: height) {
+        height: 120px;
+      }
     }
     @include mq.mq($from: desktop, $until: wide) {
       padding-right: 30px;
