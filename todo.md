@@ -33,10 +33,6 @@
 - Add support for the Hebrew language with RTL support (https://rtlcss.com/)
 
 ### Projects for investigate
-
-https://github.com/Mobius1/Pageable
-https://mobius1.github.io/Pageable/
-
 https://github.com/guidobouman/panelsnap
 https://alvarotrigo.com/pagePiling/examples/callbacks.html#page3
 

@@ -1,6 +1,6 @@
 {
-  "domain": "wp-framework.local",
-  "theme": "wp-framework",
+  "domain": "beetroot-test-creative",
+  "theme": "wp-creative-agency",
   "ssl": {
     "key": "d:\\laragon\\etc\\ssl\\laragon.key",
     "cert": "d:\\laragon\\etc\\ssl\\laragon.crt"

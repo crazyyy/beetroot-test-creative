@@ -902,7 +902,7 @@ picture {
       width: 150px;
       letter-spacing: -0.2px;
       text-transform: uppercase;
-      color: rgb(161, 161, 161);
+      color: #a1a1a1;
       @include mq.mq($until: mobile) {
         width: 100%;
         @include scss.rfs(11px, font-size);
