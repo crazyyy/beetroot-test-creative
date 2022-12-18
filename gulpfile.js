@@ -35,17 +35,19 @@ const browserSyncArgs = {
 };
 
 if ( isHtmlDev ) {
+  browserSyncArgs.open = "external";
   browserSyncArgs.server = {
     baseDir: config.path.base.dest
   };
   browserSyncArgs.logPrefix = 'BS-HTML:';
 } else {
+  // browserSyncArgs.https = true;
   browserSyncArgs.https = {
     key: config.ssl.key,
     cert: config.ssl.cert
   };
   browserSyncArgs.proxy = `https://${config.domain}`;
-  // browserSyncArgs.host = config.domain;
+  browserSyncArgs.host = config.domain;
   browserSyncArgs.logPrefix = 'BS-WP:';
 }
 

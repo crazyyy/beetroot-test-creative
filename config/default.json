@@ -1,5 +1,5 @@
 {
-  "domain": "beetroot-test-creative",
+  "domain": "beetroot-test-creative.local",
   "theme": "wp-creative-agency",
   "ssl": {
     "key": "d:\\laragon\\etc\\ssl\\laragon.key",
